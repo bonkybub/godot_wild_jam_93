@@ -1,7 +1,8 @@
+class_name Player
 extends CharacterBody3D
 # Didn't know Godot gave you an example script, so I'm building it off of that
 
-const SPEED = 5.0
+const SPEED: float = 5.0
 
 func _physics_process(delta: float) -> void:
 
