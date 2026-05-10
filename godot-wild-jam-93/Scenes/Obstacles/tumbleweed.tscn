@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dv2bqw1ycs0kv"]
+
+[ext_resource type="Script" uid="uid://difdm76q443kl" path="res://Scripts/Obstacles/tumbleweed.gd" id="1_ivv5g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6qo8"]
+albedo_color = Color(0.64552546, 0.46044183, 9.62615e-07, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lrtok"]
+material = SubResource("StandardMaterial3D_i6qo8")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lidin"]
+
+[node name="Tumbleweed" type="Area3D" unique_id=706673517]
+script = ExtResource("1_ivv5g")
+
+[node name="Temp_Model" type="MeshInstance3D" parent="." unique_id=1631959475]
+mesh = SubResource("SphereMesh_lrtok")
+
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=1915824565]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+shape = SubResource("SphereShape3D_lidin")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

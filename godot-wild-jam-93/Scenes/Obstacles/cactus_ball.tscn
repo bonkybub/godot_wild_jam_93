@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://2mhj7gcm6f7r"]
+
+[ext_resource type="Script" uid="uid://b27q15vbfqwl0" path="res://Scripts/Obstacles/cactus_ball.gd" id="1_pqw3e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqw3e"]
+albedo_color = Color(0, 0.49803922, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_onk0o"]
+material = SubResource("StandardMaterial3D_pqw3e")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pqw3e"]
+
+[node name="Cactus Ball" type="Area3D" unique_id=1430593807]
+script = ExtResource("1_pqw3e")
+
+[node name="Temp_Model" type="MeshInstance3D" parent="." unique_id=1504137259]
+mesh = SubResource("SphereMesh_onk0o")
+
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=1792122118]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+shape = SubResource("SphereShape3D_pqw3e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
