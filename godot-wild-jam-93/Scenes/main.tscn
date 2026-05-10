@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bsaqeg5gb4ufy" path="res://Scripts/player_mover.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://7eqr2ek2diiy" path="res://Scripts/player.gd" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://2mhj7gcm6f7r" path="res://Scenes/Obstacles/cactus_ball.tscn" id="3_8gbba"]
 
 [sub_resource type="Sky" id="Sky_jjgbg"]
 
@@ -43,3 +44,18 @@ mesh = SubResource("BoxMesh_bo1nx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player Mover/Player" unique_id=815884888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001083374, -0.00036621094, 0)
 shape = SubResource("BoxShape3D_7u77a")
+
+[node name="Cactus Ball" parent="." unique_id=1430593807 instance=ExtResource("3_8gbba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8906363, 1.0985878, -7.554507)
+
+[node name="Cactus Ball2" parent="." unique_id=1658302790 instance=ExtResource("3_8gbba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5314809, -0.35647082, -20.092041)
+
+[node name="Cactus Ball3" parent="." unique_id=514903477 instance=ExtResource("3_8gbba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0143415, 1.531635, -32.15811)
+
+[node name="Cactus Ball4" parent="." unique_id=1909640691 instance=ExtResource("3_8gbba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.424591, 4.3656673, -49.901215)
+
+[node name="Cactus Ball5" parent="." unique_id=1575420633 instance=ExtResource("3_8gbba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6509322, -0.18476415, -67.69353)
