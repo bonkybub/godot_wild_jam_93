@@ -22,6 +22,19 @@ size = Vector3(2, 0.5, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_kry3j"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_21xkr"]
+viewport_path = NodePath("Player Mover/Player/Model_Test/HealthBar/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bp64"]
+bg_color = Color(0.6, 0.6, 0.6, 0.5019608)
+border_width_bottom = 3
+border_color = Color(0.31140125, 0.31140125, 0.31140125, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_344ge"]
+bg_color = Color(1, 0, 0, 1)
+border_width_bottom = 3
+border_color = Color(0.7490196, 0, 0, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7u77a"]
 size = Vector3(1.9961243, 0.501709, 1)
 
@@ -32,6 +45,8 @@ render_priority = 1
 no_depth_test = true
 shading_mode = 0
 albedo_color = Color(0.4149491, 0.4149491, 0.4149491, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_21xkr"]
 
 [node name="Main" type="Node3D" unique_id=702117852 groups=["enemy"]]
 
@@ -95,6 +110,22 @@ mesh = SubResource("CylinderMesh_kry3j")
 transform = Transform3D(1, 0, 0, 0, 1.0000006, 0, 0, 0, 1.0000006, 0, 0, -0.836)
 gizmo_extents = 0.16
 
+[node name="HealthBar" type="Sprite3D" parent="Player Mover/Player/Model_Test" unique_id=83223273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5005493)
+texture = SubResource("ViewportTexture_21xkr")
+
+[node name="SubViewport" type="SubViewport" parent="Player Mover/Player/Model_Test/HealthBar" unique_id=1953284040]
+transparent_bg = true
+size = Vector2i(128, 24)
+
+[node name="ProgressBar" type="ProgressBar" parent="Player Mover/Player/Model_Test/HealthBar/SubViewport" unique_id=307604091]
+offset_right = 128.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6bp64")
+theme_override_styles/fill = SubResource("StyleBoxFlat_344ge")
+value = 50.0
+show_percentage = false
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player Mover/Player" unique_id=815884888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001083374, -0.00036621094, 0)
 shape = SubResource("BoxShape3D_7u77a")
@@ -104,8 +135,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player Mover/Player/AimReticle" unique_id=619737909]
 transform = Transform3D(0.25, 0, 0, 0, -3.344039e-09, -0.25, 0, 0.076502696, -1.0927847e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("TorusMesh_kry3j")
 surface_material_override/0 = SubResource("StandardMaterial3D_kry3j")
+
+[node name="Vertical" type="MeshInstance3D" parent="Player Mover/Player/AimReticle" unique_id=328988969]
+transform = Transform3D(0.17168099, 0, 0, 0, 1, 0, 0, 0, 0.024954319, 0, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player Mover/Player/AimReticle" unique_id=346728911]
+transform = Transform3D(-7.504414e-09, 0.99999994, 0, -0.17168099, -4.371139e-08, 0, 0, 0, 0.024954319, 0, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
 
 [node name="Cactus Ball" parent="." unique_id=1430593807 instance=ExtResource("3_8gbba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9504727, 1.1827958, -7.5649095)

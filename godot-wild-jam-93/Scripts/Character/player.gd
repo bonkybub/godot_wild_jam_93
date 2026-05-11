@@ -16,6 +16,8 @@ const MAX_Y: float = 5.0
 @export var max_pitch_degrees: float = 15.0
 @export var rotation_smooth_speed: float = 6.0
 
+@export var max_health: int = 100
+var current_health: int
 
 @export var aim_plane_distance: float = 10.0
 
@@ -30,19 +32,26 @@ const MAX_Y: float = 5.0
 @onready var gun_right: Node3D = $Model_Test/GunArm_Right/GunBase_Right
 
 @onready var aim_reticle: Node3D = $AimReticle
+
+@onready var health_bar: ProgressBar = $Model_Test/HealthBar/SubViewport/ProgressBar
 #endregion
 
 #region Conditions
 var shoot_from_left: bool = true
-
+var is_dead: bool = false
 #endregion
 
 
-#func _ready() -> void:
+func _ready() -> void:
 	# Keeping this off just to make testing easier
 	#Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	
+	current_health = max_health
+	update_health_bar()
 
 func _physics_process(delta: float) -> void:
+#region Movement
+
 	var input_dir := Input.get_vector("roll_left", "roll_right", "pitch_up", "pitch_down")
 	var direction := Vector3(input_dir.x, input_dir.y, 0).normalized()
 	
@@ -57,8 +66,9 @@ func _physics_process(delta: float) -> void:
 
 	position.x = clamp(position.x, MIN_X, MAX_X)
 	position.y = clamp(position.y, MIN_Y, MAX_Y)
-
+	
 	update_ship_rotation(input_dir, delta)
+#endregion
 	update_gun_aim()
 	handle_shooting()
 
@@ -69,19 +79,35 @@ func update_ship_rotation(input_dir: Vector2, delta: float) -> void:
 
 	ship_model.rotation.x = lerp_angle(ship_model.rotation.x, target_pitch, rotation_smooth_speed * delta)
 	ship_model.rotation.z = lerp_angle(ship_model.rotation.z, target_roll, rotation_smooth_speed * delta)
-	
-	
 
-func handle_shooting() -> void:
-	if Input.is_action_just_pressed("shoot") == false:
+#region Health Stuff
+func take_damage(damage_amount: int) -> void:
+	if is_dead:
 		return
 
-	if shoot_from_left:
-		gun_left.shoot()
-	else:
-		gun_right.shoot()
+	current_health -= damage_amount
+	current_health = clamp(current_health, 0, max_health)
 
-	shoot_from_left = !shoot_from_left
+	print("Player health: ", current_health)
+
+	update_health_bar()
+
+	if current_health <= 0:
+		die()
+
+func update_health_bar() -> void:
+	if health_bar == null:
+		return
+
+	health_bar.max_value = max_health
+	health_bar.value = current_health
+
+func die() -> void:
+	is_dead = true
+	# Will be adding death logic here when we decide what to do
+	print("Player died")
+	queue_free()
+#endregion
 
 #region Gun Stuff
 func update_gun_aim() -> void:
@@ -109,5 +135,17 @@ func get_mouse_aim_point() -> Vector3:
 		return global_position + Vector3(0, 0, -aim_plane_distance)
 
 	return hit_position
+	
+
+func handle_shooting() -> void:
+	if Input.is_action_just_pressed("shoot") == false:
+		return
+
+	if shoot_from_left:
+		gun_left.shoot()
+	else:
+		gun_right.shoot()
+
+	shoot_from_left = !shoot_from_left
 
 #endregion
