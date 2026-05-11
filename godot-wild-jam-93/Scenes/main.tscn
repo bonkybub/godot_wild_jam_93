@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://58m50yobhbde"]
 
+[ext_resource type="Material" uid="uid://hhco5pbjjj3c" path="res://Assets/2D Art/Skyboxes/new_panorama_sky_material3.tres" id="1_6bp64"]
 [ext_resource type="Script" uid="uid://bsaqeg5gb4ufy" path="res://Scripts/Character/player_mover.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://7eqr2ek2diiy" path="res://Scripts/Character/player.gd" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://2mhj7gcm6f7r" path="res://Prefabs/Obstacles/cactus_ball.tscn" id="3_8gbba"]
@@ -8,10 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://dv2bqw1ycs0kv" path="res://Prefabs/Obstacles/tumbleweed.tscn" id="6_21xkr"]
 
 [sub_resource type="Sky" id="Sky_jjgbg"]
+sky_material = ExtResource("1_6bp64")
 
 [sub_resource type="Environment" id="Environment_bo1nx"]
 background_mode = 2
 sky = SubResource("Sky_jjgbg")
+sky_rotation = Vector3(0, -2.5132742, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bo1nx"]
 size = Vector3(2, 0.5, 1)
