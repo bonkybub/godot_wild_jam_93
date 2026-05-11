@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2mhj7gcm6f7r"]
 
 [ext_resource type="Script" uid="uid://b27q15vbfqwl0" path="res://Scripts/Obstacles/cactus_ball.gd" id="1_pqw3e"]
-[ext_resource type="PackedScene" uid="uid://dr2qqv6skw1o7" path="res://Scenes/Obstacles/cactus_spine.tscn" id="2_sygck"]
+[ext_resource type="PackedScene" uid="uid://dr2qqv6skw1o7" path="res://Prefabs/Obstacles/cactus_spine.tscn" id="2_sygck"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqw3e"]
 albedo_color = Color(0, 0.49803922, 0, 1)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bsaqeg5gb4ufy" path="res://Scripts/Character/player_mover.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://7eqr2ek2diiy" path="res://Scripts/Character/player.gd" id="2_8gbba"]
-[ext_resource type="PackedScene" uid="uid://2mhj7gcm6f7r" path="res://Scenes/Obstacles/cactus_ball.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://2mhj7gcm6f7r" path="res://Prefabs/Obstacles/cactus_ball.tscn" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://b2lcyk86ddd0j" path="res://Scripts/Character/gun.gd" id="3_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="4_kry3j"]
 
