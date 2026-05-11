@@ -108,7 +108,7 @@ mesh = SubResource("TorusMesh_kry3j")
 surface_material_override/0 = SubResource("StandardMaterial3D_kry3j")
 
 [node name="Cactus Ball" parent="." unique_id=1430593807 instance=ExtResource("3_8gbba")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8906363, 1.0985878, -7.554507)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9504727, 1.1827958, -7.5649095)
 
 [node name="Cactus Ball2" parent="." unique_id=1658302790 instance=ExtResource("3_8gbba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5314809, -0.35647082, -20.092041)
