@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://c82hr7dh6bxef"]
+[gd_scene format=3 uid="uid://dr2qqv6skw1o7"]
 
 [ext_resource type="Script" uid="uid://d4lwm6kgfk05w" path="res://Scripts/Obstacles/cactus_spine.gd" id="1_8km1c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mb575"]
-albedo_color = Color(0, 0, 0, 1)
+albedo_color = Color(0.05197101, 0.051970944, 0.05197095, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_etxx0"]
 material = SubResource("StandardMaterial3D_mb575")
@@ -11,7 +11,8 @@ material = SubResource("StandardMaterial3D_mb575")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_23c42"]
 
 [node name="Cactus Spine" type="Area3D" unique_id=1273047688]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, -1.3113417e-08, -0.3, 0, 0.3, -1.3113417e-08, 0, 0, 0)
+rotation_order = 0
 script = ExtResource("1_8km1c")
 
 [node name="Temp_Model" type="MeshInstance3D" parent="." unique_id=995092219]
@@ -21,3 +22,5 @@ mesh = SubResource("CapsuleMesh_etxx0")
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=827124373]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_23c42")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

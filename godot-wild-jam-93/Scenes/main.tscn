@@ -32,7 +32,7 @@ no_depth_test = true
 shading_mode = 0
 albedo_color = Color(0.4149491, 0.4149491, 0.4149491, 1)
 
-[node name="Main" type="Node3D" unique_id=702117852]
+[node name="Main" type="Node3D" unique_id=702117852 groups=["enemy"]]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=83654762]
 transform = Transform3D(0.71733636, 0.3237173, -0.6169568, 1.2705212e-08, 0.88550717, 0.46462572, 0.69672704, -0.3332929, 0.63520646, -4.917577, 3.7777722, 5.2983046)

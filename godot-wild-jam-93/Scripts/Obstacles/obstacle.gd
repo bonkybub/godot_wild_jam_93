@@ -9,8 +9,8 @@ func _on_body_entered(body: Node3D) -> void:
 
 func _on_area_entered(area: Area3D) -> void:
 	# destroy if hit
-	destroy_obstacle()
+	if area.is_in_group("player_projectile"):
+		destroy_obstacle()
 
 func destroy_obstacle() -> void:
-	pass
-	#queue_free()
+	queue_free()
