@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bc32vl870ifcs"]
+
+[ext_resource type="PackedScene" uid="uid://b7lfaauk5bb5" path="res://Assets/Models/Tumbleweed/TumbleWeed1.glb" id="1_qj5vr"]
+
+[node name="TumbleWeed1" unique_id=1093129037 instance=ExtResource("1_qj5vr")]
