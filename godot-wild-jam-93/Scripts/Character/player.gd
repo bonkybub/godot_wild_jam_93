@@ -12,15 +12,22 @@ const MAX_Y: float = 5.0
 
 #region Player Values
 @export var SPEED: float = 5.0
-@export var max_roll_degrees: float = 15.0
-@export var max_pitch_degrees: float = 15.0
-@export var rotation_smooth_speed: float = 6.0
 
 @export var max_health: int = 100
 var current_health: int
 
-@export var aim_plane_distance: float = 10.0
+@export var aim_plane_distance: float = 5.0
 
+@export_category("Visual Rotation Settings")
+@export var max_roll_degrees: float = 15.0
+@export var max_pitch_degrees: float = 15.0
+@export var rotation_smooth_speed: float = 6.0
+
+# Dont know how to add tooltips so just leaving comments
+@export_category("Dash Settings")
+@export var dash_distance: float = 3.0
+@export var dash_duration: float = 0.15 # How long the dash takes to complete (Lower is faster)
+@export var dash_cooldown: float = 1.0
 #endregion
 
 #region References
@@ -39,6 +46,10 @@ var current_health: int
 #region Conditions
 var shoot_from_left: bool = true
 var is_dead: bool = false
+
+var can_dash: bool = true # This should be set to false when we add upgrades
+var is_dashing: bool = false
+var dash_available: bool = true
 #endregion
 
 
@@ -53,14 +64,18 @@ func _physics_process(delta: float) -> void:
 #region Movement
 
 	var input_dir := Input.get_vector("roll_left", "roll_right", "pitch_up", "pitch_down")
-	var direction := Vector3(input_dir.x, input_dir.y, 0).normalized()
-	
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.y = direction.y * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+
+	handle_dash_input(input_dir)
+
+	if is_dashing == false:
+		var direction := Vector3(input_dir.x, input_dir.y, 0).normalized()
+		
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.y = direction.y * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.y = move_toward(velocity.y, 0, SPEED)
 
 	move_and_slide()
 
@@ -148,4 +163,53 @@ func handle_shooting() -> void:
 
 	shoot_from_left = !shoot_from_left
 
+#endregion
+
+#region Dash Stuff
+func handle_dash_input(input_dir: Vector2) -> void:
+	if can_dash == false:
+		return
+	
+	if dash_available == false:
+		return
+	
+	if is_dashing:
+		return
+	
+	if is_dead:
+		return
+	
+	if Input.is_action_just_pressed("dash") == false:
+		return
+	
+	if input_dir.x == 0:
+		return
+	
+	var dash_direction: float = sign(input_dir.x)
+	start_dash(dash_direction)
+
+func start_dash(dash_direction: float) -> void:
+	is_dashing = true
+	dash_available = false
+	velocity.x = 0
+	velocity.y = 0
+
+	var start_x: float = position.x
+	var target_x: float = position.x + dash_direction * dash_distance
+	target_x = clamp(target_x, MIN_X, MAX_X)
+
+	var timer: float = 0.0
+
+	while timer < dash_duration:
+		var t: float = timer / dash_duration
+		position.x = lerp(start_x, target_x, t)
+
+		timer += get_physics_process_delta_time()
+		await get_tree().physics_frame
+
+	position.x = target_x
+	is_dashing = false
+
+	await get_tree().create_timer(dash_cooldown).timeout
+	dash_available = true
 #endregion

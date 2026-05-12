@@ -80,7 +80,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5.5)
 [node name="Player" type="CharacterBody3D" parent="Player Mover" unique_id=1900338754]
 motion_mode = 1
 script = ExtResource("2_8gbba")
-aim_plane_distance = 5.0
 
 [node name="Model_Test" type="MeshInstance3D" parent="Player Mover/Player" unique_id=908683444]
 mesh = SubResource("BoxMesh_bo1nx")
@@ -193,7 +192,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4570708, 1.8115826, -18.14
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1973996, -2.093359, -28.355392)
 
 [node name="Bounds" type="Marker3D" parent="." unique_id=1935831316]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 24.410511, 0, 0, -11.857123)
 gizmo_extents = 0.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Bounds" unique_id=1721854566]
