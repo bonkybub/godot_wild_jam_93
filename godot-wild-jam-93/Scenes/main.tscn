@@ -193,6 +193,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1973996, -2.093359, -28.355
 
 [node name="Bounds" type="Marker3D" parent="." unique_id=1935831316]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 24.410511, 0, 0, -11.857123)
+visible = false
 gizmo_extents = 0.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Bounds" unique_id=1721854566]
