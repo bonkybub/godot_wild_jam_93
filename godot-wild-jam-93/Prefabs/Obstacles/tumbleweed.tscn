@@ -65,6 +65,7 @@ transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 shape = SubResource("SphereShape3D_lidin")
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=33778740]
+collision_layer = 9
 
 [node name="Hurtbox Collider" type="CollisionShape3D" parent="Hurtbox" unique_id=912543413]
 shape = SubResource("SphereShape3D_qbltc")

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b2lcyk86ddd0j" path="res://Scripts/Character/gun.gd" id="3_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://dv2bqw1ycs0kv" path="res://Prefabs/Obstacles/tumbleweed.tscn" id="6_21xkr"]
+[ext_resource type="Script" uid="uid://c5d1tf6ko5k2e" path="res://Scripts/Character/WarningDetector.gd" id="6_344ge"]
 
 [sub_resource type="Sky" id="Sky_jjgbg"]
 sky_material = ExtResource("1_6bp64")
@@ -38,6 +39,8 @@ bg_color = Color(1, 0, 0, 1)
 border_width_bottom = 3
 border_color = Color(0.7490196, 0, 0, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_ynf5e"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7u77a"]
 size = Vector3(1.9961243, 0.501709, 1)
 
@@ -50,6 +53,10 @@ shading_mode = 0
 albedo_color = Color(0.4149491, 0.4149491, 0.4149491, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_21xkr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6bp64"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_344ge"]
 
 [node name="Main" type="Node3D" unique_id=702117852 groups=["enemy"]]
 
@@ -73,6 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5.5)
 [node name="Player" type="CharacterBody3D" parent="Player Mover" unique_id=1900338754]
 motion_mode = 1
 script = ExtResource("2_8gbba")
+aim_plane_distance = 5.0
 
 [node name="Model_Test" type="MeshInstance3D" parent="Player Mover/Player" unique_id=908683444]
 mesh = SubResource("BoxMesh_bo1nx")
@@ -129,12 +137,25 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_344ge")
 value = 50.0
 show_percentage = false
 
+[node name="WarningStick" type="MeshInstance3D" parent="Player Mover/Player/Model_Test" unique_id=215892187]
+transform = Transform3D(0.05342303, 0, 0, 0, 0.6428771, 0, 0, 0, 0.07630724, 0.78792554, 0.3056357, 0.3735869)
+mesh = SubResource("BoxMesh_ynf5e")
+
+[node name="WarningRaycast" type="RayCast3D" parent="Player Mover/Player/Model_Test" unique_id=1637118096 node_paths=PackedStringArray("warning_stick")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4407066)
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 8
+hit_from_inside = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+script = ExtResource("6_344ge")
+warning_stick = NodePath("../WarningStick")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player Mover/Player" unique_id=815884888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001083374, -0.00036621094, 0)
 shape = SubResource("BoxShape3D_7u77a")
 
 [node name="AimReticle" type="Marker3D" parent="Player Mover/Player" unique_id=422078467]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player Mover/Player/AimReticle" unique_id=619737909]
 transform = Transform3D(0.25, 0, 0, 0, -3.344039e-09, -0.25, 0, 0.076502696, -1.0927847e-08, 0, 0, 0)
@@ -170,3 +191,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4570708, 1.8115826, -18.14
 
 [node name="Tumbleweed2" parent="." unique_id=1621990386 instance=ExtResource("6_21xkr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1973996, -2.093359, -28.355392)
+
+[node name="Bounds" type="Marker3D" parent="." unique_id=1935831316]
+visible = false
+gizmo_extents = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bounds" unique_id=1721854566]
+transform = Transform3D(0.17575932, 0, 0, 0, 7.9210095, 0, 0, 0, 1, 7, 1.5015953, 0)
+mesh = SubResource("BoxMesh_6bp64")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Bounds" unique_id=133101277]
+transform = Transform3D(0.17575932, 0, 0, 0, 7.881991, 0, 0, 0, 1, -7, 1.5215795, 0)
+mesh = SubResource("BoxMesh_6bp64")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Bounds" unique_id=2022747461]
+transform = Transform3D(14.0787, 0, 0, 0, 0.18187708, 0, 0, 0, 1, 0, 5.461005, 0)
+mesh = SubResource("BoxMesh_344ge")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Bounds" unique_id=1273341331]
+transform = Transform3D(14.0787, 0, 0, 0, 0.18187708, 0, 0, 0, 1, 0, -2.4, 0)
+mesh = SubResource("BoxMesh_344ge")
