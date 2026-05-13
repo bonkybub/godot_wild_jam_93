@@ -31,16 +31,16 @@ var current_health: int
 #endregion
 
 #region References
-@onready var ship_model: Node3D = $Model_Test
+@onready var ship_model: Node3D = $PlayerShip_Base
 
 @onready var camera: Camera3D = $"../Camera3D"
 
-@onready var gun_left: Node3D = $Model_Test/GunArm_Left/GunBase_Left
-@onready var gun_right: Node3D = $Model_Test/GunArm_Right/GunBase_Right
+@onready var gun_left: Node3D = $PlayerShip_Base/GunArm_Left/GunBase_Left
+@onready var gun_right: Node3D = $PlayerShip_Base/GunArm_Right/GunBase_Right
 
 @onready var aim_reticle: Node3D = $AimReticle
 
-@onready var health_bar: ProgressBar = $Model_Test/HealthBar/SubViewport/ProgressBar
+@onready var health_bar: ProgressBar = $PlayerUI/HealthBar
 #endregion
 
 #region Conditions

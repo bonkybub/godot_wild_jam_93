@@ -19,32 +19,12 @@ background_mode = 2
 sky = SubResource("Sky_jjgbg")
 sky_rotation = Vector3(0, -2.5132742, 0)
 
-[sub_resource type="BoxMesh" id="BoxMesh_bo1nx"]
-size = Vector3(2, 0.5, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_8gbba"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_jjvhh"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_kry3j"]
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_21xkr"]
-viewport_path = NodePath("Player Mover/Player/Model_Test/HealthBar/SubViewport")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bp64"]
-bg_color = Color(0.6, 0.6, 0.6, 0.5019608)
-border_width_bottom = 3
-border_color = Color(0.31140125, 0.31140125, 0.31140125, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_344ge"]
-bg_color = Color(1, 0, 0, 1)
-border_width_bottom = 3
-border_color = Color(0.7490196, 0, 0, 1)
+viewport_path = NodePath("Player Mover/Player/SubViewport")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ynf5e"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7u77a"]
-size = Vector3(1.9961243, 0.501709, 1)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hptm8"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_kry3j"]
 
@@ -56,6 +36,16 @@ albedo_color = Color(0.4149491, 0.4149491, 0.4149491, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_21xkr"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bp64"]
+bg_color = Color(0.6, 0.6, 0.6, 0.5019608)
+border_width_bottom = 3
+border_color = Color(0.31140125, 0.31140125, 0.31140125, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_344ge"]
+bg_color = Color(1, 0, 0, 1)
+border_width_bottom = 3
+border_color = Color(0.7490196, 0, 0, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_6bp64"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_344ge"]
@@ -64,7 +54,7 @@ albedo_color = Color(0.4149491, 0.4149491, 0.4149491, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=83654762]
 transform = Transform3D(0.71733636, 0.3237173, -0.6169568, 1.2705212e-08, 0.88550717, 0.46462572, 0.69672704, -0.3332929, 0.63520646, -4.917577, 3.7777722, 5.2983046)
-light_energy = 2.0
+light_energy = 0.574
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=536468589]
 transform = Transform3D(-0.37066355, 0.37353915, 0.8503394, 0.15762307, 0.92757577, -0.33875975, -0.9152943, 0.008467204, -0.4026969, 7.529766, -1.159795, -3.5274656)
@@ -72,11 +62,6 @@ light_energy = 0.1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=685235523]
 environment = SubResource("Environment_bo1nx")
-
-[node name="PlayerShip_Base" parent="." unique_id=1901050871 instance=ExtResource("9_hptm8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.736685, 9.536743e-07, 16.012014)
-
-[node name="PlayerShip_Gears" parent="PlayerShip_Base" unique_id=1408194630 instance=ExtResource("10_d1ilt")]
 
 [node name="Player Mover" type="Node3D" parent="." unique_id=111333518]
 script = ExtResource("1_bo1nx")
@@ -88,67 +73,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5.5)
 motion_mode = 1
 script = ExtResource("2_8gbba")
 
-[node name="Model_Test" type="MeshInstance3D" parent="Player Mover/Player" unique_id=908683444]
-mesh = SubResource("BoxMesh_bo1nx")
+[node name="PlayerShip_Base" parent="Player Mover/Player" unique_id=1901050871 instance=ExtResource("9_hptm8")]
+transform = Transform3D(0.425, 0, 0, 0, 0.425, 0, 0, 0, 0.425, 0, 0, 0)
 
-[node name="GunArm_Left" type="MeshInstance3D" parent="Player Mover/Player/Model_Test" unique_id=1699730417]
-transform = Transform3D(0.15, 0, 0, 0, 0.152, 0, 0, 0, 0.157, -0.6, -0.2, -0.3)
-mesh = SubResource("CapsuleMesh_8gbba")
+[node name="PlayerShip_Gears" parent="Player Mover/Player/PlayerShip_Base" unique_id=1408194630 instance=ExtResource("10_d1ilt")]
 
-[node name="GunBase_Left" type="MeshInstance3D" parent="Player Mover/Player/Model_Test/GunArm_Left" unique_id=152437528]
+[node name="GunArm_Left" type="MeshInstance3D" parent="Player Mover/Player/PlayerShip_Base" unique_id=1699730417]
+transform = Transform3D(0.37500003, 0, 0, 0, 0.38000005, 0, 0, 0, 0.39250013, -1.2375162, -0.0069605657, -1.1196458)
+
+[node name="GunBase_Left" type="MeshInstance3D" parent="Player Mover/Player/PlayerShip_Base/GunArm_Left" unique_id=152437528]
 transform = Transform3D(1.9999999, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1.3784959, 0)
-mesh = SubResource("SphereMesh_jjvhh")
 script = ExtResource("3_jjvhh")
 projectile_scene = ExtResource("4_kry3j")
 
-[node name="GunBarrel_Left" type="MeshInstance3D" parent="Player Mover/Player/Model_Test/GunArm_Left/GunBase_Left" unique_id=74552774]
+[node name="GunBarrel_Left" type="MeshInstance3D" parent="Player Mover/Player/PlayerShip_Base/GunArm_Left/GunBase_Left" unique_id=74552774]
 transform = Transform3D(0.26, 0, 0, 0, -1.13649605e-08, 0.26, 0, -0.26, -1.13649605e-08, 0, 0, -0.57740146)
-mesh = SubResource("CylinderMesh_kry3j")
 
-[node name="Muzzle" type="Marker3D" parent="Player Mover/Player/Model_Test/GunArm_Left/GunBase_Left" unique_id=241407041]
+[node name="Muzzle" type="Marker3D" parent="Player Mover/Player/PlayerShip_Base/GunArm_Left/GunBase_Left" unique_id=241407041]
 transform = Transform3D(1, 0, 0, 0, 1.0000005, 0, 0, 0, 1.0000005, 0, 0, -0.8355184)
 gizmo_extents = 0.16
 
-[node name="GunArm_Right" type="MeshInstance3D" parent="Player Mover/Player/Model_Test" unique_id=1994938017]
-transform = Transform3D(0.15, 0, 0, 0, 0.152, 0, 0, 0, 0.157, 0.6, -0.2, -0.3)
-mesh = SubResource("CapsuleMesh_8gbba")
+[node name="GunArm_Right" type="MeshInstance3D" parent="Player Mover/Player/PlayerShip_Base" unique_id=1994938017]
+transform = Transform3D(0.375, 0, 0, 0, 0.38, 0, 0, 0, 0.3925, 1.238, -0.007, -1.12)
 
-[node name="GunBase_Right" type="MeshInstance3D" parent="Player Mover/Player/Model_Test/GunArm_Right" unique_id=1332168708]
+[node name="GunBase_Right" type="MeshInstance3D" parent="Player Mover/Player/PlayerShip_Base/GunArm_Right" unique_id=1332168708]
 transform = Transform3D(1.9999999, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1.3784959, 0)
-mesh = SubResource("SphereMesh_jjvhh")
 script = ExtResource("3_jjvhh")
 projectile_scene = ExtResource("4_kry3j")
 
-[node name="GunBarrel_Right" type="MeshInstance3D" parent="Player Mover/Player/Model_Test/GunArm_Right/GunBase_Right" unique_id=2027484577]
+[node name="GunBarrel_Right" type="MeshInstance3D" parent="Player Mover/Player/PlayerShip_Base/GunArm_Right/GunBase_Right" unique_id=2027484577]
 transform = Transform3D(0.26, 0, 0, 0, -1.13649605e-08, 0.26, 0, -0.26, -1.13649605e-08, 0, 0, -0.57740146)
-mesh = SubResource("CylinderMesh_kry3j")
 
-[node name="Muzzle" type="Marker3D" parent="Player Mover/Player/Model_Test/GunArm_Right/GunBase_Right" unique_id=574462786]
+[node name="Muzzle" type="Marker3D" parent="Player Mover/Player/PlayerShip_Base/GunArm_Right/GunBase_Right" unique_id=574462786]
 transform = Transform3D(1, 0, 0, 0, 1.0000006, 0, 0, 0, 1.0000006, 0, 0, -0.836)
 gizmo_extents = 0.16
 
-[node name="HealthBar" type="Sprite3D" parent="Player Mover/Player/Model_Test" unique_id=83223273]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5005493)
+[node name="HealthBar" type="Sprite3D" parent="Player Mover/Player/PlayerShip_Base" unique_id=83223273]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 1.6160156, 1.2513733)
+visible = false
 texture = SubResource("ViewportTexture_21xkr")
 
-[node name="SubViewport" type="SubViewport" parent="Player Mover/Player/Model_Test/HealthBar" unique_id=1953284040]
-transparent_bg = true
-size = Vector2i(128, 24)
-
-[node name="ProgressBar" type="ProgressBar" parent="Player Mover/Player/Model_Test/HealthBar/SubViewport" unique_id=307604091]
-offset_right = 128.0
-offset_bottom = 27.0
-theme_override_styles/background = SubResource("StyleBoxFlat_6bp64")
-theme_override_styles/fill = SubResource("StyleBoxFlat_344ge")
-value = 50.0
-show_percentage = false
-
-[node name="WarningStick" type="MeshInstance3D" parent="Player Mover/Player/Model_Test" unique_id=215892187]
-transform = Transform3D(0.05342303, 0, 0, 0, 0.6428771, 0, 0, 0, 0.07630724, 0.78792554, 0.3056357, 0.3735869)
+[node name="WarningStick" type="MeshInstance3D" parent="Player Mover/Player/PlayerShip_Base" unique_id=215892187]
+transform = Transform3D(0.13355757, 0, 0, 0, 1.6071928, 0, 0, 0, 0.1907681, 2.2884748, 0.7640892, 0.93396723)
+visible = false
 mesh = SubResource("BoxMesh_ynf5e")
 
-[node name="WarningRaycast" type="RayCast3D" parent="Player Mover/Player/Model_Test" unique_id=1637118096 node_paths=PackedStringArray("warning_stick")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4407066)
+[node name="WarningRaycast" type="RayCast3D" parent="Player Mover/Player/PlayerShip_Base" unique_id=1637118096 node_paths=PackedStringArray("warning_stick")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, -1.1017666)
+visible = false
 target_position = Vector3(0, 0, -2.5)
 collision_mask = 8
 hit_from_inside = true
@@ -157,8 +129,8 @@ script = ExtResource("6_344ge")
 warning_stick = NodePath("../WarningStick")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player Mover/Player" unique_id=815884888]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001083374, -0.00036621094, 0)
-shape = SubResource("BoxShape3D_7u77a")
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.007844925, -0.01758653, 0.11399095)
+shape = SubResource("CapsuleShape3D_hptm8")
 
 [node name="AimReticle" type="Marker3D" parent="Player Mover/Player" unique_id=422078467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
@@ -176,6 +148,29 @@ mesh = SubResource("BoxMesh_21xkr")
 [node name="Horizontal" type="MeshInstance3D" parent="Player Mover/Player/AimReticle" unique_id=346728911]
 transform = Transform3D(-7.504414e-09, 0.99999994, 0, -0.17168099, -4.371139e-08, 0, 0, 0, 0.024954319, 0, 0, 0)
 mesh = SubResource("BoxMesh_21xkr")
+
+[node name="PlayerUI" type="Control" parent="Player Mover/Player" unique_id=441777297]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -167.99994
+offset_top = -40.0
+offset_right = -128.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.218849, 1.218849)
+
+[node name="HealthBar" type="ProgressBar" parent="Player Mover/Player/PlayerUI" unique_id=307604091]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6bp64")
+theme_override_styles/fill = SubResource("StyleBoxFlat_344ge")
+value = 50.0
+show_percentage = false
 
 [node name="Cactus Ball" parent="." unique_id=1430593807 instance=ExtResource("3_8gbba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4349461, 1.2568594, -7.09496)
