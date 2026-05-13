@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cvrvaywdl8l2h"]
+
+[ext_resource type="Script" uid="uid://2n5e2kpla82o" path="res://Scripts/obstacle_spawner.gd" id="1_43w2k"]
+[ext_resource type="PackedScene" uid="uid://bsb5ly0xnyuev" path="res://Prefabs/Enemies/bandit.tscn" id="2_5566v"]
+
+[sub_resource type="Curve3D" id="Curve3D_hptm8"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -7.5, 0, 0, 4.5, 0, 0, 4.5, 0, -20, 0, 0, 0, 0, 0, 0, 9, 0, -8),
+"tilts": PackedFloat32Array(1.5707964, 0.5235988, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_6iyac"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 7.5, 0, 0, -4.5, 0, 0, -4.5, 0, -20, 0, 0, 0, 0, 0, 0, -9, 0, -8),
+"tilts": PackedFloat32Array(-1.5707964, -0.5235988, 0)
+}
+point_count = 3
+
+[node name="Obstacle Spawner" type="Node3D" unique_id=2002730737 node_paths=PackedStringArray("player_ship")]
+script = ExtResource("1_43w2k")
+player_ship = NodePath("")
+bandit_obj = ExtResource("2_5566v")
+
+[node name="Bandit Path (Left)" type="Path3D" parent="." unique_id=1517673190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.5, 3)
+curve = SubResource("Curve3D_hptm8")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Bandit Path (Left)" unique_id=913833624]
+transform = Transform3D(-1.0000104, 0, 0, 0, 1.0003511, 0, 0, 0, -1.0000123, 9, 0, -8)
+progress = 36.107647
+rotation_mode = 4
+loop = false
+
+[node name="Bandit Path (Right)" type="Path3D" parent="." unique_id=1003741129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.5, 3)
+curve = SubResource("Curve3D_6iyac")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Bandit Path (Right)" unique_id=762505574]
+transform = Transform3D(-1.0000104, 0, 0, 0, 1.0003487, 0, 0, 0, -1.0000113, -9, 0, -8)
+progress = 36.558876
+rotation_mode = 4
+loop = false
