@@ -26,15 +26,10 @@ viewport_path = NodePath("Player Mover/Player/SubViewport")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hptm8"]
 
-[sub_resource type="TorusMesh" id="TorusMesh_kry3j"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kry3j"]
-render_priority = 1
-no_depth_test = true
-shading_mode = 0
-albedo_color = Color(0.4149491, 0.4149491, 0.4149491, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_21xkr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hptm8"]
+albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bp64"]
 bg_color = Color(0.6, 0.6, 0.6, 0.5019608)
@@ -135,19 +130,119 @@ shape = SubResource("CapsuleShape3D_hptm8")
 [node name="AimReticle" type="Marker3D" parent="Player Mover/Player" unique_id=422078467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player Mover/Player/AimReticle" unique_id=619737909]
-transform = Transform3D(0.25, 0, 0, 0, -3.344039e-09, -0.25, 0, 0.076502696, -1.0927847e-08, 0, 0, 0)
-visible = false
-mesh = SubResource("TorusMesh_kry3j")
-surface_material_override/0 = SubResource("StandardMaterial3D_kry3j")
+[node name="NearReticle" type="Marker3D" parent="Player Mover/Player/AimReticle" unique_id=1735506266]
+transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, 0, 0, 0)
 
-[node name="Vertical" type="MeshInstance3D" parent="Player Mover/Player/AimReticle" unique_id=328988969]
-transform = Transform3D(0.17168099, 0, 0, 0, 1, 0, 0, 0, 0.024954319, 0, 0, 0)
-mesh = SubResource("BoxMesh_21xkr")
+[node name="TopLeft" type="Node3D" parent="Player Mover/Player/AimReticle/NearReticle" unique_id=1503444617]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0)
 
-[node name="Horizontal" type="MeshInstance3D" parent="Player Mover/Player/AimReticle" unique_id=346728911]
-transform = Transform3D(-7.504414e-09, 0.99999994, 0, -0.17168099, -4.371139e-08, 0, 0, 0, 0.024954319, 0, 0, 0)
+[node name="Vertical" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/NearReticle/TopLeft" unique_id=328988969]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
 mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/NearReticle/TopLeft" unique_id=346728911]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="TopRight" type="Node3D" parent="Player Mover/Player/AimReticle/NearReticle" unique_id=202723077]
+transform = Transform3D(-4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0, 0, 0, 1, 0.5, 0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/NearReticle/TopRight" unique_id=949737915]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/NearReticle/TopRight" unique_id=1146345868]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="BottomLeft" type="Node3D" parent="Player Mover/Player/AimReticle/NearReticle" unique_id=2006986142]
+transform = Transform3D(-4.3711392e-08, -1, 0, 1, -4.3711392e-08, 0, 0, 0, 1, -0.5, -0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/NearReticle/BottomLeft" unique_id=1375526959]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/NearReticle/BottomLeft" unique_id=987223335]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="BottomRight" type="Node3D" parent="Player Mover/Player/AimReticle/NearReticle" unique_id=1308497774]
+transform = Transform3D(-1, -8.7422784e-08, 0, 8.7422784e-08, -1, 0, 0, 0, 1, 0.5, -0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/NearReticle/BottomRight" unique_id=1739656005]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/NearReticle/BottomRight" unique_id=1641576569]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="FarReticle" type="Marker3D" parent="Player Mover/Player/AimReticle" unique_id=1380389936]
+transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, 0, 0, 0)
+
+[node name="TopLeft" type="Node3D" parent="Player Mover/Player/AimReticle/FarReticle" unique_id=1805665953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/FarReticle/TopLeft" unique_id=904225422]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/FarReticle/TopLeft" unique_id=1047653019]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="TopRight" type="Node3D" parent="Player Mover/Player/AimReticle/FarReticle" unique_id=1604438285]
+transform = Transform3D(-4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0, 0, 0, 1, 0.5, 0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/FarReticle/TopRight" unique_id=1864554557]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/FarReticle/TopRight" unique_id=4292210]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="BottomLeft" type="Node3D" parent="Player Mover/Player/AimReticle/FarReticle" unique_id=1540305733]
+transform = Transform3D(-4.3711392e-08, -1, 0, 1, -4.3711392e-08, 0, 0, 0, 1, -0.5, -0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/FarReticle/BottomLeft" unique_id=745497444]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/FarReticle/BottomLeft" unique_id=1643659539]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="BottomRight" type="Node3D" parent="Player Mover/Player/AimReticle/FarReticle" unique_id=1487753477]
+transform = Transform3D(-1, -8.7422784e-08, 0, 8.7422784e-08, -1, 0, 0, 0, 1, 0.5, -0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/FarReticle/BottomRight" unique_id=178617746]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player Mover/Player/AimReticle/FarReticle/BottomRight" unique_id=1155953093]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="AimOrigin" type="Marker3D" parent="Player Mover/Player/AimReticle" unique_id=1922616262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23020455, 4.1693087)
+gizmo_extents = 0.51
 
 [node name="PlayerUI" type="Control" parent="Player Mover/Player" unique_id=441777297]
 layout_mode = 3

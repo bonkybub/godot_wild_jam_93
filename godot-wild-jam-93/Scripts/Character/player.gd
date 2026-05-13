@@ -16,7 +16,10 @@ const MAX_Y: float = 5.0
 @export var max_health: int = 100
 var current_health: int
 
-@export var aim_plane_distance: float = 5.0
+@export_category("Aim Settings")
+#@export var aim_plane_distance: float = 5.0
+@export var near_reticle_distance: float = 5.0 # This is where the plyer is actually shooting at (aka stand in for aim plane)
+@export var far_reticle_distance: float = 10.0
 
 @export_category("Visual Rotation Settings")
 @export var max_roll_degrees: float = 15.0
@@ -38,7 +41,10 @@ var current_health: int
 @onready var gun_left: Node3D = $PlayerShip_Base/GunArm_Left/GunBase_Left
 @onready var gun_right: Node3D = $PlayerShip_Base/GunArm_Right/GunBase_Right
 
-@onready var aim_reticle: Node3D = $AimReticle
+#@onready var aim_reticle: Node3D = $AimReticle
+@onready var aim_origin: Marker3D = $AimReticle/AimOrigin # This is just a point where the aim ray will start
+@onready var near_reticle: Node3D = $AimReticle/NearReticle
+@onready var far_reticle: Node3D = $AimReticle/FarReticle
 
 @onready var health_bar: ProgressBar = $PlayerUI/HealthBar
 #endregion
@@ -119,35 +125,38 @@ func update_health_bar() -> void:
 
 func die() -> void:
 	is_dead = true
-	# Will be adding death logic here when we decide what to do
+	# TODO - Will be adding death logic here when we decide what to do
 	print("Player died")
 	queue_free()
 #endregion
 
 #region Gun Stuff
 func update_gun_aim() -> void:
-	var aim_point := get_mouse_aim_point()
+	var mouse_target := get_mouse_aim_point(far_reticle_distance)
+	var aim_direction := (mouse_target - aim_origin.global_position).normalized()
 
-	aim_reticle.global_position = aim_point
-	aim_reticle.look_at(camera.global_position, Vector3.UP)
+	var near_aim_point := aim_origin.global_position + aim_direction * near_reticle_distance
+	var far_aim_point := aim_origin.global_position + aim_direction * far_reticle_distance
 
-	gun_left.aim_at(aim_point)
-	gun_right.aim_at(aim_point)
+	near_reticle.global_position = near_aim_point
+	far_reticle.global_position = far_aim_point
 
-func get_mouse_aim_point() -> Vector3:
+	gun_left.aim_at(far_aim_point)
+	gun_right.aim_at(far_aim_point)
+
+func get_mouse_aim_point(plane_distance: float) -> Vector3:
 	var mouse_position := get_viewport().get_mouse_position()
 
 	var ray_origin := camera.project_ray_origin(mouse_position)
 	var ray_direction := camera.project_ray_normal(mouse_position)
-	
 
-	var plane_position := global_position + Vector3(0, 0, -aim_plane_distance)
+	var plane_position := global_position + Vector3(0, 0, -plane_distance)
 	var aim_plane := Plane(Vector3.FORWARD, plane_position)
 
 	var hit_position = aim_plane.intersects_ray(ray_origin, ray_direction)
 
 	if hit_position == null:
-		return global_position + Vector3(0, 0, -aim_plane_distance)
+		return global_position + Vector3(0, 0, -plane_distance)
 
 	return hit_position
 	
