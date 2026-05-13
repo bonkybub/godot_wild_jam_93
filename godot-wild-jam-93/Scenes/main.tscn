@@ -269,6 +269,9 @@ value = 50.0
 show_percentage = false
 
 [node name="Obstacle Spawner" parent="Player Mover" unique_id=2002730737 instance=ExtResource("9_d1ilt")]
+bandit_left_range = Vector2(-11, -7)
+bandit_right_range = Vector2(7, 11)
+bandit_height_range = Vector2(0.5, 2.5)
 
 [node name="Cactus Ball" parent="." unique_id=1430593807 instance=ExtResource("3_8gbba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4349461, 1.2568594, -7.09496)
