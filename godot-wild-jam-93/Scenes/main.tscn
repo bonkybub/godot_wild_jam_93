@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://dv2bqw1ycs0kv" path="res://Prefabs/Obstacles/tumbleweed.tscn" id="6_21xkr"]
 [ext_resource type="Script" path="res://Scripts/Character/WarningDetector.gd" id="6_344ge"]
+[ext_resource type="Script" uid="uid://2n5e2kpla82o" path="res://Scripts/obstacle_spawner.gd" id="9_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://djsnmtyh23yjp" path="res://Assets/Models/Player/PlayerShip_Base.glb" id="9_hptm8"]
+[ext_resource type="PackedScene" uid="uid://bsb5ly0xnyuev" path="res://Prefabs/Enemies/bandit.tscn" id="10_6iyac"]
 [ext_resource type="PackedScene" uid="uid://rblbredsrdbf" path="res://Assets/Models/Player/PlayerShip_Gears.glb" id="10_d1ilt"]
 
 [sub_resource type="Sky" id="Sky_jjgbg"]
@@ -281,7 +283,10 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_344ge")
 value = 50.0
 show_percentage = false
 
-[node name="Obstacle Spawner" type="Node3D" parent="Player Mover" unique_id=207498216]
+[node name="Obstacle Spawner" type="Node3D" parent="Player Mover" unique_id=207498216 node_paths=PackedStringArray("player_ship")]
+script = ExtResource("9_d1ilt")
+player_ship = NodePath("../Player")
+bandit_obj = ExtResource("10_6iyac")
 
 [node name="Bandit Path (Left)" type="Path3D" parent="Player Mover/Obstacle Spawner" unique_id=1243274111]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.5, 3)
