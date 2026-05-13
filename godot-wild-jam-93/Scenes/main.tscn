@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://dv2bqw1ycs0kv" path="res://Prefabs/Obstacles/tumbleweed.tscn" id="6_21xkr"]
 [ext_resource type="Script" uid="uid://c5d1tf6ko5k2e" path="res://Scripts/Character/WarningDetector.gd" id="6_344ge"]
+[ext_resource type="PackedScene" uid="uid://djsnmtyh23yjp" path="res://Assets/Models/Player/PlayerShip_Base.glb" id="9_hptm8"]
+[ext_resource type="PackedScene" uid="uid://rblbredsrdbf" path="res://Assets/Models/Player/PlayerShip_Gears.glb" id="10_d1ilt"]
 
 [sub_resource type="Sky" id="Sky_jjgbg"]
 sky_material = ExtResource("1_6bp64")
@@ -70,6 +72,11 @@ light_energy = 0.1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=685235523]
 environment = SubResource("Environment_bo1nx")
+
+[node name="PlayerShip_Base" parent="." unique_id=1901050871 instance=ExtResource("9_hptm8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.736685, 9.536743e-07, 16.012014)
+
+[node name="PlayerShip_Gears" parent="PlayerShip_Base" unique_id=1408194630 instance=ExtResource("10_d1ilt")]
 
 [node name="Player Mover" type="Node3D" parent="." unique_id=111333518]
 script = ExtResource("1_bo1nx")
@@ -171,7 +178,7 @@ transform = Transform3D(-7.504414e-09, 0.99999994, 0, -0.17168099, -4.371139e-08
 mesh = SubResource("BoxMesh_21xkr")
 
 [node name="Cactus Ball" parent="." unique_id=1430593807 instance=ExtResource("3_8gbba")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9504727, 1.1827958, -7.5649095)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4349461, 1.2568594, -7.09496)
 
 [node name="Cactus Ball2" parent="." unique_id=1658302790 instance=ExtResource("3_8gbba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5314809, -0.35647082, -20.092041)
