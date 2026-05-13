@@ -1,6 +1,7 @@
 extends Obstacle
 
 # sway positioning
+@export_category("Idle Sway")
 @export var sway_range: float = 0.8
 @export var sway_dur: float = 6.0
 
@@ -11,6 +12,7 @@ var pos_axis: Vector3
 var pos_amp: Vector3
 
 # spines bursting
+@export_category("Spine Burst")
 @export var spine_obj: PackedScene
 @export var spine_count: int = 8
 var spine_directions: Array[float]

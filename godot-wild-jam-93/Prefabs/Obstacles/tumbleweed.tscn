@@ -55,7 +55,7 @@ radius = 0.7
 [node name="Tumbleweed" type="Area3D" unique_id=706673517]
 script = ExtResource("1_10j0r")
 
-[node name="Temp_Model" type="MeshInstance3D" parent="." unique_id=1631959475]
+[node name="Model" type="MeshInstance3D" parent="." unique_id=1631959475]
 transform = Transform3D(0.41053116, 0, 0, 0, 0.41053116, 0, 0, 0, 0.41053116, 0, 0.07412529, 0)
 material_override = SubResource("StandardMaterial3D_bnw3w")
 mesh = SubResource("ArrayMesh_pv8o0")

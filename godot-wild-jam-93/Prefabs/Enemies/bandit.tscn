@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bsb5ly0xnyuev"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yytj6"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yytj6"]
+material = SubResource("StandardMaterial3D_yytj6")
+size = Vector3(1.5, 0.3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vej3r"]
+size = Vector3(2, 0.7, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vej3r"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_63dpg"]
+material = SubResource("StandardMaterial3D_vej3r")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.2
+
+[node name="Bandit" type="CharacterBody3D" unique_id=169917404]
+
+[node name="Temp_Model" type="MeshInstance3D" parent="." unique_id=617474397]
+mesh = SubResource("BoxMesh_yytj6")
+
+[node name="Hitbox Collider" type="CollisionShape3D" parent="." unique_id=1853188344]
+shape = SubResource("BoxShape3D_vej3r")
+
+[node name="Fire Location" type="Node3D" parent="." unique_id=2099346404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+
+[node name="Barrel Model" type="MeshInstance3D" parent="Fire Location" unique_id=2144925819]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_63dpg")
