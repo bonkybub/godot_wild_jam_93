@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://die3n8m7siurn"]
+
+[ext_resource type="PackedScene" uid="uid://dgflub4bswme6" path="res://Prefabs/Character/player.tscn" id="1_u2rs1"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_u2rs1"]
+viewport_path = NodePath("Player Mover/Player/SubViewport")
+
+[sub_resource type="Sky" id="Sky_u2rs1"]
+
+[sub_resource type="Environment" id="Environment_ibn5c"]
+background_mode = 2
+sky = SubResource("Sky_u2rs1")
+ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 2.38
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ajlwv"]
+
+[sub_resource type="Compositor" id="Compositor_4wuve"]
+
+[node name="HyperdriveScene" type="Node3D" unique_id=2067415844]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=489717850]
+transform = Transform3D(0.70196664, 0, 0.7122098, 0, 1, 0, -0.7122098, 0, 0.70196664, 3.1034274, 0.53069603, 0.2583562)
+
+[node name="Player" parent="." unique_id=1017656907 instance=ExtResource("1_u2rs1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12945509, 0, -0.6996619)
+script = null
+
+[node name="HealthBar" parent="Player/PlayerShip_Base" parent_id_path=PackedInt32Array(1017656907, 2088026183) index="13" unique_id=1759192094]
+texture = SubResource("ViewportTexture_u2rs1")
+
+[node name="AimReticle" parent="Player" index="2" unique_id=1860672117]
+visible = false
+
+[node name="PlayerUI" parent="Player" index="3" unique_id=1797164107]
+visible = false
+
+[node name="HealthBar" parent="Player/PlayerUI" index="0" unique_id=405160191]
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=815083333]
+transform = Transform3D(0.6043072, -0.4451919, 0.6607701, 2.1804551e-08, 0.82933027, 0.5587588, -0.7967515, -0.3376619, 0.5011702, 1.5638789, 2.237438, 0.12934518)
+light_energy = 0.366
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1598953114]
+transform = Transform3D(0.35243353, -0.7806369, 0.5161362, 0.90570927, 0.1457059, -0.39807093, 0.2355447, 0.6077629, 0.7583819, 1.0278976, -2.4356527, 1.1058893)
+light_energy = 0.208
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="." unique_id=1293784391]
+transform = Transform3D(-0.7689758, 0.28285542, 0.57329667, 1.4901161e-08, 0.89678776, -0.4424609, -0.6392779, -0.34024167, -0.6896083, 1.0278976, -2.4356527, -3.541628)
+light_energy = 0.208
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1872607625]
+environment = SubResource("Environment_ibn5c")
+camera_attributes = SubResource("CameraAttributesPractical_ajlwv")
+compositor = SubResource("Compositor_4wuve")
+
+[editable path="Player"]
