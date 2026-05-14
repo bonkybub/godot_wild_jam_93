@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://daa7jjb25yemr" path="res://Prefabs/Character/player_ship_base.tscn" id="5_6iyac"]
 [ext_resource type="PackedScene" uid="uid://dv2bqw1ycs0kv" path="res://Prefabs/Obstacles/tumbleweed.tscn" id="6_21xkr"]
-[ext_resource type="Script" path="res://Scripts/Character/WarningDetector.gd" id="6_344ge"]
+[ext_resource type="Script" uid="uid://c5d1tf6ko5k2e" path="res://Scripts/Character/WarningDetector.gd" id="6_344ge"]
 [ext_resource type="PackedScene" uid="uid://d2fusol30m64f" path="res://Prefabs/Character/player_ship_gears.tscn" id="6_fdnlq"]
 [ext_resource type="PackedScene" uid="uid://cvrvaywdl8l2h" path="res://Prefabs/obstacle_spawner.tscn" id="9_d1ilt"]
 

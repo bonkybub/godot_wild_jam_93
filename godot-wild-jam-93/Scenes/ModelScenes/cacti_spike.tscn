@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://d8ph5mexc10a"]
+
+[ext_resource type="PackedScene" uid="uid://bei2jgp0cnbng" path="res://Assets/Models/Cactus/CactiSpike.glb" id="1_md0ik"]
+
+[node name="CactiSpike" unique_id=487083538 instance=ExtResource("1_md0ik")]
