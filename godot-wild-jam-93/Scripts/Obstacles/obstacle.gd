@@ -13,7 +13,6 @@ func _on_body_entered(body: Node3D) -> void:
 	if body is Player:
 		print("player hit")
 		body.take_damage(damage)
-		destroy_obstacle()
 
 func _on_area_entered(area: Area3D) -> void:
 	# destroy if hit
