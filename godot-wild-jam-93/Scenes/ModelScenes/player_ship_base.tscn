@@ -11,26 +11,5 @@ material_override = ExtResource("2_s02t1")
 [node name="Cylinder_001" parent="." index="1" unique_id=49089614]
 material_override = ExtResource("2_s02t1")
 
-[node name="Cylinder_006" parent="." index="2" unique_id=2141455706]
-material_override = ExtResource("2_s02t1")
-
-[node name="BézierCurve" parent="." index="3" unique_id=441263673]
-material_override = ExtResource("2_s02t1")
-
-[node name="Cylinder_014" parent="." index="4" unique_id=707389430]
-material_override = ExtResource("2_s02t1")
-
-[node name="Cylinder_015" parent="." index="5" unique_id=1432784976]
-material_override = ExtResource("2_s02t1")
-
-[node name="Cylinder_016" parent="." index="6" unique_id=206047724]
-material_override = ExtResource("2_s02t1")
-
-[node name="Cylinder_017" parent="." index="7" unique_id=1443569321]
-material_override = ExtResource("2_s02t1")
-
-[node name="Cylinder_018" parent="." index="8" unique_id=673925798]
-material_override = ExtResource("2_s02t1")
-
 [node name="Cylinder_002" parent="." index="9" unique_id=338562394]
 material_override = ExtResource("2_s02t1")

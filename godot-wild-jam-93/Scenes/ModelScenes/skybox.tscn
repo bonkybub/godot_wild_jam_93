@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bhidngp2vvcqm"]
+
+[ext_resource type="PackedScene" uid="uid://cdrbt05iw321c" path="res://Assets/Models/Skybox.glb" id="1_o157h"]
+[ext_resource type="Texture2D" uid="uid://73oiviih377d" path="res://Assets/2D Art/Skyboxes/Space1.png" id="2_7hmgc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o157h"]
+albedo_texture = ExtResource("2_7hmgc")
+
+[node name="Skybox" unique_id=1477194004 instance=ExtResource("1_o157h")]
+
+[node name="Cylinder" parent="." index="0" unique_id=1455298967]
+material_override = SubResource("StandardMaterial3D_o157h")

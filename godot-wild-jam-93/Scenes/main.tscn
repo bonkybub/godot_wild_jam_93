@@ -2,12 +2,13 @@
 
 [ext_resource type="Material" uid="uid://hhco5pbjjj3c" path="res://Assets/2D Art/Skyboxes/new_panorama_sky_material3.tres" id="1_6bp64"]
 [ext_resource type="Script" uid="uid://bsaqeg5gb4ufy" path="res://Scripts/Character/player_mover.gd" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://bhidngp2vvcqm" path="res://Scenes/ModelScenes/skybox.tscn" id="2_6iyac"]
 [ext_resource type="Script" uid="uid://7eqr2ek2diiy" path="res://Scripts/Character/player.gd" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://2mhj7gcm6f7r" path="res://Prefabs/Obstacles/cactus_ball.tscn" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://b2lcyk86ddd0j" path="res://Scripts/Character/gun.gd" id="3_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://dv2bqw1ycs0kv" path="res://Prefabs/Obstacles/tumbleweed.tscn" id="6_21xkr"]
-[ext_resource type="Script" path="res://Scripts/Character/WarningDetector.gd" id="6_344ge"]
+[ext_resource type="Script" uid="uid://c5d1tf6ko5k2e" path="res://Scripts/Character/WarningDetector.gd" id="6_344ge"]
 [ext_resource type="PackedScene" uid="uid://cvrvaywdl8l2h" path="res://Prefabs/obstacle_spawner.tscn" id="9_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://djsnmtyh23yjp" path="res://Assets/Models/Player/PlayerShip_Base.glb" id="9_hptm8"]
 [ext_resource type="PackedScene" uid="uid://rblbredsrdbf" path="res://Assets/Models/Player/PlayerShip_Gears.glb" id="10_d1ilt"]
@@ -16,7 +17,7 @@
 sky_material = ExtResource("1_6bp64")
 
 [sub_resource type="Environment" id="Environment_bo1nx"]
-background_mode = 2
+background_energy_multiplier = 1.83
 sky = SubResource("Sky_jjgbg")
 sky_rotation = Vector3(0, -2.5132742, 0)
 
@@ -58,6 +59,9 @@ light_energy = 0.1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=685235523]
 environment = SubResource("Environment_bo1nx")
+
+[node name="Skybox2" parent="." unique_id=1477194004 instance=ExtResource("2_6iyac")]
+transform = Transform3D(-327.3148, 0, -327.3148, 0, 800, 0, 327.3148, 0, -327.3148, 0.091, 0, -385.351)
 
 [node name="Player Mover" type="Node3D" parent="." unique_id=111333518]
 script = ExtResource("1_bo1nx")
