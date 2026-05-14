@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bsb5ly0xnyuev"]
 
+[ext_resource type="Script" uid="uid://28mtphwjcrr5" path="res://Scripts/Enemies/enemy.gd" id="1_vej3r"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yytj6"]
 albedo_color = Color(0, 0, 0, 1)
 
@@ -19,7 +21,8 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.2
 
-[node name="Bandit" type="CharacterBody3D" unique_id=169917404]
+[node name="Bandit" type="CharacterBody3D" unique_id=169917404 groups=["enemy"]]
+script = ExtResource("1_vej3r")
 
 [node name="Temp_Model" type="MeshInstance3D" parent="." unique_id=617474397]
 mesh = SubResource("BoxMesh_yytj6")

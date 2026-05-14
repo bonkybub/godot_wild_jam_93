@@ -260,6 +260,18 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_i5jnp")
 value = 50.0
 show_percentage = false
 
-[node name="Obstacle Spawner" parent="." unique_id=2002730737 instance=ExtResource("2_2guhm")]
+[node name="Obstacle Spawner" parent="." unique_id=2002730737 node_paths=PackedStringArray("bandit_group") instance=ExtResource("2_2guhm")]
+bandit_group = NodePath("Bandit Group")
+
+[node name="PathFollow3D" parent="Obstacle Spawner/Bandit Path (Left)" parent_id_path=PackedInt32Array(2002730737, 1517673190) index="0" unique_id=913833624]
+transform = Transform3D(-4.097862e-08, 0.98928356, 0.14834225, -1.0000104, -4.3726732e-08, 0, -1.4901316e-08, -0.14839253, 0.9889485, 0, 0, 0)
+progress = 0.0
+
+[node name="PathFollow3D" parent="Obstacle Spawner/Bandit Path (Right)" parent_id_path=PackedInt32Array(2002730737, 1003741129) index="0" unique_id=762505574]
+transform = Transform3D(-4.097862e-08, -0.9892812, -0.14834212, 1.0000104, -4.372663e-08, 0, 1.4901316e-08, -0.14839217, 0.9889476, 0, 0, 0)
+progress = 0.0
+
+[node name="Bandit Group" parent="Obstacle Spawner" index="2" unique_id=2091879476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -7)
 
 [editable path="Obstacle Spawner"]

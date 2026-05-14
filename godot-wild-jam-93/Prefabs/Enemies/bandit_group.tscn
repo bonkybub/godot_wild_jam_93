@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cl7p7qa3mghod"]
+
+[ext_resource type="Script" uid="uid://bxdpplmjd20gt" path="res://Scripts/Enemies/bandit_group.gd" id="1_5dsyr"]
+
+[node name="Bandit Group" type="Node3D" unique_id=2091879476 node_paths=PackedStringArray("three_group", "four_group", "five_group")]
+script = ExtResource("1_5dsyr")
+three_group = [NodePath("3 Group/Point 1"), NodePath("3 Group/Point 2"), NodePath("3 Group/Point 3")]
+four_group = [NodePath("4 Group/Point 1"), NodePath("4 Group/Point 2"), NodePath("4 Group/Point 3"), NodePath("4 Group/Point 4")]
+five_group = [NodePath("5 Group/Point 1"), NodePath("5 Group/Point 2"), NodePath("5 Group/Point 3"), NodePath("5 Group/Point 4"), NodePath("5 Group/Point 5")]
+
+[node name="3 Group" type="Node3D" parent="." unique_id=268906863]
+
+[node name="Point 1" type="Node3D" parent="3 Group" unique_id=651517687]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 0)
+
+[node name="Point 2" type="Node3D" parent="3 Group" unique_id=1411496852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 0)
+
+[node name="Point 3" type="Node3D" parent="3 Group" unique_id=191820581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="4 Group" type="Node3D" parent="." unique_id=649694379]
+
+[node name="Point 1" type="Node3D" parent="4 Group" unique_id=89178782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Point 2" type="Node3D" parent="4 Group" unique_id=1929708956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Point 3" type="Node3D" parent="4 Group" unique_id=995148311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Point 4" type="Node3D" parent="4 Group" unique_id=790545805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="5 Group" type="Node3D" parent="." unique_id=61551670]
+
+[node name="Point 1" type="Node3D" parent="5 Group" unique_id=36086196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 0)
+
+[node name="Point 2" type="Node3D" parent="5 Group" unique_id=2094467649]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Point 3" type="Node3D" parent="5 Group" unique_id=1796170999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 0)
+
+[node name="Point 4" type="Node3D" parent="5 Group" unique_id=501069478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.5, 0)
+
+[node name="Point 5" type="Node3D" parent="5 Group" unique_id=884850288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.5, 0)

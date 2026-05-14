@@ -19,7 +19,7 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.2
 
-[node name="Pursuer" type="CharacterBody3D" unique_id=1251419214]
+[node name="Pursuer" type="CharacterBody3D" unique_id=1251419214 groups=["enemy"]]
 
 [node name="Temp_Model" type="MeshInstance3D" parent="." unique_id=1710366726]
 mesh = SubResource("BoxMesh_8erfp")
