@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://daa7jjb25yemr"]
+
+[ext_resource type="PackedScene" uid="uid://djsnmtyh23yjp" path="res://Assets/Models/Player/PlayerShip_Base.glb" id="1_ud3u1"]
+[ext_resource type="Material" uid="uid://bg7eu80vcpkol" path="res://Assets/Textures/Player/PlayerShip_material_3d.tres" id="2_tlbef"]
+
+[node name="PlayerShip_Base" unique_id=800243318 instance=ExtResource("1_ud3u1")]
+
+[node name="Cylinder" parent="." index="0" unique_id=2113197488]
+material_override = ExtResource("2_tlbef")
+
+[node name="Cylinder_001" parent="." index="1" unique_id=1100979010]
+material_override = ExtResource("2_tlbef")
+
+[node name="Cylinder_006" parent="." index="2" unique_id=1841673567]
+material_override = ExtResource("2_tlbef")
+
+[node name="BézierCurve" parent="." index="3" unique_id=2054414519]
+material_override = ExtResource("2_tlbef")
+
+[node name="Cylinder_014" parent="." index="4" unique_id=1611027506]
+material_override = ExtResource("2_tlbef")
+
+[node name="Cylinder_015" parent="." index="5" unique_id=232973405]
+material_override = ExtResource("2_tlbef")
+
+[node name="Cylinder_016" parent="." index="6" unique_id=1756203209]
+material_override = ExtResource("2_tlbef")
+
+[node name="Cylinder_017" parent="." index="7" unique_id=1512741641]
+material_override = ExtResource("2_tlbef")
+
+[node name="Cylinder_018" parent="." index="8" unique_id=816073574]
+material_override = ExtResource("2_tlbef")
+
+[node name="Cylinder_002" parent="." index="9" unique_id=267667311]
+material_override = ExtResource("2_tlbef")

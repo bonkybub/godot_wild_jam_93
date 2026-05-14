@@ -1,15 +1,15 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://bg7eu80vcpkol"]
 
-[ext_resource type="Texture2D" uid="uid://b3fmce0jsfbim" path="res://Assets/Textures/Player/PlayerShip_baseColor.png" id="1_h46ua"]
-[ext_resource type="Texture2D" uid="uid://j21chh828rlu" path="res://Assets/Textures/Player/PlayerShip_occlusionRoughnessMetallic.png" id="2_uf6ir"]
-[ext_resource type="Texture2D" uid="uid://w5larlb8ds4j" path="res://Assets/Textures/Player/PlayerShip_normal.png" id="3_ba28i"]
+[ext_resource type="Texture2D" uid="uid://b3fmce0jsfbim" path="res://Assets/Textures/Player/PlayerShip_baseColor.png" id="1_1tnai"]
+[ext_resource type="Texture2D" uid="uid://j21chh828rlu" path="res://Assets/Textures/Player/PlayerShip_occlusionRoughnessMetallic.png" id="2_wrfbm"]
+[ext_resource type="Texture2D" uid="uid://w5larlb8ds4j" path="res://Assets/Textures/Player/PlayerShip_normal.png" id="3_pu021"]
 
 [resource]
-albedo_texture = ExtResource("1_h46ua")
+albedo_texture = ExtResource("1_1tnai")
 metallic = 1.0
-metallic_texture = ExtResource("2_uf6ir")
-roughness_texture = ExtResource("2_uf6ir")
+metallic_texture = ExtResource("2_wrfbm")
+roughness_texture = ExtResource("2_wrfbm")
 normal_enabled = true
-normal_texture = ExtResource("3_ba28i")
+normal_texture = ExtResource("3_pu021")
 ao_enabled = true
-ao_texture = ExtResource("2_uf6ir")
+ao_texture = ExtResource("2_wrfbm")

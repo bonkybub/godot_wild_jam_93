@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://f65xyuw5uu4f"]
 
 [ext_resource type="PackedScene" uid="uid://djsnmtyh23yjp" path="res://Assets/Models/Player/PlayerShip_Base.glb" id="1_wsirs"]
-[ext_resource type="Material" uid="uid://bg7eu80vcpkol" path="res://Assets/Textures/Player/PLayerShip_material_3d.tres" id="2_s02t1"]
+[ext_resource type="Material" uid="uid://bg7eu80vcpkol" path="res://Assets/Textures/Player/PlayerShip_material_3d.tres" id="2_s02t1"]
 
 [node name="PlayerShip_Base" unique_id=1921831592 instance=ExtResource("1_wsirs")]
 

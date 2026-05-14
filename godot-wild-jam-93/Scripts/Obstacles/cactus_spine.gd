@@ -2,7 +2,7 @@ extends Area3D
 
 const SHOOT_SPEED: float = 2.0
 const LIFETIME: float = 2.0
-@export var damage: float = 10.0
+@export var damage: int = 10
 
 func _ready() -> void:
 	await get_tree().create_timer(LIFETIME).timeout
