@@ -8,10 +8,11 @@
 shader = ExtResource("1_g3bq5")
 shader_parameter/resolution = Vector2(1152, 648)
 shader_parameter/pointColor = Color(1, 1, 1, 1)
-shader_parameter/pointSize = 1.20000001788144
-shader_parameter/layers = 56.0
-shader_parameter/layerPoints = 72.90000093728548
-shader_parameter/speed = 2.20999995060208
+shader_parameter/pointSize = 0.90000001341108
+shader_parameter/layers = 50.0
+shader_parameter/layerPoints = 76.10000098496933
+shader_parameter/speed = 9.99999977648
+shader_parameter/dotJitter = 8.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6ll0f"]
 viewport_path = NodePath("Player Mover/Player/SubViewport")
@@ -27,8 +28,9 @@ grow_vertical = 2
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2023004418]
 material = SubResource("ShaderMaterial_6ll0f")
 layout_mode = 0
+offset_top = -1.0
 offset_right = 1152.0
-offset_bottom = 648.0
+offset_bottom = 647.0
 color = Color(0, 0, 0, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1127305161]
