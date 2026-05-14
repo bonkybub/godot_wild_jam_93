@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://die3n8m7siurn"]
 
 [ext_resource type="PackedScene" uid="uid://dgflub4bswme6" path="res://Prefabs/Character/player.tscn" id="1_u2rs1"]
+[ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_base.tscn" id="2_ibn5c"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_u2rs1"]
 viewport_path = NodePath("Player Mover/Player/SubViewport")
@@ -21,10 +22,11 @@ ambient_light_energy = 2.38
 [node name="HyperdriveScene" type="Node3D" unique_id=2067415844]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=489717850]
-transform = Transform3D(0.70196664, 0, 0.7122098, 0, 1, 0, -0.7122098, 0, 0.70196664, 3.1034274, 0.53069603, 0.2583562)
+transform = Transform3D(0.70196664, 0, 0.7122098, 0, 1, 0, -0.7122098, 0, 0.70196664, 2.2826998, 0.53069603, 0.65859103)
 
 [node name="Player" parent="." unique_id=1017656907 instance=ExtResource("1_u2rs1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12945509, 0, -0.6996619)
+visible = false
 script = null
 
 [node name="HealthBar" parent="Player/PlayerShip_Base" parent_id_path=PackedInt32Array(1017656907, 2088026183) index="13" unique_id=1759192094]
@@ -55,5 +57,8 @@ light_energy = 0.208
 environment = SubResource("Environment_ibn5c")
 camera_attributes = SubResource("CameraAttributesPractical_ajlwv")
 compositor = SubResource("Compositor_4wuve")
+
+[node name="PlayerShip_Base" parent="." unique_id=800243318 instance=ExtResource("2_ibn5c")]
+transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, 0.2218667, 0.052737594, -0.7773044)
 
 [editable path="Player"]
