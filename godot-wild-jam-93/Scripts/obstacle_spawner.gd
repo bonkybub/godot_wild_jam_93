@@ -1,3 +1,4 @@
+class_name ObstacleSpawner
 extends Node3D
 
 #region Bandit Pathing
@@ -25,6 +26,7 @@ var bandit_enter_timer: float = 0.0
 var bandit_spawning: bool = false
 var bandit_follow: PathFollow3D
 var bandit_points: Array[Node3D]
+var active_bandits: Array[CharacterBody3D]
 #endregion
 
 func _process(delta: float) -> void:
@@ -83,7 +85,9 @@ func bandit_spawn_select():
 
 func spawn_bandit(id: int, path_follow: PathFollow3D) -> void:
 	var delta: float = get_physics_process_delta_time()
-	var bandit: CharacterBody3D = bandit_obj.instantiate()
+	var bandit: Enemy = bandit_obj.instantiate()
+	bandit.spawner = self
+	active_bandits.push_back(bandit)
 	path_follow.add_child(bandit)
 	path_follow.progress_ratio = 0.0
 	
@@ -95,7 +99,7 @@ func spawn_bandit(id: int, path_follow: PathFollow3D) -> void:
 	if bandit == null: return
 	
 	# remove bandit from path follow
-	remove_from_path(path_follow, get_tree().current_scene, bandit)
+	remove_from_path(path_follow, self, bandit)
 	var bandit_pos = bandit.global_position
 	
 	# move bandit to associated group point

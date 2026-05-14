@@ -16,5 +16,5 @@ func setup(direction: Vector3) -> void:
 	move_direction = direction.normalized()
 
 func _on_body_entered(body: Node3D) -> void:
-	if body is CharacterBody3D && body.is_in_group("enemy"):
-		body.queue_free()
+	if body is Enemy && body.is_in_group("enemy"):
+		(body as Enemy).death()

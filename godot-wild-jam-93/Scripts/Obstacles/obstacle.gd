@@ -3,6 +3,11 @@ extends Area3D
 
 @export var damage: int = 20
 
+# death pop
+@export_category("Death Pop")
+@export var death_pop_dur: float = 0.1
+@export var death_pop_scale: float = 2.0
+
 func _on_body_entered(body: Node3D) -> void:
 	# deal damage to player
 	if body is Player:
@@ -16,4 +21,16 @@ func _on_area_entered(area: Area3D) -> void:
 		destroy_obstacle()
 
 func destroy_obstacle() -> void:
+	await death_pop()
 	queue_free()
+
+func death_pop() -> void:
+	var timer: float = 0.0
+	var delta: float = get_process_delta_time()
+	var end_scale: Vector3 = death_pop_scale * Vector3.ONE
+	while (timer < death_pop_dur):
+		scale = lerp(Vector3.ONE, end_scale, timer / death_pop_dur)
+		timer += delta
+		await get_tree().process_frame
+	
+	scale = Vector3(0.5, 0.5, 0.5)

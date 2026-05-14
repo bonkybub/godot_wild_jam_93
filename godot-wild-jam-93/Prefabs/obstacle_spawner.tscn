@@ -18,9 +18,10 @@ _data = {
 }
 point_count = 3
 
-[node name="Obstacle Spawner" type="Node3D" unique_id=2002730737]
+[node name="Obstacle Spawner" type="Node3D" unique_id=2002730737 node_paths=PackedStringArray("bandit_group")]
 script = ExtResource("1_43w2k")
 bandit_obj = ExtResource("2_5566v")
+bandit_group = NodePath("Bandit Group")
 
 [node name="Bandit Path (Left)" type="Path3D" parent="." unique_id=1517673190]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.5, 3)
