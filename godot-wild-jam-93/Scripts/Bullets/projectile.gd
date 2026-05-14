@@ -2,6 +2,7 @@ extends Area3D
 
 @export var speed: float = 35.0
 @export var life_time: float = 3.0
+@export var damage: float = 20.0
 
 var move_direction: Vector3 = Vector3.ZERO
 
@@ -17,4 +18,4 @@ func setup(direction: Vector3) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Enemy && body.is_in_group("enemy"):
-		(body as Enemy).death()
+		(body as Enemy).damage_dealt(damage)

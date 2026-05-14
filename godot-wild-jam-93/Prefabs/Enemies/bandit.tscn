@@ -21,8 +21,9 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.2
 
-[node name="Bandit" type="CharacterBody3D" unique_id=169917404 groups=["enemy"]]
+[node name="Bandit" type="CharacterBody3D" unique_id=169917404 node_paths=PackedStringArray("mesh") groups=["enemy"]]
 script = ExtResource("1_vej3r")
+mesh = NodePath("Temp_Model")
 
 [node name="Temp_Model" type="MeshInstance3D" parent="." unique_id=617474397]
 mesh = SubResource("BoxMesh_yytj6")

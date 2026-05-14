@@ -10,7 +10,7 @@ extends Node3D
 @export_category("Bandit Spawning")
 @export var bandit_obj: PackedScene
 @export var bandit_group: BanditGroup
-@export var bandit_z_plane: float = -3.0
+@export var bandit_z_plane: float = -5.0
 @export var bandit_spawn_min: int = 3
 @export var bandit_spawn_max: int = 5
 var bandit_spawn_timer: float = 8.0
