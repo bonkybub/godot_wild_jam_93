@@ -5,8 +5,15 @@ extends Control
 
 
 @onready var HpLabel: Label = $Upgrades/Health/HpLabel
+@onready var HpButton: Button = $Upgrades/Health/HpUpgrade
+
 @onready var DmgLabel: Label = $Upgrades/Damage/DmgLabel
+@onready var DmgButton: Button = $Upgrades/Damage/DmgUpgrade
+
 @onready var SpeedLabel: Label = $Upgrades/Speed/SpeedLabel
+@onready var SpeedButton: Button = $Upgrades/Speed/SpeedUpgrade
+
+@onready var DashButton: Button = $Upgrades/Dash/DashUnlock
 
 @onready var MoneyLabel: Label = $Schmoney
 #endregion
@@ -45,5 +52,16 @@ func _on_speed_upgrade_pressed() -> void:
 	SpeedLabel.text = "Speed: " + str(GameManager.player_speed)
 	
 	pass # Replace with function body.
+
+
+func _on_dash_unlock_pressed() -> void:
+	
+	GameManager.unlock_player_dash(true)
+	DashButton.text = "Unlocked"
+	DashButton.disabled = true
+	
+	pass # Replace with function body.
+	
+
 
 #endregion

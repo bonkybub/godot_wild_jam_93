@@ -53,7 +53,7 @@ var current_health: int
 var shoot_from_left: bool = true
 var is_dead: bool = false
 
-var can_dash: bool = true # This should be set to false when we add upgrades
+var can_dash: bool 
 var is_dashing: bool = false
 var dash_available: bool = true
 #endregion
@@ -68,6 +68,8 @@ func _ready() -> void:
 	
 	max_health = GameManager.player_hp
 	print("Player Max Health: ", max_health)
+	
+	can_dash = GameManager.player_canDash
 	
 	current_health = max_health
 	update_health_bar()

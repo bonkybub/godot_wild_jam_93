@@ -22,6 +22,8 @@ shader_parameter/dotJitter = 8.0
 [sub_resource type="ViewportTexture" id="ViewportTexture_esk3c"]
 viewport_path = NodePath("Player Mover/Player/SubViewport")
 
+[sub_resource type="FontVariation" id="FontVariation_bgs0b"]
+
 [node name="HyperDriveSceneV2" type="Control" unique_id=1249516951]
 layout_mode = 3
 anchors_preset = 15
@@ -94,6 +96,7 @@ offset_right = 426.0
 offset_bottom = 342.0
 text = "Coins: "
 label_settings = ExtResource("6_qfs41")
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -138,10 +141,12 @@ label_settings = ExtResource("7_qgn5i")
 
 [node name="HpUpgrade" type="Button" parent="Menu/Upgrades/Health" unique_id=387542265]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 14.0
 offset_top = 42.0
-offset_right = 99.0
+offset_right = 89.0
 offset_bottom = 73.0
+scale = Vector2(1.225, 1.225)
+theme_override_fonts/font = SubResource("FontVariation_bgs0b")
 action_mode = 0
 text = "Upgrade"
 
@@ -171,10 +176,11 @@ label_settings = ExtResource("7_qgn5i")
 
 [node name="DmgUpgrade" type="Button" parent="Menu/Upgrades/Damage" unique_id=1373571448]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 14.0
 offset_top = 42.0
-offset_right = 99.0
+offset_right = 89.0
 offset_bottom = 73.0
+scale = Vector2(1.225, 1.225)
 action_mode = 0
 text = "Upgrade"
 
@@ -204,10 +210,11 @@ label_settings = ExtResource("7_qgn5i")
 
 [node name="SpeedUpgrade" type="Button" parent="Menu/Upgrades/Speed" unique_id=819174074]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 5.0
 offset_top = 42.0
-offset_right = 99.0
+offset_right = 80.0
 offset_bottom = 73.0
+scale = Vector2(1.225, 1.225)
 action_mode = 0
 text = "Upgrade"
 
@@ -220,7 +227,7 @@ offset_bottom = 300.0
 scale = Vector2(12.184006, 0.12210322)
 color = Color(1, 1, 1, 0.22352941)
 
-[node name="Special Upgrades" type="Label" parent="Menu/Upgrades" unique_id=2085689381]
+[node name="Abilities" type="Label" parent="Menu/Upgrades" unique_id=2085689381]
 layout_mode = 0
 offset_left = 591.0
 offset_top = 286.0
@@ -230,10 +237,38 @@ text = "Abilities"
 label_settings = ExtResource("5_qlcnp")
 horizontal_alignment = 1
 
+[node name="Dash" type="Control" parent="Menu/Upgrades" unique_id=1679614835]
+anchors_preset = 0
+offset_left = 527.00006
+offset_top = 376.00003
+offset_right = 567.00006
+offset_bottom = 416.00003
+scale = Vector2(1.25, 1.25)
+
+[node name="DashLabel" type="Label" parent="Menu/Upgrades/Dash" unique_id=100153513]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 122.0
+offset_bottom = 36.0
+text = "Dash"
+label_settings = ExtResource("6_qfs41")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DashUnlock" type="Button" parent="Menu/Upgrades/Dash" unique_id=1832729119]
+layout_mode = 0
+offset_left = 23.199951
+offset_top = 42.399975
+offset_right = 98.19995
+offset_bottom = 73.39998
+action_mode = 0
+text = "Unlock"
+
 [connection signal="pressed" from="Menu/Continue" to="Menu" method="_on_continue_pressed"]
 [connection signal="pressed" from="Menu/Upgrades/Health/HpUpgrade" to="Menu" method="_on_hp_upgrade_pressed"]
 [connection signal="pressed" from="Menu/Upgrades/Damage/DmgUpgrade" to="Menu" method="_on_dmg_upgrade_pressed"]
 [connection signal="pressed" from="Menu/Upgrades/Speed/SpeedUpgrade" to="Menu" method="_on_speed_upgrade_pressed"]
+[connection signal="pressed" from="Menu/Upgrades/Dash/DashUnlock" to="Menu" method="_on_dash_unlock_pressed"]
 
 [editable path="SubViewportContainer/SubViewport/HyperdriveScene"]
 [editable path="SubViewportContainer/SubViewport/HyperdriveScene/Player"]
