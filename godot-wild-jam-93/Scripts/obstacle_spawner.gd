@@ -41,6 +41,7 @@ var bandit_points: Array[Node3D]
 @export var cactus_y_bounds: Vector2 = Vector2(-2.0, 5.0)
 @export var cactus_z_bounds: Vector2 = Vector2(-70.0, -65.0)
 @export var cactus_z_limit: float = 5.0
+@export var cactus_start_z_bound: float = -30.0
 #endregion
 
 func _ready() -> void:
@@ -150,7 +151,7 @@ func spawn_bandit(id: int, path_follow: PathFollow3D) -> void:
 		await get_tree().process_frame
 	
 	path_follow.queue_free()
-	bandit.animator.play("bandit_idle")
+	if bandit != null: bandit.animator.play("bandit_idle")
 
 func despawn_bandit(path_follow: PathFollow3D) -> void:
 	var ease_out_timer: float = 0.0
@@ -184,22 +185,15 @@ func despawn_bandit(path_follow: PathFollow3D) -> void:
 #endregion
 
 func start_cacti() -> void:
-	for i in cactus_start_num:
-		var cactus: Obstacle = cactus_obj.instantiate()
-		get_tree().current_scene.add_child.call_deferred(cactus)
-		var x: float = randf_range(cactus_x_bounds.x, cactus_x_bounds.y)
-		var y: float = randf_range(cactus_y_bounds.x, cactus_y_bounds.y)
-		var z: float = randf_range(cactus_z_bounds.y, global_position.z)
-		cactus.global_position = Vector3(x, y, z)
-		cactus.spawner = self
-	
 	while (true):
 		for i in cactus_spawn_num:
-			var cactus: Obstacle = cactus_obj.instantiate()
+			var cactus: CactusBall = cactus_obj.instantiate()
 			get_tree().current_scene.add_child.call_deferred(cactus)
 			var x: float = randf_range(cactus_x_bounds.x, cactus_x_bounds.y) + global_position.x
 			var y: float = randf_range(cactus_y_bounds.x, cactus_y_bounds.y) + global_position.y
 			var z: float = randf_range(cactus_z_bounds.x, cactus_z_bounds.y) + global_position.z
+			await get_tree().process_frame
 			cactus.global_position = Vector3(x, y, z)
+			cactus.set_sway_positions()
 			cactus.spawner = self
 		await get_tree().create_timer(cactus_spawn_gap).timeout

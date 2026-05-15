@@ -1,3 +1,4 @@
+class_name CactusBall
 extends Obstacle
 
 # sway positioning
@@ -25,15 +26,7 @@ var spine_directions: Array[float]
 var enemies_nearby: Array[CharacterBody3D]
 
 func _ready() -> void:
-	var cur_pos: Vector3 = global_position
-	var x_lower: float = cur_pos.x - sway_range
-	var x_upper: float = cur_pos.x + sway_range
-	var y_lower: float = cur_pos.y - sway_range
-	var y_upper: float = cur_pos.y + sway_range
-	f_pos = Vector3(randf_range(x_lower, x_upper), randf_range(y_lower, y_upper), cur_pos.z)
-	s_pos = Vector3(randf_range(x_lower, x_upper), randf_range(y_lower, y_upper), cur_pos.z)
-	pos_axis = (f_pos + s_pos) * 0.5
-	pos_amp = f_pos - pos_axis
+	set_sway_positions()
 	
 	spin_spd = randf_range(min_spin_spd, max_spin_spd)
 	spin_dir = Vector3(randf_range(-360, 360), randf_range(-360, 360), randf_range(-360, 360))
@@ -53,6 +46,17 @@ func _physics_process(delta: float) -> void:
 	if spawner != null:
 		if global_position.z >= spawner.cactus_z_limit:
 			queue_free()
+
+func set_sway_positions() -> void:
+	var cur_pos: Vector3 = global_position
+	var x_lower: float = cur_pos.x - sway_range
+	var x_upper: float = cur_pos.x + sway_range
+	var y_lower: float = cur_pos.y - sway_range
+	var y_upper: float = cur_pos.y + sway_range
+	f_pos = Vector3(randf_range(x_lower, x_upper), randf_range(y_lower, y_upper), cur_pos.z)
+	s_pos = Vector3(randf_range(x_lower, x_upper), randf_range(y_lower, y_upper), cur_pos.z)
+	pos_axis = (f_pos + s_pos) * 0.5
+	pos_amp = f_pos - pos_axis
 
 func sway_cos(amp: float, axis: float) -> float:
 	return amp * cos(((2 * PI) / sway_dur) * sway_time) + axis

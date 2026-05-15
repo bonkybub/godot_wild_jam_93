@@ -44,7 +44,7 @@ func shoot() -> void:
 	var wave_counts: Array[int]
 	var remaining: int = bandits_to_shoot.size()
 	for i in shoot_num:
-		var num: int = ceil(remaining / (shoot_num - i))
+		var num: int = ceil(remaining / float(shoot_num - i))
 		wave_counts.push_back(num)
 		remaining -= num
 		if remaining <= 0: break
