@@ -20,6 +20,7 @@ var current_health: int
 @export_category("Death Pop")
 @export var death_pop_dur: float = 0.1
 @export var death_pop_scale: float = 1.5
+@export var explosion: PackedScene
 
 @onready var animator: AnimationPlayer = $AnimationPlayer
 
@@ -101,5 +102,9 @@ func death() -> void:
 		scale = lerp(Vector3.ONE, end_scale, timer / death_pop_dur)
 		timer += delta
 		await get_tree().process_frame
+	
+	var e: Node3D = explosion.instantiate()
+	e.global_position = global_position
+	get_tree().current_scene.add_child(e)
 	
 	queue_free()
