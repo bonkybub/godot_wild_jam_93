@@ -1,3 +1,4 @@
+class_name Projectile
 extends Area3D
 
 @export var speed: float = 35.0
@@ -17,5 +18,10 @@ func setup(direction: Vector3) -> void:
 	move_direction = direction.normalized()
 
 func _on_body_entered(body: Node3D) -> void:
-	if body is Enemy && body.is_in_group("enemy"):
+	if is_in_group("player_projectile") && body is Enemy && body.is_in_group("enemy"):
 		(body as Enemy).damage_dealt(damage)
+		queue_free()
+	
+	if is_in_group("enemy_projectile") && body is Player:
+		(body as Player).take_damage(damage)
+		queue_free()

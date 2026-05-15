@@ -16,6 +16,7 @@ func shoot() -> void:
 
 	var projectile := projectile_scene.instantiate()
 	get_tree().current_scene.add_child(projectile)
+	projectile.add_to_group("player_projectile")
 
 	projectile.global_position = muzzle.global_position
 

@@ -36,16 +36,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 [node name="5 Group" type="Node3D" parent="." unique_id=61551670]
 
 [node name="Point 1" type="Node3D" parent="5 Group" unique_id=36086196]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
 
 [node name="Point 2" type="Node3D" parent="5 Group" unique_id=2094467649]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
 
 [node name="Point 3" type="Node3D" parent="5 Group" unique_id=1796170999]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 0)
 
 [node name="Point 4" type="Node3D" parent="5 Group" unique_id=501069478]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0)
 
 [node name="Point 5" type="Node3D" parent="5 Group" unique_id=884850288]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, 0)

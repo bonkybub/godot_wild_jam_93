@@ -1,6 +1,8 @@
 class_name ObstacleSpawner
 extends Node3D
 
+@export var player: Player
+
 #region Bandit Pathing
 @onready var bandit_path_l: Path3D = $"Bandit Path (Left)"
 @onready var bandit_follow_l: PathFollow3D = $"Bandit Path (Left)/PathFollow3D"
@@ -22,21 +24,25 @@ var bandit_enter_timer: float = 0.0
 @export var bandit_ease_in_dur: float = 1.0
 @export var bandit_left_range: Vector2 = Vector2(-11.0, -7.0)
 @export var bandit_right_range: Vector2 = Vector2(7.0, 11.0)
-@export var bandit_height_range: Vector2 = Vector2(-0.5, 3.5)
+@export var bandit_height_range: Vector2 = Vector2(0.5, 2.5)
 var bandit_spawning: bool = false
 var bandit_follow: PathFollow3D
 var bandit_points: Array[Node3D]
-var active_bandits: Array[CharacterBody3D]
 #endregion
 
+func _ready() -> void:
+	await get_tree().create_timer(2.0).timeout
+	bandit_spawn_select()
+
 func _process(delta: float) -> void:
-	if !bandit_spawning:
-		bandit_spawn_timer += delta
-	
-	if !bandit_spawning && bandit_spawn_timer >= bandit_spawn_gap:
-		bandit_spawning = true
-		bandit_spawn_timer = 0.0
-		bandit_spawn_select()
+	pass
+	#if !bandit_spawning:
+		#bandit_spawn_timer += delta
+	#
+	#if !bandit_spawning && bandit_spawn_timer >= bandit_spawn_gap:
+		#bandit_spawning = true
+		#bandit_spawn_timer = 0.0
+		#bandit_spawn_select()
 
 func remove_from_path(path_follow: PathFollow3D, new_parent: Node3D, child: Node3D) -> void:
 	var pos: Vector3 = child.global_position
@@ -78,16 +84,20 @@ func bandit_spawn_select():
 	for i in spawn_count:
 		var path_follow: PathFollow3D = bandit_follow.duplicate()
 		bandit_follow.get_parent_node_3d().add_child(path_follow)
-		spawn_bandit(i, path_follow)
-		await get_tree().create_timer(bandit_enter_gap).timeout
+		if i == spawn_count - 1:
+			await spawn_bandit(i, path_follow)
+		else:
+			spawn_bandit(i, path_follow)
+			await get_tree().create_timer(bandit_enter_gap).timeout
 	
-	bandit_spawning = false
+	bandit_group.start_group()
 
 func spawn_bandit(id: int, path_follow: PathFollow3D) -> void:
 	var delta: float = get_physics_process_delta_time()
 	var bandit: Enemy = bandit_obj.instantiate()
 	bandit.spawner = self
-	active_bandits.push_back(bandit)
+	bandit.group = bandit_group
+	bandit_group.active_bandits.push_back(bandit)
 	path_follow.add_child(bandit)
 	path_follow.progress_ratio = 0.0
 	
@@ -99,7 +109,7 @@ func spawn_bandit(id: int, path_follow: PathFollow3D) -> void:
 	if bandit == null: return
 	
 	# remove bandit from path follow
-	remove_from_path(path_follow, self, bandit)
+	remove_from_path(path_follow, bandit_points[id], bandit)
 	var bandit_pos = bandit.global_position
 	
 	# move bandit to associated group point
@@ -111,3 +121,4 @@ func spawn_bandit(id: int, path_follow: PathFollow3D) -> void:
 		await get_tree().process_frame
 	
 	path_follow.queue_free()
+	bandit.animator.play("bandit_idle")

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bsb5ly0xnyuev"]
 
-[ext_resource type="Script" uid="uid://28mtphwjcrr5" path="res://Scripts/Enemies/enemy.gd" id="1_vej3r"]
+[ext_resource type="Script" uid="uid://ceeahhtbgq52m" path="res://Scripts/Enemies/bandit.gd" id="1_vej3r"]
+[ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="2_53ong"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yytj6"]
 albedo_color = Color(0, 0, 0, 1)
@@ -21,9 +22,84 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.2
 
-[node name="Bandit" type="CharacterBody3D" unique_id=169917404 node_paths=PackedStringArray("mesh") groups=["enemy"]]
+[sub_resource type="Animation" id="Animation_vej3r"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_53ong"]
+resource_name = "bandit_idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.4, 1, 0, 0.15, 0, 0.5, 1, 0, 0.16, 0, 0.6, 1, 0, 0.15, 0, 1.4, 1, 0, -0.15, 0, 1.5, 1, 0, -0.16, 0, 1.6, 1, 0, -0.15, 0, 2, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_63dpg"]
+resource_name = "bandit_strafe_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.34906584)]
+}
+
+[sub_resource type="Animation" id="Animation_k3d78"]
+resource_name = "bandit_strafe_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.34906584)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_63dpg"]
+_data = {
+&"RESET": SubResource("Animation_vej3r"),
+&"bandit_idle": SubResource("Animation_53ong"),
+&"bandit_strafe_left": SubResource("Animation_63dpg"),
+&"bandit_strafe_right": SubResource("Animation_k3d78")
+}
+
+[node name="Bandit" type="CharacterBody3D" unique_id=169917404 node_paths=PackedStringArray("fire_location") groups=["enemy"]]
 script = ExtResource("1_vej3r")
-mesh = NodePath("Temp_Model")
+fire_location = NodePath("Fire Location")
+bullet_obj = ExtResource("2_53ong")
 
 [node name="Temp_Model" type="MeshInstance3D" parent="." unique_id=617474397]
 mesh = SubResource("BoxMesh_yytj6")
@@ -37,3 +113,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6)
 [node name="Barrel Model" type="MeshInstance3D" parent="Fire Location" unique_id=2144925819]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("CylinderMesh_63dpg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=506221534]
+libraries/ = SubResource("AnimationLibrary_63dpg")

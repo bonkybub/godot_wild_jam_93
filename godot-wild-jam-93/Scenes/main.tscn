@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://daa7jjb25yemr" path="res://Prefabs/Character/player_ship_base.tscn" id="5_6iyac"]
 [ext_resource type="PackedScene" uid="uid://dv2bqw1ycs0kv" path="res://Prefabs/Obstacles/tumbleweed.tscn" id="6_21xkr"]
-[ext_resource type="Script" uid="uid://c5d1tf6ko5k2e" path="res://Scripts/Character/WarningDetector.gd" id="6_344ge"]
+[ext_resource type="Script" path="res://Scripts/Character/WarningDetector.gd" id="6_344ge"]
 [ext_resource type="PackedScene" uid="uid://d2fusol30m64f" path="res://Prefabs/Character/player_ship_gears.tscn" id="6_fdnlq"]
 [ext_resource type="PackedScene" uid="uid://cvrvaywdl8l2h" path="res://Prefabs/obstacle_spawner.tscn" id="9_d1ilt"]
 
@@ -281,8 +281,8 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_344ge")
 value = 50.0
 show_percentage = false
 
-[node name="Obstacle Spawner" parent="Player Mover" unique_id=2002730737 instance=ExtResource("9_d1ilt")]
-bandit_height_range = Vector2(0.5, 2.5)
+[node name="Obstacle Spawner" parent="Player Mover" unique_id=2002730737 node_paths=PackedStringArray("player") instance=ExtResource("9_d1ilt")]
+player = NodePath("../Player")
 
 [node name="Cactus Ball" parent="." unique_id=1430593807 instance=ExtResource("3_8gbba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4349461, 1.2568594, -7.09496)
