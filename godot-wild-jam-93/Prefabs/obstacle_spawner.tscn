@@ -6,7 +6,7 @@
 
 [sub_resource type="Curve3D" id="Curve3D_hptm8"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -7.5, 0, 0, 4.5, 0, 0, 4.5, 0, -20, 0, 0, 0, 0, 0, 0, 9, 0, -11),
+"points": PackedVector3Array(-7.5, 0, 0, 0, 0, 0, 0, 0, 0, -7.5, 0, 0, 4.5, 0, 0, 4.5, 0, -20, 0, 0, 0, 0, 0, 0, 9, 0, -11),
 "tilts": PackedFloat32Array(1.5707964, 0.5235988, 0)
 }
 point_count = 3
@@ -18,28 +18,60 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="Curve3D" id="Curve3D_5566v"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 0, -24, 0, 12),
+"tilts": PackedFloat32Array(0, 1.5707964)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_ej3fg"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -24, 0, 0, 0, 0, 0, 24, 0, 12),
+"tilts": PackedFloat32Array(0, -1.5707964)
+}
+point_count = 2
+
 [node name="Obstacle Spawner" type="Node3D" unique_id=2002730737 node_paths=PackedStringArray("bandit_group")]
 script = ExtResource("1_43w2k")
 bandit_obj = ExtResource("2_5566v")
 bandit_group = NodePath("Bandit Group")
 
-[node name="Bandit Path (Left)" type="Path3D" parent="." unique_id=1517673190]
+[node name="Bandit Enter Path (Left)" type="Path3D" parent="." unique_id=1517673190]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.5, 3)
 curve = SubResource("Curve3D_hptm8")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Bandit Path (Left)" unique_id=913833624]
-transform = Transform3D(-1.0000104, 0, 0, 0, 1.0003511, 0, 0, 0, -1.0000123, 9, 0, -11)
+[node name="PathFollow3D" type="PathFollow3D" parent="Bandit Enter Path (Left)" unique_id=913833624]
+transform = Transform3D(-1.0000106, 0, 0, 0, 1.0003512, 0, 0, 0, -1.0000122, 9, 0, -11)
 progress = 36.107647
 rotation_mode = 4
 loop = false
 
-[node name="Bandit Path (Right)" type="Path3D" parent="." unique_id=1003741129]
+[node name="Bandit Enter Path (Right)" type="Path3D" parent="." unique_id=1003741129]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.5, 3)
 curve = SubResource("Curve3D_6iyac")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Bandit Path (Right)" unique_id=762505574]
+[node name="PathFollow3D" type="PathFollow3D" parent="Bandit Enter Path (Right)" unique_id=762505574]
 transform = Transform3D(-1.0000104, 0, 0, 0, 1.0003487, 0, 0, 0, -1.0000113, -9, 0, -11)
 progress = 36.558876
+rotation_mode = 4
+loop = false
+
+[node name="Bandit Exit Path (Left)" type="Path3D" parent="." unique_id=526432769]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -3)
+curve = SubResource("Curve3D_5566v")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Bandit Exit Path (Left)" unique_id=1561676176]
+transform = Transform3D(-1.0000129, 0, 0, 0, 1.0003583, 0, 0, 0, -1.0000159, 0, 0, 0)
+rotation_mode = 4
+loop = false
+
+[node name="Bandit Exit Path (Right)" type="Path3D" parent="." unique_id=532171287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, -3)
+curve = SubResource("Curve3D_ej3fg")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Bandit Exit Path (Right)" unique_id=616684886]
+transform = Transform3D(-1.0000196, 0, 0, 0, 1.0003754, 0, 0, 0, -1.0000291, 0, 0, 0)
 rotation_mode = 4
 loop = false
 

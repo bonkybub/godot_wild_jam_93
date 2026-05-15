@@ -4,10 +4,10 @@ extends Node3D
 @export var player: Player
 
 #region Bandit Pathing
-@onready var bandit_path_l: Path3D = $"Bandit Path (Left)"
-@onready var bandit_follow_l: PathFollow3D = $"Bandit Path (Left)/PathFollow3D"
-@onready var bandit_path_r: Path3D = $"Bandit Path (Right)"
-@onready var bandit_follow_r: PathFollow3D = $"Bandit Path (Right)/PathFollow3D"
+@onready var bandit_ent_path_l: Path3D = $"Bandit Enter Path (Left)"
+@onready var bandit_ent_path_r: Path3D = $"Bandit Enter Path (Right)"
+@onready var bandit_ex_path_l: Path3D = $"Bandit Exit Path (Left)"
+@onready var bandit_ex_path_r: Path3D = $"Bandit Exit Path (Right)"
 
 @export_category("Bandit Spawning")
 @export var bandit_obj: PackedScene
@@ -16,7 +16,7 @@ extends Node3D
 @export var bandit_spawn_min: int = 3
 @export var bandit_spawn_max: int = 5
 var bandit_spawn_timer: float = 8.0
-@export var bandit_spawn_gap: float = 10.0
+@export var bandit_spawn_gap: float = 5.0
 var bandit_enter_timer: float = 0.0
 # amount of seconds before spawning next bandit in group
 @export var bandit_enter_gap: float = 0.3
@@ -25,6 +25,9 @@ var bandit_enter_timer: float = 0.0
 @export var bandit_left_range: Vector2 = Vector2(-11.0, -7.0)
 @export var bandit_right_range: Vector2 = Vector2(7.0, 11.0)
 @export var bandit_height_range: Vector2 = Vector2(0.5, 2.5)
+@export var bandit_exit_gap: float = 0.5
+@export var bandit_exit_spd: float = 15.0
+@export var bandit_ease_out_dur: float = 0.6
 var bandit_spawning: bool = false
 var bandit_follow: PathFollow3D
 var bandit_points: Array[Node3D]
@@ -32,7 +35,7 @@ var bandit_points: Array[Node3D]
 
 func _ready() -> void:
 	await get_tree().create_timer(2.0).timeout
-	bandit_spawn_select()
+	start_bandits()
 
 func _process(delta: float) -> void:
 	pass
@@ -52,24 +55,30 @@ func remove_from_path(path_follow: PathFollow3D, new_parent: Node3D, child: Node
 	child.global_position = pos
 	child.global_rotation = rot
 
-func bandit_spawn_select():
+#region Bandits
+func start_bandits():
+	while (true):
+		await bandit_cycle()
+		await get_tree().create_timer(bandit_spawn_gap).timeout
+
+func bandit_cycle():
 	# selecting the position the bandit group will fly into
 	var path: Path3D
 	var side: float = randf()
 	if side < 0.5:
-		bandit_follow = bandit_follow_l
+		bandit_follow = bandit_ent_path_l.get_child(0)
 		var x: float = randf_range(bandit_left_range.x, bandit_left_range.y)
 		var y: float = randf_range(bandit_height_range.x, bandit_height_range.y)
-		var z: float = bandit_path_l.global_position.z
-		bandit_path_l.global_position = Vector3(x, y ,z)
-		path = bandit_path_l
+		var z: float = bandit_ent_path_l.global_position.z
+		bandit_ent_path_l.global_position = Vector3(x, y ,z)
+		path = bandit_ent_path_l
 	else:
-		bandit_follow = bandit_follow_r
+		bandit_follow = bandit_ent_path_r.get_child(0)
 		var x: float = randf_range(bandit_right_range.x, bandit_right_range.y)
 		var y: float = randf_range(bandit_height_range.x, bandit_height_range.y)
-		var z: float = bandit_path_r.global_position.z
-		bandit_path_r.global_position = Vector3(x, y ,z)
-		path = bandit_path_r
+		var z: float = bandit_ent_path_r.global_position.z
+		bandit_ent_path_r.global_position = Vector3(x, y ,z)
+		path = bandit_ent_path_r
 	
 	# set bandit group position
 	bandit_group.global_position = path.curve.get_point_position(path.curve.point_count - 1) + path.global_position
@@ -90,11 +99,29 @@ func bandit_spawn_select():
 			spawn_bandit(i, path_follow)
 			await get_tree().create_timer(bandit_enter_gap).timeout
 	
-	bandit_group.start_group()
+	# start strafing and shooting
+	await bandit_group.start_group()
+	
+	if bandit_group.position.distance_to(bandit_ex_path_l.position) < bandit_group.position.distance_to(bandit_ex_path_r.position):
+		bandit_follow = bandit_ex_path_l.get_child(0)
+	else:
+		bandit_follow = bandit_ex_path_r.get_child(0)
+	
+	# bandits fly out
+	for i in bandit_group.active_bandits.size():
+		var path_follow: PathFollow3D = bandit_follow.duplicate()
+		bandit_follow.get_parent_node_3d().add_child(path_follow)
+		despawn_bandit(path_follow)
+		await get_tree().create_timer(bandit_exit_gap).timeout
+	
+	for bandit in bandit_group.active_bandits:
+		bandit.queue_free()
+	
+	bandit_group.active_bandits.clear()
 
 func spawn_bandit(id: int, path_follow: PathFollow3D) -> void:
 	var delta: float = get_physics_process_delta_time()
-	var bandit: Enemy = bandit_obj.instantiate()
+	var bandit: Bandit = bandit_obj.instantiate()
 	bandit.spawner = self
 	bandit.group = bandit_group
 	bandit_group.active_bandits.push_back(bandit)
@@ -110,7 +137,7 @@ func spawn_bandit(id: int, path_follow: PathFollow3D) -> void:
 	
 	# remove bandit from path follow
 	remove_from_path(path_follow, bandit_points[id], bandit)
-	var bandit_pos = bandit.global_position
+	var bandit_pos: Vector3 = bandit.global_position
 	
 	# move bandit to associated group point
 	var ease_in_timer: float = 0.0
@@ -122,3 +149,34 @@ func spawn_bandit(id: int, path_follow: PathFollow3D) -> void:
 	
 	path_follow.queue_free()
 	bandit.animator.play("bandit_idle")
+
+func despawn_bandit(path_follow: PathFollow3D) -> void:
+	var ease_out_timer: float = 0.0
+	var delta: float = get_physics_process_delta_time()
+	var bandit: Bandit = bandit_group.active_bandits.pop_front()
+	if bandit == null: return
+	var bandit_pos: Vector3 = bandit.global_position
+	bandit.get_parent_node_3d().remove_child(bandit)
+	self.add_child(bandit)
+	bandit.animator.stop()
+	
+	# ease into start position of path follow
+	while ease_out_timer < bandit_ease_out_dur:
+		if bandit == null: return
+		bandit.global_position = lerp(bandit_pos, path_follow.get_parent_node_3d().global_position, ease_out_timer / bandit_ease_out_dur)
+		ease_out_timer += delta
+		await get_tree().process_frame
+	
+	bandit.rotation_degrees.y += 180
+	bandit.get_parent_node_3d().remove_child(bandit)
+	path_follow.add_child(bandit)
+	bandit.position = Vector3.ZERO
+	path_follow.progress_ratio = 0.0
+	
+	# follow path at move speed
+	while (path_follow.progress_ratio < 1.0):
+		path_follow.progress += bandit_exit_spd * delta
+		await get_tree().process_frame
+	
+	path_follow.queue_free()
+#endregion
