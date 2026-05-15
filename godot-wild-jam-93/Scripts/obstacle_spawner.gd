@@ -3,7 +3,7 @@ extends Node3D
 
 @export var player: Player
 
-#region Bandit Pathing
+#region Bandit Spawning
 @onready var bandit_ent_path_l: Path3D = $"Bandit Enter Path (Left)"
 @onready var bandit_ent_path_r: Path3D = $"Bandit Enter Path (Right)"
 @onready var bandit_ex_path_l: Path3D = $"Bandit Exit Path (Left)"
@@ -15,9 +15,8 @@ extends Node3D
 @export var bandit_z_plane: float = -5.0
 @export var bandit_spawn_min: int = 3
 @export var bandit_spawn_max: int = 5
-var bandit_spawn_timer: float = 8.0
-@export var bandit_spawn_gap: float = 5.0
-var bandit_enter_timer: float = 0.0
+@export var bandit_pre_wait: float = 2.0
+@export var bandit_spawn_gap: float = 2.0
 # amount of seconds before spawning next bandit in group
 @export var bandit_enter_gap: float = 0.3
 @export var bandit_enter_spd: float = 25.0
@@ -28,24 +27,25 @@ var bandit_enter_timer: float = 0.0
 @export var bandit_exit_gap: float = 0.5
 @export var bandit_exit_spd: float = 15.0
 @export var bandit_ease_out_dur: float = 0.6
-var bandit_spawning: bool = false
 var bandit_follow: PathFollow3D
 var bandit_points: Array[Node3D]
 #endregion
 
-func _ready() -> void:
-	await get_tree().create_timer(2.0).timeout
-	start_bandits()
+#region Obstacle Spawning
+@export_category("Cactus Spawning")
+@export var cactus_obj: PackedScene
+@export var cactus_spawn_gap: float = 2.0
+@export var cactus_start_num: int = 10
+@export var cactus_spawn_num: int = 2
+@export var cactus_x_bounds: Vector2 = Vector2(-6.0, 6.0)
+@export var cactus_y_bounds: Vector2 = Vector2(-2.0, 5.0)
+@export var cactus_z_bounds: Vector2 = Vector2(-70.0, -65.0)
+@export var cactus_z_limit: float = 5.0
+#endregion
 
-func _process(delta: float) -> void:
-	pass
-	#if !bandit_spawning:
-		#bandit_spawn_timer += delta
-	#
-	#if !bandit_spawning && bandit_spawn_timer >= bandit_spawn_gap:
-		#bandit_spawning = true
-		#bandit_spawn_timer = 0.0
-		#bandit_spawn_select()
+func _ready() -> void:
+	start_bandits()
+	start_cacti()
 
 func remove_from_path(path_follow: PathFollow3D, new_parent: Node3D, child: Node3D) -> void:
 	var pos: Vector3 = child.global_position
@@ -56,12 +56,14 @@ func remove_from_path(path_follow: PathFollow3D, new_parent: Node3D, child: Node
 	child.global_rotation = rot
 
 #region Bandits
-func start_bandits():
+func start_bandits() -> void:
+	await get_tree().create_timer(bandit_pre_wait).timeout
+	
 	while (true):
 		await bandit_cycle()
 		await get_tree().create_timer(bandit_spawn_gap).timeout
 
-func bandit_cycle():
+func bandit_cycle() -> void:
 	# selecting the position the bandit group will fly into
 	var path: Path3D
 	var side: float = randf()
@@ -180,3 +182,24 @@ func despawn_bandit(path_follow: PathFollow3D) -> void:
 	
 	path_follow.queue_free()
 #endregion
+
+func start_cacti() -> void:
+	for i in cactus_start_num:
+		var cactus: Obstacle = cactus_obj.instantiate()
+		get_tree().current_scene.add_child.call_deferred(cactus)
+		var x: float = randf_range(cactus_x_bounds.x, cactus_x_bounds.y)
+		var y: float = randf_range(cactus_y_bounds.x, cactus_y_bounds.y)
+		var z: float = randf_range(cactus_z_bounds.y, global_position.z)
+		cactus.global_position = Vector3(x, y, z)
+		cactus.spawner = self
+	
+	while (true):
+		for i in cactus_spawn_num:
+			var cactus: Obstacle = cactus_obj.instantiate()
+			get_tree().current_scene.add_child.call_deferred(cactus)
+			var x: float = randf_range(cactus_x_bounds.x, cactus_x_bounds.y) + global_position.x
+			var y: float = randf_range(cactus_y_bounds.x, cactus_y_bounds.y) + global_position.y
+			var z: float = randf_range(cactus_z_bounds.x, cactus_z_bounds.y) + global_position.z
+			cactus.global_position = Vector3(x, y, z)
+			cactus.spawner = self
+		await get_tree().create_timer(cactus_spawn_gap).timeout

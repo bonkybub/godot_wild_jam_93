@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://2n5e2kpla82o" path="res://Scripts/obstacle_spawner.gd" id="1_43w2k"]
 [ext_resource type="PackedScene" uid="uid://bsb5ly0xnyuev" path="res://Prefabs/Enemies/bandit.tscn" id="2_5566v"]
 [ext_resource type="PackedScene" uid="uid://cl7p7qa3mghod" path="res://Prefabs/Enemies/bandit_group.tscn" id="3_5566v"]
+[ext_resource type="PackedScene" uid="uid://2mhj7gcm6f7r" path="res://Prefabs/Obstacles/cactus_ball.tscn" id="3_ej3fg"]
 
 [sub_resource type="Curve3D" id="Curve3D_hptm8"]
 _data = {
@@ -36,6 +37,7 @@ point_count = 2
 script = ExtResource("1_43w2k")
 bandit_obj = ExtResource("2_5566v")
 bandit_group = NodePath("Bandit Group")
+cactus_obj = ExtResource("3_ej3fg")
 
 [node name="Bandit Enter Path (Left)" type="Path3D" parent="." unique_id=1517673190]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.5, 3)

@@ -1,6 +1,8 @@
 class_name Obstacle
 extends Area3D
 
+var spawner: ObstacleSpawner
+
 @export var damage: int = 20
 
 # death pop
