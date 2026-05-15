@@ -12,13 +12,14 @@ var active_bandits: Array[Bandit]
 @export var shoot_num: int = 2
 @export var shoot_wait_dur: float = 0.4    # wait time before shooting starts and after shooting ends
 @export var shoot_pause_dur: float = 1.2   # wait time between shooting first and second time
-@export var shoot_gap: float = 0.4
+@export var shoot_gap: float = 0.8
 
 @export_category("Group Strafe")
 @export var strafe_x_range: Vector2 = Vector2(-4.0, 4.0)
 @export var strafe_y_range: Vector2 = Vector2(0.5, 2.5)
 @export var strafe_num: int = 2
-@export var strafe_spd: float = 0.5
+@export var strafe_spd: float = 5.0
+@export var strafe_dist: float = 2.0
 
 func start_group() -> void:
 	var tree: SceneTree = get_tree()
@@ -27,6 +28,9 @@ func start_group() -> void:
 	await tree.create_timer(shoot_wait_dur).timeout
 	for i in strafe_num:
 		var new_dest: Vector3 = Vector3(randf_range(strafe_x_range.x, strafe_x_range.y), randf_range(strafe_y_range.x, strafe_y_range.y), position.z)
+		var new_dir: Vector3 = (new_dest - position).normalized()
+		new_dest = strafe_dist * new_dir
+		new_dest.z = position.z
 		await strafe(new_dest, new_dest.x < global_position.x)
 		await tree.create_timer(shoot_wait_dur).timeout
 		await shoot()
@@ -36,7 +40,7 @@ func shoot() -> void:
 	if active_bandits.is_empty(): return
 	
 	# set up wave shooting
-	var bandits_to_shoot: Array[Bandit] = active_bandits
+	var bandits_to_shoot: Array[Bandit] = active_bandits.duplicate()
 	var wave_counts: Array[int]
 	var remaining: int = bandits_to_shoot.size()
 	for i in shoot_num:
@@ -49,15 +53,16 @@ func shoot() -> void:
 		# get wave of shooters
 		for j in wave_counts[i]:
 			# select shooter in wave
-			var shooter: Bandit = bandits_to_shoot.pick_random()
-			bandits_to_shoot.remove_at(bandits_to_shoot.find(shooter))
-			if shooter == null: continue
+			var id: int = randi_range(0, bandits_to_shoot.size() - 1)
+			if bandits_to_shoot[id] == null: continue
+			var shooter: Bandit = bandits_to_shoot[id]
+			bandits_to_shoot.remove_at(id)
 			shooter.shoot()
 			await get_tree().create_timer(shoot_gap).timeout
 		
 		if i == shoot_num - 1: break
 		# wait before next wave
-		await get_tree().create_timer(shoot_pause_dur)
+		await get_tree().create_timer(shoot_pause_dur).timeout
 
 func strafe(dest: Vector3, left: bool) -> void:
 	var anim_name: String = "bandit_strafe_left" if left else "bandit_strafe_right"

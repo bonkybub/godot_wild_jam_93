@@ -8,7 +8,8 @@ var spawner: ObstacleSpawner
 @export var bullet_obj: PackedScene
 @export var max_health: int = 30
 var current_health: int
-@export var shot_damage: int = 10
+@export var shot_dmg: int = 10
+@export var shot_spd: float = 10.0
 @export var fire_dur: float = 0.1
 @export var fire_scale: float = 1.3
 @export var mesh: MeshInstance3D
@@ -48,7 +49,8 @@ func shoot() -> void:
 	get_tree().current_scene.add_child(bullet)
 	bullet.add_to_group("enemy_projectile")
 	bullet.global_position = fire_location.global_position
-	bullet.damage = shot_damage
+	bullet.damage = shot_dmg
+	bullet.speed = shot_spd
 	bullet.setup(spawner.player.global_position - bullet.global_position)
 	
 	timer = 0.0
