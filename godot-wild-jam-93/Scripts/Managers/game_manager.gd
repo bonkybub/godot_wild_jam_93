@@ -4,8 +4,8 @@ extends Node
 
 #region Player  Values
 
-var player_hp: float = 100
-var player_damage: float = 20
+var player_hp: int = 100
+var player_damage: int = 20
 var player_speed: float = 5
 
 var player_money: int = 10
@@ -14,11 +14,11 @@ var player_money: int = 10
 
 #region Player Upgrade Functions
 
-func increase_player_health(amount: float) -> void:
+func increase_player_health(amount: int) -> void:
 	player_hp += amount
 	print("Player health is now: ", player_speed)
 
-func increase_player_damage(amount: float) -> void:
+func increase_player_damage(amount: int) -> void:
 	player_damage += amount
 	print("Player damage is now: ", player_speed)
 
