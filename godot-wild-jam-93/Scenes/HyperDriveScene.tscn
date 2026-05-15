@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://die3n8m7siurn" path="res://Scenes/hyperdrive3D.tscn" id="2_bgs0b"]
 [ext_resource type="Script" uid="uid://bslmgxy200wk4" path="res://Scripts/Character/SimpleIdleScript.gd" id="3_c3dsn"]
 [ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_gears.tscn" id="4_esk3c"]
+[ext_resource type="Script" uid="uid://w3y2td5wp323" path="res://Scripts/Managers/UpgradeManager.gd" id="5_c3dsn"]
 [ext_resource type="LabelSettings" uid="uid://b6v48m650gg48" path="res://Font Stuff/Title.tres" id="5_qlcnp"]
 [ext_resource type="LabelSettings" uid="uid://c1s8tbg4iwkr" path="res://Font Stuff/UpgradeLabel.tres" id="6_qfs41"]
 [ext_resource type="LabelSettings" uid="uid://bh814rcwqb61q" path="res://Font Stuff/UpgradeAmount.tres" id="7_qgn5i"]
-[ext_resource type="PackedScene" uid="uid://1atwun83u884" path="res://Prefabs/Character/PlayerMover.tscn" id="8_bgs0b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ll0f"]
 shader = ExtResource("1_lgjqd")
@@ -19,7 +19,7 @@ shader_parameter/layerPoints = 105.30000142008436
 shader_parameter/speed = 10.0
 shader_parameter/dotJitter = 8.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_lgjqd"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_esk3c"]
 viewport_path = NodePath("Player Mover/Player/SubViewport")
 
 [node name="HyperDriveSceneV2" type="Control" unique_id=1249516951]
@@ -59,7 +59,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550.0823, 307.52237, 0)
 transform = Transform3D(0.95274633, 0, 0.30376697, 0, 1, 0, -0.30376697, 0, 0.95274633, 1.2996173, 0.53069603, 1.8949592)
 
 [node name="HealthBar" parent="SubViewportContainer/SubViewport/HyperdriveScene/Player/PlayerShip_Base" parent_id_path=PackedInt32Array(2067415844, 1017656907, 2088026183) index="13" unique_id=1759192094]
-texture = SubResource("ViewportTexture_lgjqd")
+texture = SubResource("ViewportTexture_esk3c")
 
 [node name="DirectionalLight3D3" parent="SubViewportContainer/SubViewport/HyperdriveScene" index="4" unique_id=1293784391]
 visible = false
@@ -71,12 +71,38 @@ script = ExtResource("3_c3dsn")
 [node name="PlayerShip_Gears" parent="SubViewportContainer/SubViewport/HyperdriveScene/PlayerShip_Base" index="10" unique_id=1097901117 instance=ExtResource("4_esk3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013155289, 5.820766e-11)
 
-[node name="Upgrades" type="Control" parent="." unique_id=462339465]
+[node name="Menu" type="Control" parent="." unique_id=385068212]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_c3dsn")
+
+[node name="Continue" type="Button" parent="Menu" unique_id=152399352]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 576.0
+offset_right = 385.0
+offset_bottom = 607.0
+action_mode = 0
+text = "Continue"
+
+[node name="Schmoney" type="Label" parent="Menu" unique_id=1737317461]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 302.0
+offset_right = 426.0
+offset_bottom = 342.0
+text = "Coins: "
+label_settings = ExtResource("6_qfs41")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Upgrades" type="Control" parent="Menu" unique_id=462339465]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="BaseUpgradesLabel" type="Label" parent="Upgrades" unique_id=1201120892]
+[node name="BaseUpgradesLabel" type="Label" parent="Menu/Upgrades" unique_id=1201120892]
 layout_mode = 0
 offset_left = 606.0
 offset_top = 53.0
@@ -86,14 +112,14 @@ text = "Base Upgrades"
 label_settings = ExtResource("5_qlcnp")
 horizontal_alignment = 1
 
-[node name="Health" type="Control" parent="Upgrades" unique_id=1085923960]
+[node name="Health" type="Control" parent="Menu/Upgrades" unique_id=1085923960]
 anchors_preset = 0
 offset_left = 500.0
 offset_top = 150.0
 offset_right = 540.0
 offset_bottom = 190.0
 
-[node name="HpLabel" type="Label" parent="Upgrades/Health" unique_id=1768144777]
+[node name="HpLabel" type="Label" parent="Menu/Upgrades/Health" unique_id=1768144777]
 layout_mode = 0
 offset_top = 2.0
 offset_right = 122.0
@@ -101,16 +127,16 @@ offset_bottom = 36.0
 text = "Health: 100"
 label_settings = ExtResource("6_qfs41")
 
-[node name="HpUpgradeAmount" type="Label" parent="Upgrades/Health" unique_id=1017513199]
+[node name="HpUpgradeAmount" type="Label" parent="Menu/Upgrades/Health" unique_id=1017513199]
 layout_mode = 0
 offset_left = 127.0
 offset_top = -16.0
 offset_right = 249.0
 offset_bottom = 18.0
-text = "+ 0"
+text = "+ 5"
 label_settings = ExtResource("7_qgn5i")
 
-[node name="HpUpgrade" type="Button" parent="Upgrades/Health" unique_id=387542265]
+[node name="HpUpgrade" type="Button" parent="Menu/Upgrades/Health" unique_id=387542265]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 42.0
@@ -119,14 +145,14 @@ offset_bottom = 73.0
 action_mode = 0
 text = "Upgrade"
 
-[node name="Damage" type="Control" parent="Upgrades" unique_id=765658429]
+[node name="Damage" type="Control" parent="Menu/Upgrades" unique_id=765658429]
 anchors_preset = 0
 offset_left = 700.0
 offset_top = 150.0
 offset_right = 740.0
 offset_bottom = 190.0
 
-[node name="DmgLabel" type="Label" parent="Upgrades/Damage" unique_id=2074360725]
+[node name="DmgLabel" type="Label" parent="Menu/Upgrades/Damage" unique_id=2074360725]
 layout_mode = 0
 offset_top = 2.0
 offset_right = 122.0
@@ -134,16 +160,16 @@ offset_bottom = 36.0
 text = "Damage: 20"
 label_settings = ExtResource("6_qfs41")
 
-[node name="DmgUpgradeAmount" type="Label" parent="Upgrades/Damage" unique_id=1578084232]
+[node name="DmgUpgradeAmount" type="Label" parent="Menu/Upgrades/Damage" unique_id=1578084232]
 layout_mode = 0
 offset_left = 127.0
 offset_top = -16.0
 offset_right = 249.0
 offset_bottom = 18.0
-text = "+ 0"
+text = "+ 2.5"
 label_settings = ExtResource("7_qgn5i")
 
-[node name="DmgUpgrade" type="Button" parent="Upgrades/Damage" unique_id=1373571448]
+[node name="DmgUpgrade" type="Button" parent="Menu/Upgrades/Damage" unique_id=1373571448]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 42.0
@@ -152,14 +178,14 @@ offset_bottom = 73.0
 action_mode = 0
 text = "Upgrade"
 
-[node name="Speed" type="Control" parent="Upgrades" unique_id=118843428]
+[node name="Speed" type="Control" parent="Menu/Upgrades" unique_id=118843428]
 anchors_preset = 0
 offset_left = 900.0
 offset_top = 150.0
 offset_right = 940.0
 offset_bottom = 190.0
 
-[node name="SpeedLabel" type="Label" parent="Upgrades/Speed" unique_id=2072258768]
+[node name="SpeedLabel" type="Label" parent="Menu/Upgrades/Speed" unique_id=2072258768]
 layout_mode = 0
 offset_top = 2.0
 offset_right = 122.0
@@ -167,16 +193,16 @@ offset_bottom = 36.0
 text = "Speed: 5"
 label_settings = ExtResource("6_qfs41")
 
-[node name="SpeedUpgradeAmount" type="Label" parent="Upgrades/Speed" unique_id=823591172]
+[node name="SpeedUpgradeAmount" type="Label" parent="Menu/Upgrades/Speed" unique_id=823591172]
 layout_mode = 0
 offset_left = 103.0
 offset_top = -16.0
 offset_right = 225.0
 offset_bottom = 18.0
-text = "+ 0"
+text = "+ 1"
 label_settings = ExtResource("7_qgn5i")
 
-[node name="SpeedUpgrade" type="Button" parent="Upgrades/Speed" unique_id=819174074]
+[node name="SpeedUpgrade" type="Button" parent="Menu/Upgrades/Speed" unique_id=819174074]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 42.0
@@ -185,7 +211,7 @@ offset_bottom = 73.0
 action_mode = 0
 text = "Upgrade"
 
-[node name="Line" type="ColorRect" parent="Upgrades" unique_id=1295663410]
+[node name="Line" type="ColorRect" parent="Menu/Upgrades" unique_id=1295663410]
 layout_mode = 0
 offset_left = 505.0
 offset_top = 260.0
@@ -194,7 +220,7 @@ offset_bottom = 300.0
 scale = Vector2(12.184006, 0.12210322)
 color = Color(1, 1, 1, 0.22352941)
 
-[node name="Special Upgrades" type="Label" parent="Upgrades" unique_id=2085689381]
+[node name="Special Upgrades" type="Label" parent="Menu/Upgrades" unique_id=2085689381]
 layout_mode = 0
 offset_left = 591.0
 offset_top = 286.0
@@ -204,9 +230,10 @@ text = "Abilities"
 label_settings = ExtResource("5_qlcnp")
 horizontal_alignment = 1
 
-[node name="Player Mover" parent="." unique_id=1726655114 instance=ExtResource("8_bgs0b")]
-
-[connection signal="pressed" from="Upgrades/Speed/SpeedUpgrade" to="Player Mover" method="_on_speed_upgrade_pressed"]
+[connection signal="pressed" from="Menu/Continue" to="Menu" method="_on_continue_pressed"]
+[connection signal="pressed" from="Menu/Upgrades/Health/HpUpgrade" to="Menu" method="_on_hp_upgrade_pressed"]
+[connection signal="pressed" from="Menu/Upgrades/Damage/DmgUpgrade" to="Menu" method="_on_dmg_upgrade_pressed"]
+[connection signal="pressed" from="Menu/Upgrades/Speed/SpeedUpgrade" to="Menu" method="_on_speed_upgrade_pressed"]
 
 [editable path="SubViewportContainer/SubViewport/HyperdriveScene"]
 [editable path="SubViewportContainer/SubViewport/HyperdriveScene/Player"]

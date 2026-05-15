@@ -3,11 +3,14 @@ extends Area3D
 
 @export var speed: float = 35.0
 @export var life_time: float = 3.0
-@export var damage: int = 20
+@export var damage: int 
 
 var move_direction: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
+	
+	damage = GameManager.player_damage
+	
 	await get_tree().create_timer(life_time).timeout
 	queue_free()
 

@@ -11,9 +11,9 @@ const MAX_Y: float = 5.0
 #endregion
 
 #region Player Values
-@export var SPEED: float = 5.0
+@export var SPEED: float 
 
-@export var max_health: int = 100
+@export var max_health: int 
 var current_health: int
 
 @export_category("Aim Settings")
@@ -62,6 +62,12 @@ var dash_available: bool = true
 func _ready() -> void:
 	# Keeping this off just to make testing easier
 	#Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	
+	SPEED = GameManager.player_speed
+	print("Player speed: ", SPEED)
+	
+	max_health = GameManager.player_hp
+	print("Player Max Health: ", max_health)
 	
 	current_health = max_health
 	update_health_bar()

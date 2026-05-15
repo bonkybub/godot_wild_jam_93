@@ -1,0 +1,29 @@
+extends Node
+# After figuring out how to make a singleton in godot, all player 'upgradeable' plyer values are gonne be stored here
+# If we plan on scaling enemy hp, then we should also put it here
+
+#region Player  Values
+
+var player_hp: float = 100
+var player_damage: float = 20
+var player_speed: float = 5
+
+var player_money: int = 10
+#endregion
+
+
+#region Player Upgrade Functions
+
+func increase_player_health(amount: float) -> void:
+	player_hp += amount
+	print("Player health is now: ", player_speed)
+
+func increase_player_damage(amount: float) -> void:
+	player_damage += amount
+	print("Player damage is now: ", player_speed)
+
+func increase_player_speed(amount: float) -> void:
+	player_speed += amount
+	print("Player speed is now: ", player_speed)
+	
+#endregion

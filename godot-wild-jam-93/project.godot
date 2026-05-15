@@ -15,6 +15,10 @@ run/main_scene="uid://58m50yobhbde"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*uid://btdhy8mmmnynl"
+
 [global_group]
 
 enemy=""
