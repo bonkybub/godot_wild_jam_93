@@ -11,7 +11,7 @@ const MAX_Y: float = 5.0
 #endregion
 
 #region Player Values
-@export var SPEED: float 
+@export var SPEED: int 
 
 @export var max_health: int 
 var current_health: int

@@ -15,6 +15,8 @@ extends Control
 
 @onready var DashButton: Button = $Upgrades/Dash/DashUnlock
 
+@onready var ScatterButton: Button = $Upgrades/ScatterShot/ScatterUnlock
+
 @onready var MoneyLabel: Label = $Schmoney
 #endregion
 
@@ -42,7 +44,7 @@ func _on_hp_upgrade_pressed() -> void:
 
 
 func _on_dmg_upgrade_pressed() -> void:
-	GameManager.increase_player_damage(2.5)
+	GameManager.increase_player_damage(2)
 	DmgLabel.text = "Damage: " + str(GameManager.player_damage)
 	pass # Replace with function body.
  
@@ -63,5 +65,12 @@ func _on_dash_unlock_pressed() -> void:
 	pass # Replace with function body.
 	
 
+func _on_scatter_unlock_pressed() -> void:
+	
+	GameManager.unlock_player_scattershot(true)
+	ScatterButton.text = "Unlocked"
+	ScatterButton.disabled = true
+	
+	pass # Replace with function body.
 
 #endregion

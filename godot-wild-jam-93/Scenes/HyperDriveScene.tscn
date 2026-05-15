@@ -19,7 +19,7 @@ shader_parameter/layerPoints = 105.30000142008436
 shader_parameter/speed = 10.0
 shader_parameter/dotJitter = 8.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_esk3c"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_bgs0b"]
 viewport_path = NodePath("Player Mover/Player/SubViewport")
 
 [sub_resource type="FontVariation" id="FontVariation_bgs0b"]
@@ -61,7 +61,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -550.0823, 307.52237, 0)
 transform = Transform3D(0.95274633, 0, 0.30376697, 0, 1, 0, -0.30376697, 0, 0.95274633, 1.2996173, 0.53069603, 1.8949592)
 
 [node name="HealthBar" parent="SubViewportContainer/SubViewport/HyperdriveScene/Player/PlayerShip_Base" parent_id_path=PackedInt32Array(2067415844, 1017656907, 2088026183) index="13" unique_id=1759192094]
-texture = SubResource("ViewportTexture_esk3c")
+texture = SubResource("ViewportTexture_bgs0b")
 
 [node name="DirectionalLight3D3" parent="SubViewportContainer/SubViewport/HyperdriveScene" index="4" unique_id=1293784391]
 visible = false
@@ -171,7 +171,7 @@ offset_left = 127.0
 offset_top = -16.0
 offset_right = 249.0
 offset_bottom = 18.0
-text = "+ 2.5"
+text = "+ 2"
 label_settings = ExtResource("7_qgn5i")
 
 [node name="DmgUpgrade" type="Button" parent="Menu/Upgrades/Damage" unique_id=1373571448]
@@ -264,11 +264,39 @@ offset_bottom = 73.39998
 action_mode = 0
 text = "Unlock"
 
+[node name="ScatterShot" type="Control" parent="Menu/Upgrades" unique_id=1472354343]
+anchors_preset = 0
+offset_left = 686.00006
+offset_top = 376.00003
+offset_right = 726.00006
+offset_bottom = 416.00003
+scale = Vector2(1.25, 1.25)
+
+[node name="ScatterLabel" type="Label" parent="Menu/Upgrades/ScatterShot" unique_id=2124766774]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 122.0
+offset_bottom = 36.0
+text = "ScatterShot"
+label_settings = ExtResource("6_qfs41")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScatterUnlock" type="Button" parent="Menu/Upgrades/ScatterShot" unique_id=1053218505]
+layout_mode = 0
+offset_left = 23.199951
+offset_top = 42.399975
+offset_right = 98.19995
+offset_bottom = 73.39998
+action_mode = 0
+text = "Unlock"
+
 [connection signal="pressed" from="Menu/Continue" to="Menu" method="_on_continue_pressed"]
 [connection signal="pressed" from="Menu/Upgrades/Health/HpUpgrade" to="Menu" method="_on_hp_upgrade_pressed"]
 [connection signal="pressed" from="Menu/Upgrades/Damage/DmgUpgrade" to="Menu" method="_on_dmg_upgrade_pressed"]
 [connection signal="pressed" from="Menu/Upgrades/Speed/SpeedUpgrade" to="Menu" method="_on_speed_upgrade_pressed"]
 [connection signal="pressed" from="Menu/Upgrades/Dash/DashUnlock" to="Menu" method="_on_dash_unlock_pressed"]
+[connection signal="pressed" from="Menu/Upgrades/ScatterShot/ScatterUnlock" to="Menu" method="_on_scatter_unlock_pressed"]
 
 [editable path="SubViewportContainer/SubViewport/HyperdriveScene"]
 [editable path="SubViewportContainer/SubViewport/HyperdriveScene/Player"]

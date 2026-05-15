@@ -6,11 +6,12 @@ extends Node
 
 var player_hp: int = 100
 var player_damage: int = 20
-var player_speed: float = 5
+var player_speed: int = 5
 
 var player_money: int = 10
 
 var player_canDash: bool = false
+var player_hasScatterShot = false 
 
 #endregion
 
@@ -19,13 +20,13 @@ var player_canDash: bool = false
 
 func increase_player_health(amount: int) -> void:
 	player_hp += amount
-	print("Player health is now: ", player_speed)
+	print("Player health is now: ", player_hp)
 
 func increase_player_damage(amount: int) -> void:
 	player_damage += amount
-	print("Player damage is now: ", player_speed)
+	print("Player damage is now: ", player_damage)
 
-func increase_player_speed(amount: float) -> void:
+func increase_player_speed(amount: int) -> void:
 	player_speed += amount
 	print("Player speed is now: ", player_speed)
 	
@@ -33,5 +34,11 @@ func increase_player_speed(amount: float) -> void:
 func unlock_player_dash(isUnlocked: bool) -> void:
 	player_canDash = isUnlocked
 	print("Dash Unlocked: ", isUnlocked)
+
+
+func unlock_player_scattershot(isUnlocked: bool) -> void:
+	player_hasScatterShot = isUnlocked
+	print("Scattershot Unlocked: ", isUnlocked)
+
 
 #endregion
