@@ -42,10 +42,6 @@ func _physics_process(delta: float) -> void:
 	global_position = Vector3(sway_cos(pos_amp.x, pos_axis.x), sway_cos(pos_amp.y, pos_axis.y), sway_cos(pos_amp.z, pos_axis.z))
 	sway_time += delta
 	rotation_degrees += spin_spd * spin_dir
-	
-	if spawner != null:
-		if global_position.z >= spawner.cactus_z_limit:
-			queue_free()
 
 func set_sway_positions() -> void:
 	var cur_pos: Vector3 = global_position

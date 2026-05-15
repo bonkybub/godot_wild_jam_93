@@ -7,6 +7,7 @@ extends Node3D
 @export var five_group: Array[Node3D]
 
 var active_bandits: Array[Bandit]
+var bandits_to_shoot: Array[Bandit]
 
 @export_category("Group Shoot")
 @export var shoot_num: int = 2
@@ -40,7 +41,8 @@ func shoot() -> void:
 	if active_bandits.is_empty(): return
 	
 	# set up wave shooting
-	var bandits_to_shoot: Array[Bandit] = active_bandits.duplicate()
+	bandits_to_shoot.clear()
+	bandits_to_shoot = active_bandits.duplicate()
 	var wave_counts: Array[int]
 	var remaining: int = bandits_to_shoot.size()
 	for i in shoot_num:
@@ -54,7 +56,7 @@ func shoot() -> void:
 		for j in wave_counts[i]:
 			# select shooter in wave
 			var id: int = randi_range(0, bandits_to_shoot.size() - 1)
-			if bandits_to_shoot[id] == null: continue
+			if bandits_to_shoot.is_empty() || bandits_to_shoot[id] == null: continue
 			var shooter: Bandit = bandits_to_shoot[id]
 			bandits_to_shoot.remove_at(id)
 			shooter.shoot()

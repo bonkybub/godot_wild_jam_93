@@ -10,6 +10,11 @@ var spawner: ObstacleSpawner
 @export var death_pop_dur: float = 0.1
 @export var death_pop_scale: float = 2.0
 
+func _physics_process(_delta: float) -> void:
+	if spawner != null:
+		if global_position.z >= spawner.obstacle_z_limit + spawner.global_position.z:
+			queue_free()
+
 func _on_body_entered(body: Node3D) -> void:
 	# deal damage to player
 	if body is Player:

@@ -3,7 +3,7 @@ extends Node3D
 
 @export var player: Player
 
-#region Bandit Spawning
+#region Bandit Values
 @onready var bandit_ent_path_l: Path3D = $"Bandit Enter Path (Left)"
 @onready var bandit_ent_path_r: Path3D = $"Bandit Enter Path (Right)"
 @onready var bandit_ex_path_l: Path3D = $"Bandit Exit Path (Left)"
@@ -12,7 +12,7 @@ extends Node3D
 @export_category("Bandit Spawning")
 @export var bandit_obj: PackedScene
 @export var bandit_group: BanditGroup
-@export var bandit_z_plane: float = -5.0
+@export var bandit_z_plane: float = -9.0
 @export var bandit_spawn_min: int = 3
 @export var bandit_spawn_max: int = 5
 @export var bandit_pre_wait: float = 2.0
@@ -31,22 +31,32 @@ var bandit_follow: PathFollow3D
 var bandit_points: Array[Node3D]
 #endregion
 
-#region Obstacle Spawning
+#region Obstacle Values
+@export_category("Obstacle Spawning")
+@export var obstacle_z_limit: float = 5.0
+@export var obstacle_y_bounds: Vector2 = Vector2(-2.0, 5.0)
+
 @export_category("Cactus Spawning")
 @export var cactus_obj: PackedScene
 @export var cactus_spawn_gap: float = 2.0
 @export var cactus_start_num: int = 10
 @export var cactus_spawn_num: int = 2
 @export var cactus_x_bounds: Vector2 = Vector2(-6.0, 6.0)
-@export var cactus_y_bounds: Vector2 = Vector2(-2.0, 5.0)
 @export var cactus_z_bounds: Vector2 = Vector2(-70.0, -65.0)
-@export var cactus_z_limit: float = 5.0
 @export var cactus_start_z_bound: float = -30.0
+
+@export_category("Tumbleweed Spawning")
+@export var tumbleweed_obj: PackedScene
+@export var tumbleweed_spawn_gap: float = 3.0
+@export var tumbleweed_x_bounds_l: Vector2 = Vector2(-19.0, -18.0)
+@export var tumbleweed_x_bounds_r: Vector2 = Vector2(18.0, 19.0)
+@export var tumbleweed_z_spawn: float = -7.0
 #endregion
 
 func _ready() -> void:
 	start_bandits()
 	start_cacti()
+	start_tumbleweeds()
 
 func remove_from_path(path_follow: PathFollow3D, new_parent: Node3D, child: Node3D) -> void:
 	var pos: Vector3 = child.global_position
@@ -67,8 +77,7 @@ func start_bandits() -> void:
 func bandit_cycle() -> void:
 	# selecting the position the bandit group will fly into
 	var path: Path3D
-	var side: float = randf()
-	if side < 0.5:
+	if randf() < 0.5:
 		bandit_follow = bandit_ent_path_l.get_child(0)
 		var x: float = randf_range(bandit_left_range.x, bandit_left_range.y)
 		var y: float = randf_range(bandit_height_range.x, bandit_height_range.y)
@@ -184,16 +193,36 @@ func despawn_bandit(path_follow: PathFollow3D) -> void:
 	path_follow.queue_free()
 #endregion
 
+#region Obstacle Spawning
 func start_cacti() -> void:
+	await get_tree().create_timer(cactus_spawn_gap).timeout
+	
 	while (true):
 		for i in cactus_spawn_num:
 			var cactus: CactusBall = cactus_obj.instantiate()
 			get_tree().current_scene.add_child.call_deferred(cactus)
 			var x: float = randf_range(cactus_x_bounds.x, cactus_x_bounds.y) + global_position.x
-			var y: float = randf_range(cactus_y_bounds.x, cactus_y_bounds.y) + global_position.y
+			var y: float = randf_range(obstacle_y_bounds.x, obstacle_y_bounds.y) + global_position.y
 			var z: float = randf_range(cactus_z_bounds.x, cactus_z_bounds.y) + global_position.z
 			await get_tree().process_frame
 			cactus.global_position = Vector3(x, y, z)
 			cactus.set_sway_positions()
 			cactus.spawner = self
 		await get_tree().create_timer(cactus_spawn_gap).timeout
+
+func start_tumbleweeds() -> void:
+	await get_tree().create_timer(tumbleweed_spawn_gap).timeout
+	
+	while (true):
+		var tumbleweed: Tumbleweed = tumbleweed_obj.instantiate()
+		get_tree().current_scene.add_child.call_deferred(tumbleweed)
+		var x_bounds: Vector2 = tumbleweed_x_bounds_l if randf() < 0.5 else tumbleweed_x_bounds_r
+		var x: float = randf_range(x_bounds.x, x_bounds.y) + global_position.x
+		var y: float = randf_range(obstacle_y_bounds.x, obstacle_y_bounds.y) + global_position.y
+		var z: float = tumbleweed_z_spawn + global_position.z
+		await get_tree().process_frame
+		tumbleweed.global_position = Vector3(x, y, z)
+		tumbleweed.setup()
+		tumbleweed.spawner = self
+		await get_tree().create_timer(tumbleweed_spawn_gap).timeout
+#endregion
