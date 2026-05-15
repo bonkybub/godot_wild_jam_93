@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c5ebc0hlkheev"]
+
+[ext_resource type="PackedScene" uid="uid://dnjvtrdwvovmw" path="res://Assets/Models/Enemies/Enemy1.glb" id="1_ey2bw"]
+[ext_resource type="Texture2D" uid="uid://bdlrn2re6df5e" path="res://Assets/Textures/Enemies/Enemy1/Enemy1_baseColor.png" id="2_pym2q"]
+[ext_resource type="Texture2D" uid="uid://b2jx147fhs6gj" path="res://Assets/Textures/Enemies/Enemy1/Enemy1_occlusionRoughnessMetallic.png" id="3_xautd"]
+[ext_resource type="Texture2D" uid="uid://dgpvsoi65gv7i" path="res://Assets/Textures/Enemies/Enemy1/Enemy1_normal.png" id="4_6mrfu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3w2hl"]
+albedo_texture = ExtResource("2_pym2q")
+metallic = 1.0
+metallic_texture = ExtResource("3_xautd")
+roughness_texture = ExtResource("3_xautd")
+normal_enabled = true
+normal_texture = ExtResource("4_6mrfu")
+ao_enabled = true
+ao_texture = ExtResource("3_xautd")
+
+[node name="Enemy1" unique_id=368144908 instance=ExtResource("1_ey2bw")]
+
+[node name="Cylinder_002" parent="." index="0" unique_id=513936475]
+transform = Transform3D(0.157, 4.283716e-09, 0, -1.1007605e-09, 0.0039297473, -0.15649429, 1.36811655e-08, -0.048842166, -0.012591233, 0, 0.31016275, -1.0326159)
+material_override = SubResource("StandardMaterial3D_3w2hl")
