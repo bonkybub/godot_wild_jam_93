@@ -1,0 +1,246 @@
+[gd_scene format=3 uid="uid://1atwun83u884"]
+
+[ext_resource type="Script" uid="uid://bsaqeg5gb4ufy" path="res://Scripts/Character/player_mover.gd" id="1_h6kcs"]
+[ext_resource type="Script" uid="uid://7eqr2ek2diiy" path="res://Scripts/Character/player.gd" id="2_m8d34"]
+[ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_base.tscn" id="3_n0k3k"]
+[ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_gears.tscn" id="4_3nx7d"]
+[ext_resource type="Script" uid="uid://b2lcyk86ddd0j" path="res://Scripts/Character/gun.gd" id="5_x5obf"]
+[ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="6_lspfa"]
+[ext_resource type="Script" uid="uid://c5d1tf6ko5k2e" path="res://Scripts/Character/WarningDetector.gd" id="7_8do11"]
+[ext_resource type="PackedScene" uid="uid://cvrvaywdl8l2h" path="res://Prefabs/obstacle_spawner.tscn" id="8_nps1i"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_21xkr"]
+viewport_path = NodePath("Player Mover/Player/SubViewport")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ynf5e"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hptm8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_21xkr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hptm8"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bp64"]
+bg_color = Color(0.6, 0.6, 0.6, 0.5019608)
+border_width_bottom = 3
+border_color = Color(0.31140125, 0.31140125, 0.31140125, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_344ge"]
+bg_color = Color(1, 0, 0, 1)
+border_width_bottom = 3
+border_color = Color(0.7490196, 0, 0, 1)
+
+[node name="Player Mover" type="Node3D" unique_id=1726655114]
+script = ExtResource("1_h6kcs")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2097381706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5.5)
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1341499993]
+motion_mode = 1
+script = ExtResource("2_m8d34")
+
+[node name="PlayerShip_Base" parent="Player" unique_id=800243318 instance=ExtResource("3_n0k3k")]
+transform = Transform3D(0.425, 0, 0, 0, 0.425, 0, 0, 0, 0.425, 0, 0, 0)
+
+[node name="PlayerShip_Gears" parent="Player/PlayerShip_Base" unique_id=1097901117 instance=ExtResource("4_3nx7d")]
+
+[node name="GunArm_Left" type="MeshInstance3D" parent="Player/PlayerShip_Base" unique_id=618424174]
+transform = Transform3D(0.37500003, 0, 0, 0, 0.38000005, 0, 0, 0, 0.39250013, -1.2375163, -0.006960566, -1.1196458)
+
+[node name="GunBase_Left" type="MeshInstance3D" parent="Player/PlayerShip_Base/GunArm_Left" unique_id=1965709144]
+transform = Transform3D(1.9999999, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1.3784959, 0)
+script = ExtResource("5_x5obf")
+projectile_scene = ExtResource("6_lspfa")
+
+[node name="GunBarrel_Left" type="MeshInstance3D" parent="Player/PlayerShip_Base/GunArm_Left/GunBase_Left" unique_id=172168289]
+transform = Transform3D(0.26, 0, 0, 0, -1.13649605e-08, 0.26, 0, -0.26, -1.13649605e-08, 0, 0, -0.57740146)
+
+[node name="Muzzle" type="Marker3D" parent="Player/PlayerShip_Base/GunArm_Left/GunBase_Left" unique_id=1269276618]
+transform = Transform3D(1, 0, 0, 0, 1.0000005, 0, 0, 0, 1.0000005, 0, 0, -0.8355184)
+gizmo_extents = 0.16
+
+[node name="GunArm_Right" type="MeshInstance3D" parent="Player/PlayerShip_Base" unique_id=1121841702]
+transform = Transform3D(0.37500003, 0, 0, 0, 0.38000003, 0, 0, 0, 0.39250004, 1.2380002, -0.0070000007, -1.1200001)
+
+[node name="GunBase_Right" type="MeshInstance3D" parent="Player/PlayerShip_Base/GunArm_Right" unique_id=1225328925]
+transform = Transform3D(1.9999999, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1.3784959, 0)
+script = ExtResource("5_x5obf")
+projectile_scene = ExtResource("6_lspfa")
+
+[node name="GunBarrel_Right" type="MeshInstance3D" parent="Player/PlayerShip_Base/GunArm_Right/GunBase_Right" unique_id=1130062646]
+transform = Transform3D(0.26, 0, 0, 0, -1.13649605e-08, 0.26, 0, -0.26, -1.13649605e-08, 0, 0, -0.57740146)
+
+[node name="Muzzle" type="Marker3D" parent="Player/PlayerShip_Base/GunArm_Right/GunBase_Right" unique_id=463325364]
+transform = Transform3D(1, 0, 0, 0, 1.0000006, 0, 0, 0, 1.0000006, 0, 0, -0.836)
+gizmo_extents = 0.16
+
+[node name="HealthBar" type="Sprite3D" parent="Player/PlayerShip_Base" unique_id=1765899305]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 1.6160157, 1.2513733)
+visible = false
+texture = SubResource("ViewportTexture_21xkr")
+
+[node name="WarningStick" type="MeshInstance3D" parent="Player/PlayerShip_Base" unique_id=770131024]
+transform = Transform3D(0.13355757, 0, 0, 0, 1.6071929, 0, 0, 0, 0.19076811, 2.288475, 0.7640893, 0.9339673)
+visible = false
+mesh = SubResource("BoxMesh_ynf5e")
+
+[node name="WarningRaycast" type="RayCast3D" parent="Player/PlayerShip_Base" unique_id=40612558 node_paths=PackedStringArray("warning_stick")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, -1.1017667)
+visible = false
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 8
+hit_from_inside = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+script = ExtResource("7_8do11")
+warning_stick = NodePath("../WarningStick")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=869061643]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.007844925, -0.01758653, 0.11399095)
+shape = SubResource("CapsuleShape3D_hptm8")
+
+[node name="AimReticle" type="Marker3D" parent="Player" unique_id=1265229785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="NearReticle" type="Marker3D" parent="Player/AimReticle" unique_id=1129605440]
+transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, 0, 0, 0)
+
+[node name="TopLeft" type="Node3D" parent="Player/AimReticle/NearReticle" unique_id=327017265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player/AimReticle/NearReticle/TopLeft" unique_id=151781521]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player/AimReticle/NearReticle/TopLeft" unique_id=1781756929]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="TopRight" type="Node3D" parent="Player/AimReticle/NearReticle" unique_id=303979355]
+transform = Transform3D(-4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0, 0, 0, 1, 0.5, 0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player/AimReticle/NearReticle/TopRight" unique_id=1804246508]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player/AimReticle/NearReticle/TopRight" unique_id=1030290603]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="BottomLeft" type="Node3D" parent="Player/AimReticle/NearReticle" unique_id=1952353998]
+transform = Transform3D(-4.3711392e-08, -1, 0, 1, -4.3711392e-08, 0, 0, 0, 1, -0.5, -0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player/AimReticle/NearReticle/BottomLeft" unique_id=1446514771]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player/AimReticle/NearReticle/BottomLeft" unique_id=2071801710]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="BottomRight" type="Node3D" parent="Player/AimReticle/NearReticle" unique_id=2067605055]
+transform = Transform3D(-1, -8.7422784e-08, 0, 8.7422784e-08, -1, 0, 0, 0, 1, 0.5, -0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player/AimReticle/NearReticle/BottomRight" unique_id=728326163]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player/AimReticle/NearReticle/BottomRight" unique_id=1602431790]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="FarReticle" type="Marker3D" parent="Player/AimReticle" unique_id=1349993274]
+transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, 0, 0, 0)
+
+[node name="TopLeft" type="Node3D" parent="Player/AimReticle/FarReticle" unique_id=1893678675]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player/AimReticle/FarReticle/TopLeft" unique_id=1069720741]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player/AimReticle/FarReticle/TopLeft" unique_id=1079598339]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="TopRight" type="Node3D" parent="Player/AimReticle/FarReticle" unique_id=1665186221]
+transform = Transform3D(-4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0, 0, 0, 1, 0.5, 0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player/AimReticle/FarReticle/TopRight" unique_id=2076809065]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player/AimReticle/FarReticle/TopRight" unique_id=1899543953]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="BottomLeft" type="Node3D" parent="Player/AimReticle/FarReticle" unique_id=814650419]
+transform = Transform3D(-4.3711392e-08, -1, 0, 1, -4.3711392e-08, 0, 0, 0, 1, -0.5, -0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player/AimReticle/FarReticle/BottomLeft" unique_id=1142958728]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player/AimReticle/FarReticle/BottomLeft" unique_id=870786406]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="BottomRight" type="Node3D" parent="Player/AimReticle/FarReticle" unique_id=1716054816]
+transform = Transform3D(-1, -8.7422784e-08, 0, 8.7422784e-08, -1, 0, 0, 0, 1, 0.5, -0.5, 0)
+
+[node name="Vertical" type="MeshInstance3D" parent="Player/AimReticle/FarReticle/BottomRight" unique_id=1240484844]
+transform = Transform3D(0.218, 0, 0, 0, 0.6063099, 0, 0, 0, 0.05, -0.19999999, 0, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Horizontal" type="MeshInstance3D" parent="Player/AimReticle/FarReticle/BottomRight" unique_id=1014916837]
+transform = Transform3D(-9.529082e-09, 0.6159448, 0, -0.218, -2.6923804e-08, 0, 0, 0, 0.05, 0, 0.19999999, 0)
+mesh = SubResource("BoxMesh_21xkr")
+surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="AimOrigin" type="Marker3D" parent="Player/AimReticle" unique_id=1903093820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23020455, 4.1693087)
+gizmo_extents = 0.51
+
+[node name="PlayerUI" type="Control" parent="Player" unique_id=1815338215]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -167.99994
+offset_top = -40.0
+offset_right = -128.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.218849, 1.218849)
+
+[node name="HealthBar" type="ProgressBar" parent="Player/PlayerUI" unique_id=1336055858]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6bp64")
+theme_override_styles/fill = SubResource("StyleBoxFlat_344ge")
+value = 50.0
+show_percentage = false
+
+[node name="Obstacle Spawner" parent="." unique_id=2002730737 node_paths=PackedStringArray("player") instance=ExtResource("8_nps1i")]
+player = NodePath("../Player")
+
+[node name="Marker3D" type="Marker3D" parent="Obstacle Spawner" unique_id=1393777710]
