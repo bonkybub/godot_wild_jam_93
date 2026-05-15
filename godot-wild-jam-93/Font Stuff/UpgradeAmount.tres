@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://bh814rcwqb61q"]
+
+[sub_resource type="FontVariation" id="FontVariation_0v8db"]
+
+[resource]
+font = SubResource("FontVariation_0v8db")
+font_size = 20
+font_color = Color(0, 18.892157, 0, 1)
