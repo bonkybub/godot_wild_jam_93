@@ -2,13 +2,18 @@
 
 [ext_resource type="Script" uid="uid://bsaqeg5gb4ufy" path="res://Scripts/Character/player_mover.gd" id="1_h6kcs"]
 [ext_resource type="Script" uid="uid://7eqr2ek2diiy" path="res://Scripts/Character/player.gd" id="2_m8d34"]
-[ext_resource type="PackedScene" uid="uid://daa7jjb25yemr" path="res://Prefabs/Character/player_ship_base.tscn" id="3_n0k3k"]
+[ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_base.tscn" id="3_n0k3k"]
 [ext_resource type="PackedScene" uid="uid://d2fusol30m64f" path="res://Prefabs/Character/player_ship_gears.tscn" id="4_3nx7d"]
 [ext_resource type="Script" uid="uid://b2lcyk86ddd0j" path="res://Scripts/Character/gun.gd" id="5_x5obf"]
 [ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="6_lspfa"]
 [ext_resource type="Script" uid="uid://c5d1tf6ko5k2e" path="res://Scripts/Character/WarningDetector.gd" id="7_8do11"]
 [ext_resource type="PackedScene" uid="uid://c4vmsyn7gfguj" path="res://Prefabs/Particles/SpeedLinesUI.tscn" id="8_m8d34"]
 [ext_resource type="PackedScene" uid="uid://cvrvaywdl8l2h" path="res://Prefabs/obstacle_spawner.tscn" id="8_nps1i"]
+[ext_resource type="Texture2D" uid="uid://bdmjjogc1b0ai" path="res://Assets/2D Art/UI Elements/HealthBorder.png" id="9_x5obf"]
+[ext_resource type="Texture2D" uid="uid://kf5ekuvanb24" path="res://Assets/2D Art/UI Elements/HealthBar.png" id="10_lspfa"]
+[ext_resource type="Texture2D" uid="uid://bivqj3qotnhqm" path="res://Assets/2D Art/UI Elements/HealthHeart.png" id="11_8do11"]
+[ext_resource type="Texture2D" uid="uid://7de17oli20f4" path="res://Assets/2D Art/UI Elements/ScoreBar.png" id="12_8do11"]
+[ext_resource type="Script" uid="uid://cdre6l4bmjixt" path="res://Prefabs/Character/ScoreCounter.gd" id="13_nps1i"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_21xkr"]
 viewport_path = NodePath("Player Mover/Player/SubViewport")
@@ -22,15 +27,15 @@ viewport_path = NodePath("Player Mover/Player/SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hptm8"]
 albedo_color = Color(0, 1, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bp64"]
-bg_color = Color(0.6, 0.6, 0.6, 0.5019608)
-border_width_bottom = 3
-border_color = Color(0.31140125, 0.31140125, 0.31140125, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nps1i"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_344ge"]
-bg_color = Color(1, 0, 0, 1)
-border_width_bottom = 3
-border_color = Color(0.7490196, 0, 0, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jab5g"]
+texture = ExtResource("10_lspfa")
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 7.0
+axis_stretch_horizontal = 2
+region_rect = Rect2(-2, 0.99627686, 496, 139.00372)
 
 [node name="Player Mover" type="Node3D" unique_id=1726655114]
 script = ExtResource("1_h6kcs")
@@ -234,14 +239,42 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(1.218849, 1.218849)
 
+[node name="HpBackground" type="Sprite2D" parent="Player/PlayerUI" unique_id=2022189588]
+position = Vector2(-731.52905, -474.84882)
+scale = Vector2(0.265, 0.265)
+texture = ExtResource("9_x5obf")
+
 [node name="HealthBar" type="ProgressBar" parent="Player/PlayerUI" unique_id=1336055858]
 layout_mode = 0
-offset_right = 128.0
-offset_bottom = 27.0
-theme_override_styles/background = SubResource("StyleBoxFlat_6bp64")
-theme_override_styles/fill = SubResource("StyleBoxFlat_344ge")
-value = 50.0
+offset_left = -785.1692
+offset_top = -497.64957
+offset_right = -644.042
+offset_bottom = -450.95886
+theme_override_styles/background = SubResource("StyleBoxEmpty_nps1i")
+theme_override_styles/fill = SubResource("StyleBoxTexture_jab5g")
+step = 0.0
+value = 100.0
 show_percentage = false
+
+[node name="HpHeart" type="Sprite2D" parent="Player/PlayerUI" unique_id=1818674215]
+position = Vector2(-731.5291, -474.84885)
+scale = Vector2(0.265, 0.265)
+texture = ExtResource("11_8do11")
+
+[node name="Credits" type="Sprite2D" parent="Player/PlayerUI" unique_id=647304471]
+position = Vector2(65.635666, -466.01343)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_8do11")
+
+[node name="CreditsLabel" type="Label" parent="Player/PlayerUI" unique_id=1366408428]
+layout_mode = 0
+offset_left = 48.40628
+offset_top = -476.67926
+offset_right = 111.07128
+offset_bottom = -453.67926
+text = "100"
+horizontal_alignment = 1
+script = ExtResource("13_nps1i")
 
 [node name="Obstacle Spawner" parent="." unique_id=2002730737 node_paths=PackedStringArray("player") instance=ExtResource("8_nps1i")]
 player = NodePath("../Player")

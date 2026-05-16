@@ -9,3 +9,5 @@ func death() -> void:
 	if group.bandits_to_shoot.has(self):
 		group.bandits_to_shoot.remove_at(group.bandits_to_shoot.find(self))
 	super()
+	
+	GameManager.player_money += 50 

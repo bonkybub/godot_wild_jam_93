@@ -77,6 +77,9 @@ func spine_burst() -> void:
 func destroy_obstacle() -> void:
 	spine_burst()
 	enemies_nearby.clear()
+	
+	GameManager.player_money += 20
+	
 	await death_pop()
 	queue_free()
 
