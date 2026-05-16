@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://084rc2sl43lm"]
+
+[ext_resource type="PackedScene" uid="uid://qsvfkwucvapl" path="res://Assets/Models/Enemies/SunEnemy.glb" id="1_ngu5g"]
+[ext_resource type="Texture2D" uid="uid://d3igqjl56sj2c" path="res://Assets/Textures/Enemies/SunEnemy/SunEnemy_baseColor.png" id="2_x6ekw"]
+[ext_resource type="Texture2D" uid="uid://bwu7umih34fdd" path="res://Assets/Textures/Enemies/SunEnemy/SunEnemy_occlusionRoughnessMetallic.png" id="3_x4eb6"]
+[ext_resource type="Texture2D" uid="uid://bnss7aeriwasr" path="res://Assets/Textures/Enemies/SunEnemy/SunEnemy_emissive.png" id="4_5cyf4"]
+[ext_resource type="Texture2D" uid="uid://qcvy438huqjk" path="res://Assets/Textures/Enemies/SunEnemy/SunEnemy_normal.png" id="5_81kdw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ki4c"]
+albedo_texture = ExtResource("2_x6ekw")
+metallic = 1.0
+metallic_specular = 0.16
+metallic_texture = ExtResource("3_x4eb6")
+roughness_texture = ExtResource("3_x4eb6")
+emission_enabled = true
+emission_texture = ExtResource("4_5cyf4")
+normal_enabled = true
+normal_texture = ExtResource("5_81kdw")
+ao_enabled = true
+ao_texture = ExtResource("3_x4eb6")
+
+[node name="SunEnemy" unique_id=794364949 instance=ExtResource("1_ngu5g")]
+
+[node name="Cube_001" parent="." index="0" unique_id=1639947712]
+material_override = SubResource("StandardMaterial3D_1ki4c")
