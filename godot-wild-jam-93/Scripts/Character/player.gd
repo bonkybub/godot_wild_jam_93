@@ -73,6 +73,9 @@ func _ready() -> void:
 	
 	current_health = max_health
 	update_health_bar()
+	
+	gun_left.has_scattershot = GameManager.player_hasScatterShot
+	gun_right.has_scattershot = GameManager.player_hasScatterShot
 
 func _physics_process(delta: float) -> void:
 #region Movement

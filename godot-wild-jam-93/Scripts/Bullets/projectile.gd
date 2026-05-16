@@ -3,12 +3,11 @@ extends Area3D
 
 @export var speed: float = 35.0
 @export var life_time: float = 3.0
-@export var damage: int 
+@export var damage: int
 
 var move_direction: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
-	
 	damage = GameManager.player_damage
 	
 	await get_tree().create_timer(life_time).timeout
@@ -17,8 +16,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	global_position += move_direction * speed * delta
 
-func setup(direction: Vector3) -> void:
+func setup(direction: Vector3, damage_amount: int = -1) -> void:
 	move_direction = direction.normalized()
+
+	if damage_amount > 0:
+		damage = damage_amount
 
 func _on_body_entered(body: Node3D) -> void:
 	if is_in_group("player_projectile") && body is Enemy && body.is_in_group("enemy"):
