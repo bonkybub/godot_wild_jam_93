@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://58m50yobhbde"]
 
 [ext_resource type="Material" uid="uid://hhco5pbjjj3c" path="res://Assets/2D Art/Skyboxes/new_panorama_sky_material3.tres" id="1_6bp64"]
-[ext_resource type="PackedScene" path="res://Scenes/ModelScenes/skybox.tscn" id="2_6iyac"]
+[ext_resource type="PackedScene" uid="uid://bhidngp2vvcqm" path="res://Scenes/ModelScenes/skybox.tscn" id="2_6iyac"]
 [ext_resource type="PackedScene" uid="uid://1atwun83u884" path="res://Prefabs/Character/PlayerMover.tscn" id="3_kry3j"]
 
 [sub_resource type="Sky" id="Sky_8gbba"]

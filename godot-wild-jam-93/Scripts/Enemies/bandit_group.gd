@@ -53,6 +53,7 @@ func shoot() -> void:
 	
 	for i in shoot_num:
 		# get wave of shooters
+		if i >= wave_counts.size(): break
 		for j in wave_counts[i]:
 			# select shooter in wave
 			var id: int = randi_range(0, bandits_to_shoot.size() - 1)

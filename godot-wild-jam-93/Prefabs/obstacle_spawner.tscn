@@ -46,7 +46,7 @@ point_count = 2
 [sub_resource type="Curve3D" id="Curve3D_08qfc"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 2, 0, -16, -2, 0, 0, 0, 0, 0, 0, 0, 18, 2, 0),
-"tilts": PackedFloat32Array(0.5235988, 0)
+"tilts": PackedFloat32Array(-0.5235988, 0)
 }
 point_count = 2
 
@@ -60,7 +60,7 @@ point_count = 2
 [sub_resource type="Curve3D" id="Curve3D_4oe2l"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 2, 0, 16, -2, 0, 0, 0, 0, 0, 0, 0, -18, 2, 0),
-"tilts": PackedFloat32Array(-0.5235988, 0)
+"tilts": PackedFloat32Array(0.5235988, 0)
 }
 point_count = 2
 
@@ -115,41 +115,47 @@ loop = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
 
 [node name="Pursuer Path Upper (Left)" type="Path3D" parent="." unique_id=891570611]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
 curve = SubResource("Curve3D_jracd")
 script = ExtResource("6_08qfc")
-y_bounds = Vector2(0.5, 3.5)
+shoot_x_bounds = Vector2(-7, 5)
+y_bounds = Vector2(2.5, 5.5)
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Upper (Left)" unique_id=1056185043]
-transform = Transform3D(-0.49999848, 0.86602277, 3.7854928e-08, 0, -4.3711257e-08, 0.99999356, 0.86602265, 0.49999854, 2.1855556e-08, -16, 2, 0)
+transform = Transform3D(-0.49999788, 0.86602175, 3.7854885e-08, 0, -4.3711207e-08, 0.99999243, 0.86602163, 0.49999797, 2.185553e-08, -16, 2, 0)
 loop = false
 
 [node name="Pursuer Path Lower (Left)" type="Path3D" parent="." unique_id=1156608853]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
 curve = SubResource("Curve3D_08qfc")
 script = ExtResource("6_08qfc")
-y_bounds = Vector2(-0.5, 2.5)
+shoot_x_bounds = Vector2(-7, 5)
+y_bounds = Vector2(-2.5, 0.5)
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Lower (Left)" unique_id=1786469523]
-transform = Transform3D(-0.50000006, 0.8660254, -3.7855173e-08, 0, -4.371139e-08, -1, -0.8660254, -0.50000006, 2.1855696e-08, -16, -2, 0)
+transform = Transform3D(0.4999995, 0.8660248, -3.7855088e-08, 0, -4.3711356e-08, -0.99999774, -0.86602455, 0.4999996, -2.1855643e-08, -16, -2, 0)
 loop = false
 
 [node name="Pursuer Path Upper (Right)" type="Path3D" parent="." unique_id=1059852214]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
 curve = SubResource("Curve3D_beay7")
 script = ExtResource("6_08qfc")
-y_bounds = Vector2(0.5, 3.5)
+shoot_x_bounds = Vector2(-5, 7)
+y_bounds = Vector2(2.5, 5.5)
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Upper (Right)" unique_id=31995807]
-transform = Transform3D(0.49999997, 0.8660254, 3.7855173e-08, 0, -4.371139e-08, 1, 0.8660254, -0.49999997, -2.1855692e-08, 16, 2, 0)
+transform = Transform3D(0.025831554, 0.08911754, 0.9956862, -0.27719945, -0.956321, 0.092785865, 0.9604643, -0.27840045, 7.592557e-08, 0.97614425, -0.57087785, 0)
+progress = 15.395257
 loop = false
 
 [node name="Pursuer Path Lower (Right)" type="Path3D" parent="." unique_id=845521723]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
 curve = SubResource("Curve3D_4oe2l")
 script = ExtResource("6_08qfc")
-y_bounds = Vector2(-0.5, 2.5)
+shoot_x_bounds = Vector2(-5, 7)
+y_bounds = Vector2(-2.5, 0.5)
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Lower (Right)" unique_id=13866713]
-transform = Transform3D(0.49999997, 0.8660254, -3.7855173e-08, 0, -4.371139e-08, -1, -0.8660254, 0.49999997, -2.1855692e-08, 16, -2, 0)
+transform = Transform3D(-0.025975524, 0.0893177, 0.9956596, -0.2780403, 0.95605236, -0.093017966, -0.96021736, -0.27925044, -4.1790287e-08, 1.0618579, 0.5628803, 0)
+progress = 15.309193
 loop = false

@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# This is so ugly, but I dont feel like setting up an event or something when score is updated
 	if CurrentScore != GameManager.player_money:
 		CurrentScore = GameManager.player_money
