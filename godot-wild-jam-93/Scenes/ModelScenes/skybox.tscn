@@ -8,5 +8,6 @@ albedo_texture = ExtResource("2_7hmgc")
 
 [node name="Skybox" unique_id=1477194004 instance=ExtResource("1_o157h")]
 
-[node name="Cylinder" parent="." index="0" unique_id=1455298967]
+[node name="Cylinder" parent="." index="0" unique_id=1125166473]
 material_override = SubResource("StandardMaterial3D_o157h")
+cast_shadow = 0
