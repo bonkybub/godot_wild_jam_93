@@ -27,3 +27,5 @@ func death() -> void:
 	if sequence != null && sequence.shoot_count > 0 && !already_fired:
 		sequence.planned_shooters -= 1
 	super()
+	
+	GameManager.player_money += 75
