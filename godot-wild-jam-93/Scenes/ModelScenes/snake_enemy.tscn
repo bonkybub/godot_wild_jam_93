@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dp67hau2s43fn"]
+
+[ext_resource type="PackedScene" uid="uid://5fsbbubnag4m" path="res://Assets/Models/Enemies/SnakeEnemy.glb" id="1_0v4ea"]
+[ext_resource type="Texture2D" uid="uid://ja600cjnfube" path="res://Assets/Textures/Enemies/SnakeEnemy/SnakeEnemy_baseColor.png" id="2_2ysso"]
+[ext_resource type="Texture2D" uid="uid://b1vfnhc1s4gnq" path="res://Assets/Textures/Enemies/SnakeEnemy/SnakeEnemy_occlusionRoughnessMetallic.png" id="3_e5hdm"]
+[ext_resource type="Texture2D" uid="uid://dowj4wxgfxbio" path="res://Assets/Textures/Enemies/SnakeEnemy/SnakeEnemy_normal.png" id="4_tiwdc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h68dk"]
+albedo_texture = ExtResource("2_2ysso")
+metallic = 1.0
+metallic_specular = 0.15
+metallic_texture = ExtResource("3_e5hdm")
+roughness_texture = ExtResource("3_e5hdm")
+normal_enabled = true
+normal_texture = ExtResource("4_tiwdc")
+ao_enabled = true
+ao_texture = ExtResource("3_e5hdm")
+
+[node name="SnakeEnemy" unique_id=2028325447 instance=ExtResource("1_0v4ea")]
+
+[node name="Cube" parent="." index="0" unique_id=409418957]
+material_override = SubResource("StandardMaterial3D_h68dk")
