@@ -67,7 +67,7 @@ var bandit_points: Array[Node3D]
 #endregion
 
 func _ready() -> void:
-	#start_bandits()
+	start_bandits()
 	start_pursuers()
 	start_cacti()
 	start_tumbleweeds()
