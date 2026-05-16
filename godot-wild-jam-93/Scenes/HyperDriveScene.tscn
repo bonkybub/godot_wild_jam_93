@@ -42,10 +42,10 @@ color = Color(0, 0, 0, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1127305161]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 215.0
-offset_right = 1967.0
-offset_bottom = 1295.0
+offset_left = -24.0
+offset_top = 144.0
+offset_right = 1896.0
+offset_bottom = 1224.0
 scale = Vector2(0.335, 0.335)
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1517991616]
@@ -81,20 +81,21 @@ script = ExtResource("5_c3dsn")
 
 [node name="Continue" type="Button" parent="Menu" unique_id=152399352]
 layout_mode = 0
-offset_left = 306.0
-offset_top = 576.0
-offset_right = 385.0
-offset_bottom = 607.0
+offset_left = 201.0
+offset_top = 508.0
+offset_right = 280.0
+offset_bottom = 539.0
+theme_override_font_sizes/font_size = 26
 action_mode = 0
-text = "Continue"
+text = "Next Bounty"
 
 [node name="Schmoney" type="Label" parent="Menu" unique_id=1737317461]
 layout_mode = 0
-offset_left = 245.0
-offset_top = 302.0
-offset_right = 426.0
-offset_bottom = 342.0
-text = "Coins: "
+offset_left = 182.0
+offset_top = 231.0
+offset_right = 363.0
+offset_bottom = 271.0
+text = "Credits: "
 label_settings = ExtResource("6_qfs41")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -136,19 +137,22 @@ offset_left = 127.0
 offset_top = -16.0
 offset_right = 249.0
 offset_bottom = 18.0
-text = "+ 5"
+text = "+ 10"
 label_settings = ExtResource("7_qgn5i")
 
 [node name="HpUpgrade" type="Button" parent="Menu/Upgrades/Health" unique_id=387542265]
 layout_mode = 0
-offset_left = 14.0
-offset_top = 42.0
-offset_right = 89.0
-offset_bottom = 73.0
+offset_top = 39.0
+offset_right = 111.02042
+offset_bottom = 116.0
 scale = Vector2(1.225, 1.225)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("FontVariation_bgs0b")
+theme_override_font_sizes/font_size = 19
 action_mode = 0
-text = "Upgrade"
+text = "Unlock - 100 Credits"
+autowrap_mode = 3
+autowrap_trim_flags = 192
 
 [node name="Damage" type="Control" parent="Menu/Upgrades" unique_id=765658429]
 anchors_preset = 0
@@ -176,13 +180,17 @@ label_settings = ExtResource("7_qgn5i")
 
 [node name="DmgUpgrade" type="Button" parent="Menu/Upgrades/Damage" unique_id=1373571448]
 layout_mode = 0
-offset_left = 14.0
+offset_left = 3.0
 offset_top = 42.0
-offset_right = 89.0
-offset_bottom = 73.0
+offset_right = 114.02042
+offset_bottom = 119.0
 scale = Vector2(1.225, 1.225)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 19
 action_mode = 0
-text = "Upgrade"
+text = "Unlock - 100 Credits"
+autowrap_mode = 3
+autowrap_trim_flags = 192
 
 [node name="Speed" type="Control" parent="Menu/Upgrades" unique_id=118843428]
 anchors_preset = 0
@@ -210,39 +218,43 @@ label_settings = ExtResource("7_qgn5i")
 
 [node name="SpeedUpgrade" type="Button" parent="Menu/Upgrades/Speed" unique_id=819174074]
 layout_mode = 0
-offset_left = 5.0
+offset_left = -12.0
 offset_top = 42.0
-offset_right = 80.0
-offset_bottom = 73.0
+offset_right = 99.02042
+offset_bottom = 119.0
 scale = Vector2(1.225, 1.225)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 19
 action_mode = 0
-text = "Upgrade"
+text = "Unlock - 100 Credits"
+autowrap_mode = 3
+autowrap_trim_flags = 192
 
 [node name="Line" type="ColorRect" parent="Menu/Upgrades" unique_id=1295663410]
 layout_mode = 0
 offset_left = 505.0
-offset_top = 260.0
+offset_top = 325.0
 offset_right = 545.0
-offset_bottom = 300.0
+offset_bottom = 365.0
 scale = Vector2(12.184006, 0.12210322)
 color = Color(1, 1, 1, 0.22352941)
 
 [node name="Abilities" type="Label" parent="Menu/Upgrades" unique_id=2085689381]
 layout_mode = 0
 offset_left = 591.0
-offset_top = 286.0
+offset_top = 351.0
 offset_right = 911.0
-offset_bottom = 343.0
+offset_bottom = 408.0
 text = "Abilities"
 label_settings = ExtResource("5_qlcnp")
 horizontal_alignment = 1
 
 [node name="Dash" type="Control" parent="Menu/Upgrades" unique_id=1679614835]
 anchors_preset = 0
-offset_left = 527.00006
-offset_top = 376.00003
-offset_right = 567.00006
-offset_bottom = 416.00003
+offset_left = 527.0
+offset_top = 448.0
+offset_right = 567.0
+offset_bottom = 488.0
 scale = Vector2(1.25, 1.25)
 
 [node name="DashLabel" type="Label" parent="Menu/Upgrades/Dash" unique_id=100153513]
@@ -257,19 +269,23 @@ vertical_alignment = 1
 
 [node name="DashUnlock" type="Button" parent="Menu/Upgrades/Dash" unique_id=1832729119]
 layout_mode = 0
-offset_left = 23.199951
-offset_top = 42.399975
-offset_right = 98.19995
-offset_bottom = 73.39998
+offset_left = 5.6000004
+offset_top = 42.399998
+offset_right = 116.620415
+offset_bottom = 119.399994
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 19
 action_mode = 0
-text = "Unlock"
+text = "Unlock - 100 Credits"
+autowrap_mode = 3
+autowrap_trim_flags = 192
 
 [node name="ScatterShot" type="Control" parent="Menu/Upgrades" unique_id=1472354343]
 anchors_preset = 0
-offset_left = 686.00006
-offset_top = 376.00003
-offset_right = 726.00006
-offset_bottom = 416.00003
+offset_left = 867.0
+offset_top = 448.0
+offset_right = 907.0
+offset_bottom = 488.0
 scale = Vector2(1.25, 1.25)
 
 [node name="ScatterLabel" type="Label" parent="Menu/Upgrades/ScatterShot" unique_id=2124766774]
@@ -277,19 +293,23 @@ layout_mode = 0
 offset_top = 2.0
 offset_right = 122.0
 offset_bottom = 36.0
-text = "ScatterShot"
+text = "Scattershot"
 label_settings = ExtResource("6_qfs41")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScatterUnlock" type="Button" parent="Menu/Upgrades/ScatterShot" unique_id=1053218505]
 layout_mode = 0
-offset_left = 23.199951
-offset_top = 42.399975
-offset_right = 98.19995
-offset_bottom = 73.39998
+offset_left = 12.000001
+offset_top = 42.399998
+offset_right = 123.02042
+offset_bottom = 119.399994
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 19
 action_mode = 0
-text = "Unlock"
+text = "Unlock - 100 Credits"
+autowrap_mode = 3
+autowrap_trim_flags = 192
 
 [connection signal="pressed" from="Menu/Continue" to="Menu" method="_on_continue_pressed"]
 [connection signal="pressed" from="Menu/Upgrades/Health/HpUpgrade" to="Menu" method="_on_hp_upgrade_pressed"]

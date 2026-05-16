@@ -3,7 +3,6 @@ extends Control
 #region References
 @onready var player: Node3D = $"../Player Mover/Player"
 
-
 @onready var HpLabel: Label = $Upgrades/Health/HpLabel
 @onready var HpButton: Button = $Upgrades/Health/HpUpgrade
 
@@ -20,57 +19,61 @@ extends Control
 @onready var MoneyLabel: Label = $Schmoney
 #endregion
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	MoneyLabel.text = "Money: " + str(GameManager.player_money)
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	update_upgrade_ui()
 
 
 func _on_continue_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
-	pass # Replace with function body.
+
 
 #region Base Upgrades
-
 func _on_hp_upgrade_pressed() -> void:
-	GameManager.increase_player_health(5)
-	HpLabel.text = "Health: " + str(GameManager.player_hp)
-	pass # Replace with function body.
-
+	GameManager.buy_health_upgrade()
+	update_upgrade_ui()
 
 func _on_dmg_upgrade_pressed() -> void:
-	GameManager.increase_player_damage(2)
-	DmgLabel.text = "Damage: " + str(GameManager.player_damage)
-	pass # Replace with function body.
- 
+	GameManager.buy_damage_upgrade()
+	update_upgrade_ui()
 
 func _on_speed_upgrade_pressed() -> void:
-	GameManager.increase_player_speed(1)
-	SpeedLabel.text = "Speed: " + str(GameManager.player_speed)
-	
-	pass # Replace with function body.
+	GameManager.buy_speed_upgrade()
+	update_upgrade_ui()
+#endregion
 
 
+#region Ability Unlocks
 func _on_dash_unlock_pressed() -> void:
-	
-	GameManager.unlock_player_dash(true)
-	DashButton.text = "Unlocked"
-	DashButton.disabled = true
-	
-	pass # Replace with function body.
-	
+	GameManager.buy_dash_unlock()
+	update_upgrade_ui()
 
 func _on_scatter_unlock_pressed() -> void:
-	
-	GameManager.unlock_player_scattershot(true)
-	ScatterButton.text = "Unlocked"
-	ScatterButton.disabled = true
-	
-	pass # Replace with function body.
+	GameManager.buy_scattershot_unlock()
+	update_upgrade_ui()
+#endregion
 
+
+#region UI Stuff
+func update_upgrade_ui() -> void:
+	MoneyLabel.text = "Credits: " + str(GameManager.player_money)
+
+	HpLabel.text = "Health: " + str(GameManager.player_hp)
+	DmgLabel.text = "Damage: " + str(GameManager.player_damage)
+	SpeedLabel.text = "Speed: " + str(GameManager.player_speed)
+
+	HpButton.text = "Upgrade - " + str(GameManager.hp_upgrade_cost) + " Credits"
+	DmgButton.text = "Upgrade - " + str(GameManager.damage_upgrade_cost) + " Credits"
+	SpeedButton.text = "Upgrade - " + str(GameManager.speed_upgrade_cost) + " Credits"
+
+	update_ability_button(DashButton, GameManager.player_canDash, GameManager.dash_unlock_cost)
+	update_ability_button(ScatterButton, GameManager.player_hasScatterShot, GameManager.scattershot_unlock_cost)
+
+func update_ability_button(button: Button, is_unlocked: bool, cost: int) -> void:
+	if is_unlocked:
+		button.text = "Unlocked"
+		button.disabled = true
+	else:
+		button.text = "Unlock - " + str(cost) + " Credits"
+		button.disabled = false
 #endregion
