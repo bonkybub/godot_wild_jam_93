@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://73oiviih377d" path="res://Assets/2D Art/Skyboxes/Space1.png" id="2_7hmgc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o157h"]
+shading_mode = 0
 albedo_texture = ExtResource("2_7hmgc")
+disable_receive_shadows = true
 
 [node name="Skybox" unique_id=1477194004 instance=ExtResource("1_o157h")]
 

@@ -2,43 +2,58 @@
 
 [ext_resource type="PackedScene" uid="uid://rblbredsrdbf" path="res://Assets/Models/Player/PlayerShip_Gears.glb" id="1_lscns"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lscns"]
+albedo_color = Color(0.3810903, 0.18140872, 0, 1)
+
 [node name="PlayerShip_Gears" unique_id=1097901117 instance=ExtResource("1_lscns")]
 
-[node name="Cylinder_005" parent="." index="0" unique_id=1956258760]
+[node name="Cylinder_005" parent="." index="0" unique_id=692166281]
 visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_lscns")
 
-[node name="Cylinder_019" parent="." index="1" unique_id=1877272161]
+[node name="Cylinder_019" parent="." index="1" unique_id=1347162526]
 transform = Transform3D(-0.0012324421, -0.022479204, 0.0005105067, 0.053096864, -2.7007028e-09, 0.12817961, 0.12817363, -0.00021614565, -0.053094435, 1.2558647, -0.59899217, -0.9808164)
+surface_material_override/0 = SubResource("StandardMaterial3D_lscns")
 
-[node name="Cylinder_009" parent="." index="2" unique_id=1416101339]
+[node name="Cylinder_009" parent="." index="2" unique_id=1338305278]
 transform = Transform3D(-0.47189152, -4.8932733e-09, 6.184749e-08, -6.184749e-08, 0.05587528, -0.23433217, 3.5870464e-08, 0.03196645, 0.40959743, 0.0071779937, -0.7353536, -0.39195606)
+surface_material_override/0 = SubResource("StandardMaterial3D_lscns")
 
-[node name="Cylinder_007" parent="." index="3" unique_id=420789279]
+[node name="Cylinder_007" parent="." index="3" unique_id=574850086]
 transform = Transform3D(-0.1737272, -0.004844582, -0.13884647, -0.14306693, 0.0041073933, 0.17130661, 0.008450245, -0.03005869, 0.045786317, -0.6767122, -0.64186335, -0.5668446)
+surface_material_override/0 = SubResource("StandardMaterial3D_lscns")
 
-[node name="Cylinder_020" parent="." index="4" unique_id=479027655]
+[node name="Cylinder_020" parent="." index="4" unique_id=1379895033]
 transform = Transform3D(0.20067789, -0.00563268, -0.15713686, 0.16134626, 0.010911102, 0.18503617, -0.019086746, 0.033013046, -0.08796675, -0.5768842, -0.7286061, 0.010031436)
+surface_material_override/0 = SubResource("StandardMaterial3D_lscns")
 
-[node name="Cylinder_008" parent="." index="5" unique_id=26833203]
+[node name="Cylinder_008" parent="." index="5" unique_id=834511225]
 transform = Transform3D(-0.22263339, -0.0035471802, 0.021883935, 0.033155225, -0.018321032, 0.17771882, 0.007468961, -0.024405384, -0.13659355, -0.8943831, 0.30193973, 0.07272776)
+surface_material_override/0 = SubResource("StandardMaterial3D_lscns")
 
-[node name="Cylinder_003" parent="." index="6" unique_id=322354212]
+[node name="Cylinder_003" parent="." index="6" unique_id=1688111466]
 transform = Transform3D(0.17255163, -0.0015343521, 0.020351315, 0.02325079, 0.0111214975, -0.15207733, -0.0002948449, -0.020930544, -0.08229856, -0.924993, -0.12354188, 0.28485718)
+surface_material_override/0 = SubResource("StandardMaterial3D_lscns")
 
-[node name="Cylinder_004" parent="." index="7" unique_id=650877010]
+[node name="Cylinder_004" parent="." index="7" unique_id=135287626]
 transform = Transform3D(0.13885166, -0.0029607671, -0.051705655, -0.09619869, -0.0029368342, -0.07778491, -0.010112011, -0.012716349, 0.030003093, -0.79679996, 0.47577956, 0.3886144)
+surface_material_override/0 = SubResource("StandardMaterial3D_lscns")
 
-[node name="Cylinder_021" parent="." index="8" unique_id=135938209]
+[node name="Cylinder_021" parent="." index="8" unique_id=2025861125]
 transform = Transform3D(-0.140441, 0.007111146, -0.044278085, -0.067061506, -0.011605553, 0.11254589, -0.013442807, -0.016396176, -0.09886604, 0.91456133, 0.2614, 0.07126626)
+surface_material_override/0 = SubResource("StandardMaterial3D_lscns")
 
-[node name="Cylinder_022" parent="." index="9" unique_id=1013268002]
+[node name="Cylinder_022" parent="." index="9" unique_id=2146298719]
 transform = Transform3D(0.105269544, -0.0035744542, 0.05306701, 0.059158992, 0.0067808162, -0.09281042, 0.0017051459, -0.014582372, -0.0561648, 0.8202823, 0.4639544, 0.310494)
+surface_material_override/0 = SubResource("StandardMaterial3D_lscns")
 
-[node name="Cylinder_010" parent="." index="10" unique_id=1233038230]
+[node name="Cylinder_010" parent="." index="10" unique_id=1432857336]
 transform = Transform3D(-0.13789083, -0.0046354877, 0.13442828, 0.18873459, -0.004247917, 0.09646638, -0.0072048153, -0.022559589, -0.045786373, 0.61523986, -0.77631384, -0.7666912)
+surface_material_override/0 = SubResource("StandardMaterial3D_lscns")
 
-[node name="Cylinder_011" parent="." index="11" unique_id=255672541]
+[node name="Cylinder_011" parent="." index="11" unique_id=1454785729]
 transform = Transform3D(-0.0012324421, -0.022479204, 0.0005105067, 0.053096864, -2.7007028e-09, 0.12817961, 0.12817363, -0.00021614565, -0.053094435, -1.2388511, -0.5989921, -1.004804)
+surface_material_override/0 = SubResource("StandardMaterial3D_lscns")
 
-[node name="AnimationPlayer" parent="." index="12" unique_id=515306138]
+[node name="AnimationPlayer" parent="." index="12" unique_id=1339758854]
 autoplay = &"Cylinder_009Action"
