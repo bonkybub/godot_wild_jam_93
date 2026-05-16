@@ -3,11 +3,12 @@
 [ext_resource type="Shader" uid="uid://gn3sfoy0tagr" path="res://Shaders/Tunnel.gdshader" id="1_lgjqd"]
 [ext_resource type="PackedScene" uid="uid://die3n8m7siurn" path="res://Scenes/hyperdrive3D.tscn" id="2_bgs0b"]
 [ext_resource type="Script" uid="uid://bslmgxy200wk4" path="res://Scripts/Character/SimpleIdleScript.gd" id="3_c3dsn"]
-[ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_gears.tscn" id="4_esk3c"]
+[ext_resource type="PackedScene" uid="uid://d2fusol30m64f" path="res://Prefabs/Character/player_ship_gears.tscn" id="4_esk3c"]
 [ext_resource type="Script" uid="uid://w3y2td5wp323" path="res://Scripts/Managers/UpgradeManager.gd" id="5_c3dsn"]
 [ext_resource type="LabelSettings" uid="uid://b6v48m650gg48" path="res://Font Stuff/Title.tres" id="5_qlcnp"]
 [ext_resource type="LabelSettings" uid="uid://c1s8tbg4iwkr" path="res://Font Stuff/UpgradeLabel.tres" id="6_qfs41"]
 [ext_resource type="LabelSettings" uid="uid://bh814rcwqb61q" path="res://Font Stuff/UpgradeAmount.tres" id="7_qgn5i"]
+[ext_resource type="Texture2D" uid="uid://7crlg4j8dhau" path="res://icon.svg" id="9_c3dsn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ll0f"]
 shader = ExtResource("1_lgjqd")
@@ -18,6 +19,7 @@ shader_parameter/layers = 71.0
 shader_parameter/layerPoints = 105.30000142008436
 shader_parameter/speed = 10.0
 shader_parameter/dotJitter = 8.0
+shader_parameter/BgColor = Color(0.082566924, 0.021399235, 1.504086e-08, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bgs0b"]
 viewport_path = NodePath("Player Mover/Player/SubViewport")
@@ -32,13 +34,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2023004418]
+[node name="TunnelShader" type="ColorRect" parent="." unique_id=2023004418]
 material = SubResource("ShaderMaterial_6ll0f")
 layout_mode = 0
 offset_top = -1.0
 offset_right = 1152.0
 offset_bottom = 647.0
-color = Color(0, 0, 0, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1127305161]
 layout_mode = 0
@@ -66,7 +67,7 @@ texture = SubResource("ViewportTexture_bgs0b")
 [node name="DirectionalLight3D3" parent="SubViewportContainer/SubViewport/HyperdriveScene" index="4" unique_id=1293784391]
 visible = false
 
-[node name="PlayerShip_Base" parent="SubViewportContainer/SubViewport/HyperdriveScene" index="6" unique_id=800243318]
+[node name="PlayerShip_Base" parent="SubViewportContainer/SubViewport/HyperdriveScene" index="5" unique_id=800243318]
 transform = Transform3D(0.5034266, 7.0547684e-10, 0.039832722, 0.002773736, 0.50377417, -0.03505592, -0.03973603, 0.03516548, 0.5022046, 0.29809892, 0.03958869, -0.79745984)
 script = ExtResource("3_c3dsn")
 
@@ -142,13 +143,13 @@ label_settings = ExtResource("7_qgn5i")
 
 [node name="HpUpgrade" type="Button" parent="Menu/Upgrades/Health" unique_id=387542265]
 layout_mode = 0
+offset_left = 13.0
 offset_top = 39.0
-offset_right = 111.02042
-offset_bottom = 116.0
-scale = Vector2(1.225, 1.225)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+offset_right = 235.34
+offset_bottom = 169.525
+scale = Vector2(0.47, 0.47)
 theme_override_fonts/font = SubResource("FontVariation_bgs0b")
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 35
 action_mode = 0
 text = "Unlock - 100 Credits"
 autowrap_mode = 3
@@ -180,13 +181,12 @@ label_settings = ExtResource("7_qgn5i")
 
 [node name="DmgUpgrade" type="Button" parent="Menu/Upgrades/Damage" unique_id=1373571448]
 layout_mode = 0
-offset_left = 3.0
+offset_left = 12.0
 offset_top = 42.0
-offset_right = 114.02042
-offset_bottom = 119.0
-scale = Vector2(1.225, 1.225)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 19
+offset_right = 234.34
+offset_bottom = 172.525
+scale = Vector2(0.47, 0.47)
+theme_override_font_sizes/font_size = 35
 action_mode = 0
 text = "Unlock - 100 Credits"
 autowrap_mode = 3
@@ -218,13 +218,12 @@ label_settings = ExtResource("7_qgn5i")
 
 [node name="SpeedUpgrade" type="Button" parent="Menu/Upgrades/Speed" unique_id=819174074]
 layout_mode = 0
-offset_left = -12.0
+offset_left = -4.0
 offset_top = 42.0
-offset_right = 99.02042
-offset_bottom = 119.0
-scale = Vector2(1.225, 1.225)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 19
+offset_right = 218.34
+offset_bottom = 172.525
+scale = Vector2(0.47, 0.47)
+theme_override_font_sizes/font_size = 35
 action_mode = 0
 text = "Unlock - 100 Credits"
 autowrap_mode = 3
@@ -232,12 +231,12 @@ autowrap_trim_flags = 192
 
 [node name="Line" type="ColorRect" parent="Menu/Upgrades" unique_id=1295663410]
 layout_mode = 0
-offset_left = 505.0
-offset_top = 325.0
+offset_left = 504.99997
+offset_top = 316.0
 offset_right = 545.0
-offset_bottom = 365.0
+offset_bottom = 356.0
 scale = Vector2(12.184006, 0.12210322)
-color = Color(1, 1, 1, 0.22352941)
+color = Color(4.101112, 4.1011114, 4.1011114, 0.224)
 
 [node name="Abilities" type="Label" parent="Menu/Upgrades" unique_id=2085689381]
 layout_mode = 0
@@ -271,10 +270,10 @@ vertical_alignment = 1
 layout_mode = 0
 offset_left = 5.6000004
 offset_top = 42.399998
-offset_right = 116.620415
-offset_bottom = 119.399994
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 19
+offset_right = 227.94
+offset_bottom = 172.92499
+scale = Vector2(0.47, 0.47)
+theme_override_font_sizes/font_size = 31
 action_mode = 0
 text = "Unlock - 100 Credits"
 autowrap_mode = 3
@@ -302,12 +301,109 @@ vertical_alignment = 1
 layout_mode = 0
 offset_left = 12.000001
 offset_top = 42.399998
-offset_right = 123.02042
-offset_bottom = 119.399994
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 19
+offset_right = 234.34
+offset_bottom = 172.92499
+scale = Vector2(0.47, 0.47)
+theme_override_font_sizes/font_size = 31
 action_mode = 0
 text = "Unlock - 100 Credits"
+autowrap_mode = 3
+autowrap_trim_flags = 192
+
+[node name="BountyScreen" type="SubViewportContainer" parent="." unique_id=302484686]
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 647.0
+
+[node name="SubViewport" type="SubViewport" parent="BountyScreen" unique_id=740874504]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 647)
+render_target_update_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="BountyScreen/SubViewport" unique_id=828567834]
+offset_top = -1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.69803923)
+
+[node name="Bounty1" type="Sprite2D" parent="BountyScreen/SubViewport" unique_id=1353343045]
+position = Vector2(281.2, 269.2)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("9_c3dsn")
+
+[node name="Bounty1Label" type="Label" parent="BountyScreen/SubViewport/Bounty1" unique_id=659469311]
+visible = false
+offset_left = -44.555565
+offset_top = 77.11111
+offset_right = 43.029427
+offset_bottom = 100.11111
+vertical_alignment = 1
+
+[node name="BountyButton1" type="Button" parent="BountyScreen/SubViewport/Bounty1" unique_id=1061829203]
+offset_left = -41.77778
+offset_top = 77.666664
+offset_right = 155.26447
+offset_bottom = 185.66666
+scale = Vector2(0.405, 0.405)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+action_mode = 0
+text = "Hunt Bounty"
+autowrap_mode = 3
+autowrap_trim_flags = 192
+
+[node name="Bounty2" type="Sprite2D" parent="BountyScreen/SubViewport" unique_id=1515199044]
+position = Vector2(581.2, 271.2)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("9_c3dsn")
+
+[node name="Bounty2Label" type="Label" parent="BountyScreen/SubViewport/Bounty2" unique_id=122236355]
+visible = false
+offset_left = -44.555565
+offset_top = 77.11111
+offset_right = 43.029427
+offset_bottom = 100.11111
+vertical_alignment = 1
+
+[node name="BountyButton2" type="Button" parent="BountyScreen/SubViewport/Bounty2" unique_id=1106861617]
+offset_left = -41.77778
+offset_top = 77.666664
+offset_right = 155.26447
+offset_bottom = 185.66666
+scale = Vector2(0.405, 0.405)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+action_mode = 0
+text = "Hunt Bounty"
+autowrap_mode = 3
+autowrap_trim_flags = 192
+
+[node name="Bounty3" type="Sprite2D" parent="BountyScreen/SubViewport" unique_id=264475262]
+position = Vector2(878.2, 271.2)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("9_c3dsn")
+
+[node name="Bounty3Label" type="Label" parent="BountyScreen/SubViewport/Bounty3" unique_id=559318556]
+visible = false
+offset_left = -44.555565
+offset_top = 77.11111
+offset_right = 43.029427
+offset_bottom = 100.11111
+vertical_alignment = 1
+
+[node name="BountyButton3" type="Button" parent="BountyScreen/SubViewport/Bounty3" unique_id=82028785]
+offset_left = -41.77778
+offset_top = 77.666664
+offset_right = 155.26447
+offset_bottom = 185.66666
+scale = Vector2(0.405, 0.405)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+action_mode = 0
+text = "Hunt Bounty"
 autowrap_mode = 3
 autowrap_trim_flags = 192
 

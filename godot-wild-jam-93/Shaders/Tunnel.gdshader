@@ -10,6 +10,8 @@ uniform float layerPoints: hint_range(10.0, 200.0, 0.1) = 100.0;
 uniform float speed: hint_range(0.0, 10.0, 0.01) = 1.0;
 uniform float dotJitter: hint_range(0.0, 8.0, 0.1) = 1.2;
 
+uniform vec3 BgColor: source_color = vec3(0,0,0);
+
 vec2 Hash22(vec2 p)
 {
 	p = vec2(
@@ -31,7 +33,7 @@ void fragment() {
 	vec2 uv = UV - 0.5;
 	uv.x *= resolution.x / resolution.y;
 	
-	vec3 color = vec3(0.0);
+	vec3 color = BgColor; // 0.02, 0, 0.02 (Dark purple)
 
 	float time = TIME * speed * 0.01;
 	float size = pointSize / resolution.y;

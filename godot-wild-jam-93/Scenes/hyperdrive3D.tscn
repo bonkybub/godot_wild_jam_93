@@ -2,22 +2,35 @@
 
 [ext_resource type="PackedScene" uid="uid://dgflub4bswme6" path="res://Prefabs/Character/player.tscn" id="1_u2rs1"]
 [ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_base.tscn" id="2_ibn5c"]
+[ext_resource type="Material" uid="uid://hhco5pbjjj3c" path="res://Assets/2D Art/Skyboxes/new_panorama_sky_material3.tres" id="3_txvlk"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_u2rs1"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_6jimf"]
 viewport_path = NodePath("Player Mover/Player/SubViewport")
 
-[sub_resource type="Sky" id="Sky_u2rs1"]
+[sub_resource type="Sky" id="Sky_jjgbg"]
+sky_material = ExtResource("3_txvlk")
 
-[sub_resource type="Environment" id="Environment_ibn5c"]
-background_mode = 2
-sky = SubResource("Sky_u2rs1")
-ambient_light_source = 1
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 2.38
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ajlwv"]
-
-[sub_resource type="Compositor" id="Compositor_4wuve"]
+[sub_resource type="Environment" id="Environment_vd280"]
+background_mode = 1
+background_energy_multiplier = 7.62
+sky = SubResource("Sky_jjgbg")
+sky_rotation = Vector3(0, -2.5132742, 0)
+tonemap_mode = 3
+tonemap_exposure = 1.59
+tonemap_white = 2.08
+tonemap_agx_white = 2.0
+tonemap_agx_contrast = 1.38
+ssao_enabled = true
+ssao_radius = 0.44
+ssao_intensity = 19.42
+glow_enabled = true
+glow_bloom = 0.08
+glow_hdr_scale = 0.54
+volumetric_fog_emission = Color(1, 1, 1, 1)
+adjustment_enabled = true
+adjustment_brightness = 1.02
+adjustment_contrast = 0.955
+adjustment_saturation = 1.22
 
 [node name="HyperdriveScene" type="Node3D" unique_id=2067415844]
 
@@ -30,7 +43,7 @@ visible = false
 script = null
 
 [node name="HealthBar" parent="Player/PlayerShip_Base" parent_id_path=PackedInt32Array(1017656907, 2088026183) index="13" unique_id=1759192094]
-texture = SubResource("ViewportTexture_u2rs1")
+texture = SubResource("ViewportTexture_6jimf")
 
 [node name="AimReticle" parent="Player" index="2" unique_id=1860672117]
 visible = false
@@ -53,12 +66,10 @@ light_energy = 0.208
 transform = Transform3D(-0.7689758, 0.28285542, 0.57329667, 1.4901161e-08, 0.89678776, -0.4424609, -0.6392779, -0.34024167, -0.6896083, 1.0278976, -2.4356527, -3.541628)
 light_energy = 0.208
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1872607625]
-environment = SubResource("Environment_ibn5c")
-camera_attributes = SubResource("CameraAttributesPractical_ajlwv")
-compositor = SubResource("Compositor_4wuve")
-
 [node name="PlayerShip_Base" parent="." unique_id=800243318 instance=ExtResource("2_ibn5c")]
 transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, 0.2218667, 0.052737594, -0.7773044)
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="." unique_id=828544667]
+environment = SubResource("Environment_vd280")
 
 [editable path="Player"]
