@@ -31,6 +31,19 @@ var bandit_follow: PathFollow3D
 var bandit_points: Array[Node3D]
 #endregion
 
+#region Pursuer Values
+@export_category("Pursuer Spawning")
+@export var pursuer_obj: PackedScene
+@export var pursuer_paths: Array[PursuerSequence]
+@export var pursuer_spawn_min: int = 2
+@export var pursuer_spawn_max: int = 4
+@export var pursuer_spawn_gap: float = 3.0
+@export var pursuer_enter_gap: float = 0.3
+@export var pursuer_fast_fly_spd: float = 25.0
+@export var pursuer_slow_fly_spd: float = 3.0
+@export var pursuer_shoot_start_ratio: float = 0.4
+#endregion
+
 #region Obstacle Values
 @export_category("Obstacle Spawning")
 @export var obstacle_z_limit: float = 5.0
@@ -55,6 +68,7 @@ var bandit_points: Array[Node3D]
 
 func _ready() -> void:
 	start_bandits()
+	start_pursuers()
 	start_cacti()
 	start_tumbleweeds()
 
@@ -193,11 +207,58 @@ func despawn_bandit(path_follow: PathFollow3D) -> void:
 	path_follow.queue_free()
 #endregion
 
+#region Pursuers
+func start_pursuers() -> void:
+	await get_tree().create_timer(pursuer_spawn_gap).timeout
+	
+	while true:
+		var path_id: int = randi_range(0, pursuer_paths.size())
+		var path: PursuerSequence = pursuer_paths[path_id]
+		path.setup_position()
+		path.active_pursuers.clear()
+		path.shoot_count = 0
+		var spawn_count: int = randi_range(pursuer_spawn_min, pursuer_spawn_max)
+		for i in spawn_count:
+			var path_follow: PathFollow3D = path.get_child(0).duplicate()
+			path.add_child(path_follow)
+			activate_purser(path, path_follow)
+			await get_tree().create_timer(pursuer_enter_gap).timeout
+		await get_tree().create_timer(pursuer_spawn_gap).timeout
+
+func activate_purser(path: PursuerSequence, path_follow: PathFollow3D) -> void:
+	var delta = get_physics_process_delta_time()
+	var pursuer: Pursuer = pursuer_obj.instantiate()
+	pursuer.spawner = self
+	path.active_pursuers.push_back(pursuer)
+	path_follow.add_child(pursuer)
+	path_follow.progress_ratio = 0.0
+	
+	while path_follow.progress_ratio < pursuer_shoot_start_ratio:
+		path_follow.progress += pursuer_fast_fly_spd * delta
+		await get_tree().process_frame
+	
+	if pursuer != null && player != null:
+		pursuer.set_fire_location(player.global_position)
+		pursuer.shoot()
+		path.shoot_count += 1
+	
+	while path.shoot_count < path.active_pursuers.size():
+		path_follow.progress += pursuer_slow_fly_spd * delta
+		await get_tree().process_frame
+	
+	while path_follow.progress_ratio < 1.0:
+		path_follow.progress += pursuer_fast_fly_spd * delta
+		await get_tree().process_frame
+	
+	if pursuer != null: pursuer.queue_free()
+	path_follow.queue_free()
+#endregion
+
 #region Obstacle Spawning
 func start_cacti() -> void:
 	await get_tree().create_timer(cactus_spawn_gap).timeout
 	
-	while (true):
+	while true:
 		for i in cactus_spawn_num:
 			var cactus: CactusBall = cactus_obj.instantiate()
 			get_tree().current_scene.add_child.call_deferred(cactus)
@@ -213,7 +274,7 @@ func start_cacti() -> void:
 func start_tumbleweeds() -> void:
 	await get_tree().create_timer(tumbleweed_spawn_gap).timeout
 	
-	while (true):
+	while true:
 		var tumbleweed: Tumbleweed = tumbleweed_obj.instantiate()
 		get_tree().current_scene.add_child.call_deferred(tumbleweed)
 		var x_bounds: Vector2 = tumbleweed_x_bounds_l if randf() < 0.5 else tumbleweed_x_bounds_r

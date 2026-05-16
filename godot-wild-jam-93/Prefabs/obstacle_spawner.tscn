@@ -34,12 +34,73 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Curve3D" id="Curve3D_jracd"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, -2.095, 0, -12, 2, 0, 0, 0, 0, 0, 0, 0, 14, -2, 0),
+"tilts": PackedFloat32Array(0.5235988, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_08qfc"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 2, 0, -12, -2, 0, 0, 0, 0, 0, 0, 0, 14, 2, 0),
+"tilts": PackedFloat32Array(0.5235988, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_beay7"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, -2, 0, 12, 2, 0, 0, 0, 0, 0, 0, 0, -14, -2, 0),
+"tilts": PackedFloat32Array(-0.5235988, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_4oe2l"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 2, 0, 12, -2, 0, 0, 0, 0, 0, 0, 0, -14, 2, 0),
+"tilts": PackedFloat32Array(-0.5235988, 0)
+}
+point_count = 2
+
 [node name="Obstacle Spawner" type="Node3D" unique_id=2002730737 node_paths=PackedStringArray("bandit_group")]
 script = ExtResource("1_43w2k")
 bandit_obj = ExtResource("2_5566v")
 bandit_group = NodePath("Bandit Group")
+bandit_z_plane = null
+bandit_spawn_min = null
+bandit_spawn_max = null
+bandit_pre_wait = null
+bandit_spawn_gap = null
+bandit_enter_gap = null
+bandit_enter_spd = null
+bandit_ease_in_dur = null
+bandit_left_range = null
+bandit_right_range = null
+bandit_height_range = null
+bandit_exit_gap = null
+bandit_exit_spd = null
+bandit_ease_out_dur = null
+pursuer_spawn_min = null
+pursuer_spawn_max = null
+pursuer_spawn_gap = null
+pursuer_enter_gap = null
+pursuer_fast_fly_spd = null
+pursuer_slow_fly_spd = null
+pursuer_shoot_start_ratio = null
+obstacle_z_limit = null
+obstacle_y_bounds = null
 cactus_obj = ExtResource("3_ej3fg")
+cactus_spawn_gap = null
+cactus_start_num = null
+cactus_spawn_num = null
+cactus_x_bounds = null
+cactus_z_bounds = null
+cactus_start_z_bound = null
 tumbleweed_obj = ExtResource("4_jracd")
+tumbleweed_spawn_gap = null
+tumbleweed_x_bounds_l = null
+tumbleweed_x_bounds_r = null
+tumbleweed_z_spawn = null
 
 [node name="Bandit Enter Path (Left)" type="Path3D" parent="." unique_id=1517673190]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.5, 1)
@@ -81,3 +142,31 @@ loop = false
 
 [node name="Bandit Group" parent="." unique_id=2091879476 instance=ExtResource("3_5566v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
+
+[node name="Pursuer Path Upper (Left)" type="Path3D" parent="." unique_id=891570611]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -9)
+curve = SubResource("Curve3D_jracd")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Upper (Left)" unique_id=1056185043]
+transform = Transform3D(-0.50000006, 0.8660254, 3.7855173e-08, 0, -4.371139e-08, 1, 0.8660254, 0.50000006, 2.1855696e-08, -12, 2, 0)
+
+[node name="Pursuer Path Lower (Left)" type="Path3D" parent="." unique_id=1156608853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -9)
+curve = SubResource("Curve3D_08qfc")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Lower (Left)" unique_id=1786469523]
+transform = Transform3D(-0.50000006, 0.8660254, -3.7855173e-08, 0, -4.371139e-08, -1, -0.8660254, -0.50000006, 2.1855696e-08, -12, -2, 0)
+
+[node name="Pursuer Path Upper (Right)" type="Path3D" parent="." unique_id=1059852214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -9)
+curve = SubResource("Curve3D_beay7")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Upper (Right)" unique_id=31995807]
+transform = Transform3D(0.49999997, 0.8660254, 3.7855173e-08, 0, -4.371139e-08, 1, 0.8660254, -0.49999997, -2.1855692e-08, 12, 2, 0)
+
+[node name="Pursuer Path Lower (Right)" type="Path3D" parent="." unique_id=845521723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -9)
+curve = SubResource("Curve3D_4oe2l")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Lower (Right)" unique_id=13866713]
+transform = Transform3D(0.49999997, 0.8660254, -3.7855173e-08, 0, -4.371139e-08, -1, -0.8660254, 0.49999997, -2.1855692e-08, 12, -2, 0)
