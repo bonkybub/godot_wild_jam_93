@@ -38,10 +38,10 @@ var bandit_points: Array[Node3D]
 @export var pursuer_spawn_min: int = 2
 @export var pursuer_spawn_max: int = 4
 @export var pursuer_spawn_gap: float = 3.0
-@export var pursuer_enter_gap: float = 0.3
-@export var pursuer_fast_fly_spd: float = 25.0
+@export var pursuer_enter_gap: float = 0.4
+@export var pursuer_fast_fly_spd: float = 15.0
 @export var pursuer_slow_fly_spd: float = 3.0
-@export var pursuer_shoot_start_ratio: float = 0.4
+@export var pursuer_shoot_start_ratio: float = 0.3
 #endregion
 
 #region Obstacle Values
@@ -67,7 +67,7 @@ var bandit_points: Array[Node3D]
 #endregion
 
 func _ready() -> void:
-	start_bandits()
+	#start_bandits()
 	start_pursuers()
 	start_cacti()
 	start_tumbleweeds()
@@ -212,12 +212,13 @@ func start_pursuers() -> void:
 	await get_tree().create_timer(pursuer_spawn_gap).timeout
 	
 	while true:
-		var path_id: int = randi_range(0, pursuer_paths.size())
+		var path_id: int = randi_range(0, pursuer_paths.size() - 1)
 		var path: PursuerSequence = pursuer_paths[path_id]
 		path.setup_position()
 		path.active_pursuers.clear()
 		path.shoot_count = 0
 		var spawn_count: int = randi_range(pursuer_spawn_min, pursuer_spawn_max)
+		path.planned_shooters = spawn_count
 		for i in spawn_count:
 			var path_follow: PathFollow3D = path.get_child(0).duplicate()
 			path.add_child(path_follow)
@@ -229,6 +230,7 @@ func activate_purser(path: PursuerSequence, path_follow: PathFollow3D) -> void:
 	var delta = get_physics_process_delta_time()
 	var pursuer: Pursuer = pursuer_obj.instantiate()
 	pursuer.spawner = self
+	pursuer.sequence = path
 	path.active_pursuers.push_back(pursuer)
 	path_follow.add_child(pursuer)
 	path_follow.progress_ratio = 0.0
@@ -242,7 +244,7 @@ func activate_purser(path: PursuerSequence, path_follow: PathFollow3D) -> void:
 		pursuer.shoot()
 		path.shoot_count += 1
 	
-	while path.shoot_count < path.active_pursuers.size():
+	while path.shoot_count < path.planned_shooters:
 		path_follow.progress += pursuer_slow_fly_spd * delta
 		await get_tree().process_frame
 	

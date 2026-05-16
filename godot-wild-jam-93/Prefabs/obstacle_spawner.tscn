@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://2n5e2kpla82o" path="res://Scripts/obstacle_spawner.gd" id="1_43w2k"]
 [ext_resource type="PackedScene" uid="uid://bsb5ly0xnyuev" path="res://Prefabs/Enemies/bandit.tscn" id="2_5566v"]
 [ext_resource type="PackedScene" uid="uid://cl7p7qa3mghod" path="res://Prefabs/Enemies/bandit_group.tscn" id="3_5566v"]
+[ext_resource type="PackedScene" uid="uid://78ihup64oigp" path="res://Prefabs/Enemies/pursuer.tscn" id="3_beay7"]
 [ext_resource type="PackedScene" uid="uid://2mhj7gcm6f7r" path="res://Prefabs/Obstacles/cactus_ball.tscn" id="3_ej3fg"]
 [ext_resource type="PackedScene" uid="uid://dv2bqw1ycs0kv" path="res://Prefabs/Obstacles/tumbleweed.tscn" id="4_jracd"]
+[ext_resource type="Script" uid="uid://bgmdlbi75pbtc" path="res://Scripts/Enemies/pursuer_sequence.gd" id="6_08qfc"]
 
 [sub_resource type="Curve3D" id="Curve3D_hptm8"]
 _data = {
@@ -36,71 +38,40 @@ point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_jracd"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, -2.095, 0, -12, 2, 0, 0, 0, 0, 0, 0, 0, 14, -2, 0),
+"points": PackedVector3Array(0, 0, 0, 0, -2, 0, -16, 2, 0, 0, 0, 0, 0, 0, 0, 18, -2, 0),
 "tilts": PackedFloat32Array(0.5235988, 0)
 }
 point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_08qfc"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 2, 0, -12, -2, 0, 0, 0, 0, 0, 0, 0, 14, 2, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 2, 0, -16, -2, 0, 0, 0, 0, 0, 0, 0, 18, 2, 0),
 "tilts": PackedFloat32Array(0.5235988, 0)
 }
 point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_beay7"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, -2, 0, 12, 2, 0, 0, 0, 0, 0, 0, 0, -14, -2, 0),
+"points": PackedVector3Array(0, 0, 0, 0, -2, 0, 16, 2, 0, 0, 0, 0, 0, 0, 0, -18, -2, 0),
 "tilts": PackedFloat32Array(-0.5235988, 0)
 }
 point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_4oe2l"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 2, 0, 12, -2, 0, 0, 0, 0, 0, 0, 0, -14, 2, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 2, 0, 16, -2, 0, 0, 0, 0, 0, 0, 0, -18, 2, 0),
 "tilts": PackedFloat32Array(-0.5235988, 0)
 }
 point_count = 2
 
-[node name="Obstacle Spawner" type="Node3D" unique_id=2002730737 node_paths=PackedStringArray("bandit_group")]
+[node name="Obstacle Spawner" type="Node3D" unique_id=2002730737 node_paths=PackedStringArray("bandit_group", "pursuer_paths")]
 script = ExtResource("1_43w2k")
 bandit_obj = ExtResource("2_5566v")
 bandit_group = NodePath("Bandit Group")
-bandit_z_plane = null
-bandit_spawn_min = null
-bandit_spawn_max = null
-bandit_pre_wait = null
-bandit_spawn_gap = null
-bandit_enter_gap = null
-bandit_enter_spd = null
-bandit_ease_in_dur = null
-bandit_left_range = null
-bandit_right_range = null
-bandit_height_range = null
-bandit_exit_gap = null
-bandit_exit_spd = null
-bandit_ease_out_dur = null
-pursuer_spawn_min = null
-pursuer_spawn_max = null
-pursuer_spawn_gap = null
-pursuer_enter_gap = null
-pursuer_fast_fly_spd = null
-pursuer_slow_fly_spd = null
-pursuer_shoot_start_ratio = null
-obstacle_z_limit = null
-obstacle_y_bounds = null
+pursuer_obj = ExtResource("3_beay7")
+pursuer_paths = [NodePath("Pursuer Path Upper (Left)"), NodePath("Pursuer Path Lower (Left)"), NodePath("Pursuer Path Upper (Right)"), NodePath("Pursuer Path Lower (Right)")]
 cactus_obj = ExtResource("3_ej3fg")
-cactus_spawn_gap = null
-cactus_start_num = null
-cactus_spawn_num = null
-cactus_x_bounds = null
-cactus_z_bounds = null
-cactus_start_z_bound = null
 tumbleweed_obj = ExtResource("4_jracd")
-tumbleweed_spawn_gap = null
-tumbleweed_x_bounds_l = null
-tumbleweed_x_bounds_r = null
-tumbleweed_z_spawn = null
 
 [node name="Bandit Enter Path (Left)" type="Path3D" parent="." unique_id=1517673190]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.5, 1)
@@ -144,29 +115,41 @@ loop = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
 
 [node name="Pursuer Path Upper (Left)" type="Path3D" parent="." unique_id=891570611]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -7)
 curve = SubResource("Curve3D_jracd")
+script = ExtResource("6_08qfc")
+y_bounds = Vector2(0.5, 3.5)
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Upper (Left)" unique_id=1056185043]
-transform = Transform3D(-0.50000006, 0.8660254, 3.7855173e-08, 0, -4.371139e-08, 1, 0.8660254, 0.50000006, 2.1855696e-08, -12, 2, 0)
+transform = Transform3D(-0.49999848, 0.86602277, 3.7854928e-08, 0, -4.3711257e-08, 0.99999356, 0.86602265, 0.49999854, 2.1855556e-08, -16, 2, 0)
+loop = false
 
 [node name="Pursuer Path Lower (Left)" type="Path3D" parent="." unique_id=1156608853]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -7)
 curve = SubResource("Curve3D_08qfc")
+script = ExtResource("6_08qfc")
+y_bounds = Vector2(-0.5, 2.5)
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Lower (Left)" unique_id=1786469523]
-transform = Transform3D(-0.50000006, 0.8660254, -3.7855173e-08, 0, -4.371139e-08, -1, -0.8660254, -0.50000006, 2.1855696e-08, -12, -2, 0)
+transform = Transform3D(-0.50000006, 0.8660254, -3.7855173e-08, 0, -4.371139e-08, -1, -0.8660254, -0.50000006, 2.1855696e-08, -16, -2, 0)
+loop = false
 
 [node name="Pursuer Path Upper (Right)" type="Path3D" parent="." unique_id=1059852214]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -7)
 curve = SubResource("Curve3D_beay7")
+script = ExtResource("6_08qfc")
+y_bounds = Vector2(0.5, 3.5)
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Upper (Right)" unique_id=31995807]
-transform = Transform3D(0.49999997, 0.8660254, 3.7855173e-08, 0, -4.371139e-08, 1, 0.8660254, -0.49999997, -2.1855692e-08, 12, 2, 0)
+transform = Transform3D(0.49999997, 0.8660254, 3.7855173e-08, 0, -4.371139e-08, 1, 0.8660254, -0.49999997, -2.1855692e-08, 16, 2, 0)
+loop = false
 
 [node name="Pursuer Path Lower (Right)" type="Path3D" parent="." unique_id=845521723]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -7)
 curve = SubResource("Curve3D_4oe2l")
+script = ExtResource("6_08qfc")
+y_bounds = Vector2(-0.5, 2.5)
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Lower (Right)" unique_id=13866713]
-transform = Transform3D(0.49999997, 0.8660254, -3.7855173e-08, 0, -4.371139e-08, -1, -0.8660254, 0.49999997, -2.1855692e-08, 12, -2, 0)
+transform = Transform3D(0.49999997, 0.8660254, -3.7855173e-08, 0, -4.371139e-08, -1, -0.8660254, 0.49999997, -2.1855692e-08, 16, -2, 0)
+loop = false

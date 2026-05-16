@@ -2,6 +2,7 @@ class_name PursuerSequence
 extends Path3D
 
 var active_pursuers: Array[Pursuer]
+var planned_shooters: int = 0
 var shoot_count: int = 0
 
 @export var y_bounds: Vector2 = Vector2(0.5, 2.5)

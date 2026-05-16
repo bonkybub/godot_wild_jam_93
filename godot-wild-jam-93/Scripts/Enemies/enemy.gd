@@ -34,7 +34,7 @@ func _ready() -> void:
 				break
 	
 	var material: Material = mesh.material_override
-	mesh.material_override = material.duplicate()
+	if material != null: mesh.material_override = material.duplicate()
 
 func shoot() -> void:
 	if spawner.player == null: return

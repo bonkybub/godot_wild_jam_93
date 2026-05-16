@@ -1,14 +1,18 @@
 [gd_scene format=3 uid="uid://78ihup64oigp"]
 
+[ext_resource type="Script" path="res://Scripts/Enemies/pursuer.gd" id="1_tmhpr"]
+[ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="2_f0hok"]
+[ext_resource type="PackedScene" uid="uid://dwog7tha88jgi" path="res://Prefabs/Particles/explosion.tscn" id="3_f0hok"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8erfp"]
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8erfp"]
 material = SubResource("StandardMaterial3D_8erfp")
-size = Vector3(1.5, 0.3, 1)
+size = Vector3(1, 0.3, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u8hhd"]
-size = Vector3(2, 0.7, 1.2)
+size = Vector3(1.2, 0.7, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53ong"]
 albedo_color = Color(1, 0, 0, 1)
@@ -19,7 +23,13 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.2
 
-[node name="Pursuer" type="CharacterBody3D" unique_id=1251419214 groups=["enemy"]]
+[node name="Pursuer" type="CharacterBody3D" unique_id=1251419214 node_paths=PackedStringArray("left_fire_location", "right_fire_location", "mesh") groups=["enemy"]]
+script = ExtResource("1_tmhpr")
+left_fire_location = NodePath("Fire Location (Left)")
+right_fire_location = NodePath("Fire Location (Right)")
+bullet_obj = ExtResource("2_f0hok")
+mesh = NodePath("Temp_Model")
+explosion = ExtResource("3_f0hok")
 
 [node name="Temp_Model" type="MeshInstance3D" parent="." unique_id=1710366726]
 mesh = SubResource("BoxMesh_8erfp")
@@ -27,9 +37,18 @@ mesh = SubResource("BoxMesh_8erfp")
 [node name="Hitbox Collider" type="CollisionShape3D" parent="." unique_id=781229223]
 shape = SubResource("BoxShape3D_u8hhd")
 
-[node name="Fire Location" type="Node3D" parent="." unique_id=226904909]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6)
+[node name="Fire Location (Left)" type="Node3D" parent="." unique_id=226904909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0, 0)
 
-[node name="Barrel Model" type="MeshInstance3D" parent="Fire Location" unique_id=1413835232]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+[node name="Barrel Model" type="MeshInstance3D" parent="Fire Location (Left)" unique_id=1413835232]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
 mesh = SubResource("CylinderMesh_tmhpr")
+
+[node name="Fire Location (Right)" type="Node3D" parent="." unique_id=1366933833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 0)
+
+[node name="Barrel Model" type="MeshInstance3D" parent="Fire Location (Right)" unique_id=1236767733]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+mesh = SubResource("CylinderMesh_tmhpr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1243517197]
