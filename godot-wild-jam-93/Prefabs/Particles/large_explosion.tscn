@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cykpquel22aeh"]
+
+[ext_resource type="PackedScene" uid="uid://dwog7tha88jgi" path="res://Prefabs/Particles/explosion.tscn" id="1_x3etd"]
+
+[node name="Large Explosion" unique_id=888728157 instance=ExtResource("1_x3etd")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)

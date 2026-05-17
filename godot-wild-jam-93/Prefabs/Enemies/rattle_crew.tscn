@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://dx763r6k4oyd8" path="res://Scripts/Enemies/rattle_crew.gd" id="1_he8eh"]
 [ext_resource type="Texture2D" uid="uid://ja600cjnfube" path="res://Assets/Textures/Enemies/SnakeEnemy/SnakeEnemy_baseColor.png" id="2_1gnij"]
 [ext_resource type="PackedScene" uid="uid://b7l3wf1vcyu5v" path="res://Prefabs/Bullet/rattle_crew_strafe_bullet.tscn" id="2_1o08m"]
-[ext_resource type="PackedScene" uid="uid://dwog7tha88jgi" path="res://Prefabs/Particles/explosion.tscn" id="2_68q70"]
 [ext_resource type="PackedScene" uid="uid://btafbtlkkvmtg" path="res://Prefabs/Bullet/rattle_crew_charge_bullet.tscn" id="3_1o08m"]
 [ext_resource type="Texture2D" uid="uid://b1vfnhc1s4gnq" path="res://Assets/Textures/Enemies/SnakeEnemy/SnakeEnemy_occlusionRoughnessMetallic.png" id="3_68q70"]
 [ext_resource type="Texture2D" uid="uid://dowj4wxgfxbio" path="res://Assets/Textures/Enemies/SnakeEnemy/SnakeEnemy_normal.png" id="4_1o08m"]
+[ext_resource type="PackedScene" uid="uid://cykpquel22aeh" path="res://Prefabs/Particles/large_explosion.tscn" id="4_18pgd"]
 [ext_resource type="PackedScene" uid="uid://j3f714e5236" path="res://Prefabs/Particles/FireParticle.tscn" id="8_18pgd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18pgd"]
@@ -156,7 +156,8 @@ laser_point_2 = NodePath("Paths/Laser Point 2")
 fire_locations = [NodePath("Fire Location")]
 max_health = 10000
 mesh = NodePath("Model")
-explosion = ExtResource("2_68q70")
+death_pop_dur = 0.5
+explosion = ExtResource("4_18pgd")
 
 [node name="Model" type="MeshInstance3D" parent="." unique_id=990994437]
 material_override = SubResource("StandardMaterial3D_18pgd")

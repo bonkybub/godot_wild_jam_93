@@ -6,7 +6,8 @@ extends Node3D
 #region Bounty Values
 @export_category("Bounty Spawning")
 @export var bounty_obj: PackedScene
-@export var bounty_spawn_wait: float = 60.0
+@export var bounty_spawn_wait_bounds: Vector2 = Vector2(40.0, 50.0)
+var bounty_spawn_wait: float = 50.0
 @export var obstacle_spawn_mult: float = 3.0
 var bounty_arrived: bool = false
 var bounty_target: Bounty
@@ -73,6 +74,8 @@ var bandit_points: Array[Node3D]
 #endregion
 
 func _ready() -> void:
+	bounty_spawn_wait = randf_range(bounty_spawn_wait_bounds.x, bounty_spawn_wait_bounds.y)
+	
 	start_bandits()
 	start_pursuers()
 	start_cacti()
