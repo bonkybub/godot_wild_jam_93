@@ -17,15 +17,26 @@ extends Control
 @onready var ScatterButton: Button = $Upgrades/ScatterShot/ScatterUnlock
 
 @onready var MoneyLabel: Label = $Schmoney
+
+@onready var UpgradeMenu: Control = $"."
+@onready var BountyMenu: Control = $"../BountyScreen"
 #endregion
 
 
 func _ready() -> void:
+	
+	UpgradeMenu.visible = true
+	BountyMenu.visible = false
+	
 	update_upgrade_ui()
 
 
 func _on_continue_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	
+	UpgradeMenu.visible = false
+	BountyMenu.visible = true
+	
+	#get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 
 #region Base Upgrades
@@ -77,3 +88,13 @@ func update_ability_button(button: Button, is_unlocked: bool, cost: int) -> void
 		button.text = "Unlock - " + str(cost) + " Credits"
 		button.disabled = false
 #endregion
+
+
+func _on_bounty_button_1_pressed() -> void:
+	GameManager.select_bounty(GameManager.BountyType.THE_SHERIFF)
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+
+
+func _on_bounty_button_2_pressed() -> void:
+	GameManager.select_bounty(GameManager.BountyType.RATTLESNAKE)
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")

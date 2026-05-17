@@ -117,3 +117,19 @@ func unlock_player_scattershot(isUnlocked: bool) -> void:
 	player_hasScatterShot = isUnlocked
 	print("Scattershot Unlocked: ", isUnlocked)
 #endregion
+
+#region Bounty Stuff
+enum BountyType {
+	NONE,
+	THE_SHERIFF, # This is the sun enemy btw
+	RATTLESNAKE
+}
+
+var selected_bounty: BountyType = BountyType.NONE
+
+
+func select_bounty(bounty: BountyType) -> void:
+	selected_bounty = bounty
+	print("Selected bounty: ", BountyType.keys()[bounty])
+	
+#endregion
