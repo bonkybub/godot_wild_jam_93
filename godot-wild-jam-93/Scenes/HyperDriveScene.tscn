@@ -76,13 +76,13 @@ script = ExtResource("5_c3dsn")
 
 [node name="Continue" type="Button" parent="Menu" unique_id=152399352]
 layout_mode = 0
-offset_left = 201.0
+offset_left = 186.0
 offset_top = 508.0
-offset_right = 280.0
-offset_bottom = 539.0
+offset_right = 363.0
+offset_bottom = 552.0
 theme_override_font_sizes/font_size = 26
 action_mode = 0
-text = "Next Bounty"
+text = "Start Hunting"
 
 [node name="Schmoney" type="Label" parent="Menu" unique_id=1737317461]
 layout_mode = 0

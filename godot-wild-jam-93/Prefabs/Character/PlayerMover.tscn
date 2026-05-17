@@ -12,9 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://cvrvaywdl8l2h" path="res://Prefabs/obstacle_spawner.tscn" id="8_nps1i"]
 [ext_resource type="Texture2D" uid="uid://bdmjjogc1b0ai" path="res://Assets/2D Art/UI Elements/HealthBorder.png" id="9_x5obf"]
 [ext_resource type="Texture2D" uid="uid://kf5ekuvanb24" path="res://Assets/2D Art/UI Elements/HealthBar.png" id="10_lspfa"]
+[ext_resource type="Texture2D" uid="uid://73oiviih377d" path="res://Assets/2D Art/Skyboxes/Space1.png" id="11_1cfkr"]
 [ext_resource type="Texture2D" uid="uid://bivqj3qotnhqm" path="res://Assets/2D Art/UI Elements/HealthHeart.png" id="11_8do11"]
 [ext_resource type="Texture2D" uid="uid://7de17oli20f4" path="res://Assets/2D Art/UI Elements/ScoreBar.png" id="12_8do11"]
 [ext_resource type="Script" uid="uid://cdre6l4bmjixt" path="res://Prefabs/Character/ScoreCounter.gd" id="13_nps1i"]
+[ext_resource type="Material" uid="uid://3rahdc7jteu" path="res://Shaders/Moving Stars.tres" id="16_x2pok"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jab5g"]
 size = Vector3(40, 20, 10)
@@ -40,6 +42,9 @@ texture_margin_right = 8.0
 texture_margin_bottom = 7.0
 axis_stretch_horizontal = 2
 region_rect = Rect2(-2, 0.99627686, 496, 139.00372)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1cfkr"]
+viewport_path = NodePath("MovingStars/SubViewport")
 
 [node name="Player Mover" type="Node3D" unique_id=1726655114]
 script = ExtResource("1_h6kcs")
@@ -292,6 +297,24 @@ script = ExtResource("13_nps1i")
 player = NodePath("../Player")
 
 [node name="Marker3D" type="Marker3D" parent="Obstacle Spawner" unique_id=1393777710]
+
+[node name="MovingStars" type="Sprite3D" parent="." unique_id=1065829199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5209664, -33.659714)
+pixel_size = 0.1
+texture = SubResource("ViewportTexture_1cfkr")
+
+[node name="SubViewport" type="SubViewport" parent="MovingStars" unique_id=2139255937]
+transparent_bg = true
+size = Vector2i(1149, 640)
+
+[node name="MovingStars" type="Sprite2D" parent="MovingStars/SubViewport" unique_id=1545015883]
+process_mode = 1
+process_priority = -5
+z_index = -10
+material = ExtResource("16_x2pok")
+position = Vector2(574.47144, 321.54654)
+scale = Vector2(0.28150806, 0.31391943)
+texture = ExtResource("11_1cfkr")
 
 [connection signal="area_entered" from="Camera3D/Transparent Detector" to="Camera3D" method="_on_transparent_detector_area_entered"]
 [connection signal="area_exited" from="Camera3D/Transparent Detector" to="Camera3D" method="_on_transparent_detector_area_exited"]

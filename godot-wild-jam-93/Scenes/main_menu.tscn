@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://330e5bhp0vpn"]
+
+[ext_resource type="Texture2D" uid="uid://7crlg4j8dhau" path="res://icon.svg" id="1_28flt"]
+[ext_resource type="Texture2D" uid="uid://73oiviih377d" path="res://Assets/2D Art/Skyboxes/Space1.png" id="1_ce3w2"]
+[ext_resource type="Script" uid="uid://decpxgsftgvib" path="res://Scripts/Managers/main_menu.gd" id="1_cp0ys"]
+[ext_resource type="Shader" uid="uid://d0fcxn7o1oywu" path="res://Shaders/Blur.gdshader" id="1_n45e2"]
+[ext_resource type="Texture2D" uid="uid://bij14e8gyhw2i" path="res://GWJ-Half-Logo-Orange.svg" id="2_48xlc"]
+[ext_resource type="PackedScene" uid="uid://c1e7jqeqxevrc" path="res://Scenes/MainMenuModel.tscn" id="3_1ehe0"]
+[ext_resource type="Shader" uid="uid://puw51383nhk8" path="res://Shaders/Warp.gdshader" id="3_opfnp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cp0ys"]
+shader = ExtResource("1_n45e2")
+shader_parameter/radius = 3.52
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_opfnp"]
+shader = ExtResource("3_opfnp")
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/pointColor = Color(1, 1, 1, 1)
+shader_parameter/pointSize = 1.30000001937156
+shader_parameter/layers = 50.0
+shader_parameter/layerPoints = 152.20000211895064
+shader_parameter/speed = 0.11999999731776
+shader_parameter/dotJitter = 8.0
+shader_parameter/BgColor = Color(0.06469653, 0.06469653, 0.06469653, 1)
+shader_parameter/opacity = 0.249999994412
+
+[node name="MainMenu" type="Control" unique_id=1786816826]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cp0ys")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=845804751]
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=482037717]
+material = SubResource("ShaderMaterial_cp0ys")
+position = Vector2(576, 324)
+scale = Vector2(0.28125, 0.31640622)
+texture = ExtResource("1_ce3w2")
+
+[node name="MovingStars" type="Sprite2D" parent="." unique_id=134473005]
+material = SubResource("ShaderMaterial_opfnp")
+position = Vector2(576, 324)
+scale = Vector2(0.28125, 0.31640622)
+texture = ExtResource("1_ce3w2")
+
+[node name="Title" type="Sprite2D" parent="." unique_id=572610318]
+position = Vector2(576, 224)
+scale = Vector2(3.6800025, 1)
+texture = ExtResource("1_28flt")
+
+[node name="StartButton" type="Button" parent="." unique_id=408540901]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 352.0
+offset_right = 656.0
+offset_bottom = 405.0
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="." unique_id=44819945]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 440.0
+offset_right = 656.0
+offset_bottom = 493.0
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[node name="WildJamLogo" type="Sprite2D" parent="." unique_id=651878238]
+position = Vector2(1080, 576)
+texture = ExtResource("2_48xlc")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=153802649]
+layout_mode = 0
+offset_left = -144.0
+offset_top = 200.0
+offset_right = 1776.0
+offset_bottom = 1280.0
+scale = Vector2(0.335, 0.335)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1056801399]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="MainMenuModel" parent="SubViewportContainer/SubViewport" unique_id=2067415844 instance=ExtResource("3_1ehe0")]
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

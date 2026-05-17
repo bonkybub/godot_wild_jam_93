@@ -24,7 +24,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ruj35")
 warp_rect = NodePath("CanvasLayer/ColorRect2")
-end_speed = 20.0
 hold_duration = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=92489765]

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c1e7jqeqxevrc"]
+
+[ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_base.tscn" id="1_a6qe0"]
+[ext_resource type="Script" uid="uid://bslmgxy200wk4" path="res://Scripts/Character/SimpleIdleScript.gd" id="2_b8ojk"]
+[ext_resource type="PackedScene" uid="uid://rblbredsrdbf" path="res://Assets/Models/Player/PlayerShip_Gears.glb" id="2_raa02"]
+
+[node name="MainMenuModelScene" type="Node3D" unique_id=2067415844]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=489717850]
+transform = Transform3D(-0.89757407, 0, 0.44086367, 0, 1, 0, -0.44086367, 0, -0.89757407, 2.886873, 0.17509103, -2.2954695)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=815083333]
+transform = Transform3D(0.6043072, -0.4451919, 0.6607701, 2.1804551e-08, 0.82933027, 0.5587588, -0.7967515, -0.3376619, 0.5011702, 1.5638789, 2.237438, 0.12934518)
+light_energy = 0.366
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1598953114]
+transform = Transform3D(0.35243353, -0.7806369, 0.5161362, 0.90570927, 0.1457059, -0.39807093, 0.2355447, 0.6077629, 0.7583819, 1.0278976, -2.4356527, 1.1058893)
+light_energy = 0.208
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="." unique_id=1293784391]
+transform = Transform3D(-0.7689758, 0.28285542, 0.57329667, 1.4901161e-08, 0.89678776, -0.4424609, -0.6392779, -0.34024167, -0.6896083, 1.0278976, -2.4356527, -3.541628)
+light_energy = 0.208
+
+[node name="PlayerShip_Base" parent="." unique_id=800243318 instance=ExtResource("1_a6qe0")]
+transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, 1.9567782, 0.052737594, -0.7773044)
+script = ExtResource("2_b8ojk")
+
+[node name="PlayerShip_Gears2" parent="PlayerShip_Base" unique_id=1115316752 instance=ExtResource("2_raa02")]
+transform = Transform3D(1.0759493, 0, 0, 0, 1.0759493, 0, 0, 0, 1.0759493, -0.23395339, -0.13351288, 0.19656324)
+visible = false
