@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="GodotWildJam93"
-run/main_scene="uid://58m50yobhbde"
+run/main_scene="uid://dm5pmd8bpcdha"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*uid://btdhy8mmmnynl"
+WarpTransition="*uid://ounlasrdiwom"
 
 [global_group]
 

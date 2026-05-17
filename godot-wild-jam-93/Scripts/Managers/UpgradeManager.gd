@@ -92,9 +92,9 @@ func update_ability_button(button: Button, is_unlocked: bool, cost: int) -> void
 
 func _on_bounty_button_1_pressed() -> void:
 	GameManager.select_bounty(GameManager.BountyType.THE_SHERIFF)
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	WarpTransition.transition_to_scene("res://Scenes/main.tscn")
 
 
 func _on_bounty_button_2_pressed() -> void:
 	GameManager.select_bounty(GameManager.BountyType.RATTLESNAKE)
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	WarpTransition.transition_to_scene("res://Scenes/main.tscn")

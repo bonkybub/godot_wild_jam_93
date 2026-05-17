@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bsaqeg5gb4ufy" path="res://Scripts/Character/player_mover.gd" id="1_h6kcs"]
 [ext_resource type="Script" uid="uid://7eqr2ek2diiy" path="res://Scripts/Character/player.gd" id="2_m8d34"]
-[ext_resource type="Script" uid="uid://doq586kb5lufk" path="res://Scripts/transparent_detector.gd" id="2_nps1i"]
-[ext_resource type="PackedScene" uid="uid://daa7jjb25yemr" path="res://Prefabs/Character/player_ship_base.tscn" id="3_n0k3k"]
+[ext_resource type="Script" path="res://Scripts/transparent_detector.gd" id="2_nps1i"]
+[ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_base.tscn" id="3_n0k3k"]
 [ext_resource type="PackedScene" uid="uid://d2fusol30m64f" path="res://Prefabs/Character/player_ship_gears.tscn" id="4_3nx7d"]
 [ext_resource type="Script" uid="uid://b2lcyk86ddd0j" path="res://Scripts/Character/gun.gd" id="5_x5obf"]
 [ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="6_lspfa"]
