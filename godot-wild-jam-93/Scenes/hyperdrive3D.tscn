@@ -1,19 +1,204 @@
 [gd_scene format=3 uid="uid://die3n8m7siurn"]
 
-[ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_base.tscn" id="2_ibn5c"]
+[ext_resource type="PackedScene" uid="uid://daa7jjb25yemr" path="res://Prefabs/Character/player_ship_base.tscn" id="2_ibn5c"]
 [ext_resource type="PackedScene" uid="uid://rblbredsrdbf" path="res://Assets/Models/Player/PlayerShip_Gears.glb" id="3_txvlk"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6jimf"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_txvlk"]
+sky_material = SubResource("ProceduralSkyMaterial_6jimf")
+
+[sub_resource type="Environment" id="Environment_vd280"]
+background_mode = 2
+sky = SubResource("Sky_txvlk")
+ambient_light_source = 2
+ambient_light_color = Color(0.4234012, 0.20333959, 0.45576447, 1)
+ambient_light_energy = 1.68
+tonemap_mode = 2
+
+[sub_resource type="Animation" id="Animation_6jimf"]
+resource_name = "LightMo9ve"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.22770114, 0.99),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3.2899826, 0.5427002, -5.9692826), Vector3(3.2899826, 0.5427002, 3.3818336), Vector3(3.2899826, 0.5427002, 3.3818336), Vector3(3.2899826, 0.5427002, 3.3818336)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.14000002, 0.28),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -5.86891), Vector3(0, 0, 3.065183)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OmniLight3D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.03333333, 0.28, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OmniLight3D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OmniLight3D3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4266667, 0.5666667, 0.91),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(2.625381, 1.2337058, -3.8060288), Vector3(2.625381, 1.2337058, 2.9805646), Vector3(2.625381, 1.2337058, 2.9805646)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OmniLight3D3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.29333335, 0.4, 0.6333333, 0.6833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_txvlk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.2899826, 0.5427002, -5.9692826)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OmniLight3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OmniLight3D2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OmniLight3D3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.625381, 1.2337058, -3.8060288)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OmniLight3D3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vd280"]
+_data = {
+&"LightMo9ve": SubResource("Animation_6jimf"),
+&"RESET": SubResource("Animation_txvlk")
+}
+
 [node name="HyperdriveScene" type="Node3D" unique_id=2067415844]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2057410199]
+transform = Transform3D(-0.99797976, -0.0635007, 0.0020282, -0.06333111, 0.99684364, 0.04787568, -0.005061938, 0.047650516, -0.99885124, 3.2899826, 0.5427002, -5.9692826)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=876765565]
+transform = Transform3D(-0.99797976, -0.0635007, 0.0020282, -0.06333111, 0.99684364, 0.04787568, -0.005061938, 0.047650516, -0.99885124, 0, 0, 0)
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="." unique_id=41123455]
+transform = Transform3D(-0.99797976, -0.0635007, 0.0020282, -0.06333111, 0.99684364, 0.04787568, -0.005061938, 0.047650516, -0.99885124, 2.625381, 1.2337058, -3.8060288)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2143369427]
+environment = SubResource("Environment_vd280")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=489717850]
 transform = Transform3D(0.70196664, 0, 0.7122098, 0, 1, 0, -0.7122098, 0, 0.70196664, 2.2826998, 0.53069603, 0.65859103)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=815083333]
-transform = Transform3D(0.6043072, -0.4451919, 0.6607701, 2.1804551e-08, 0.82933027, 0.5587588, -0.7967515, -0.3376619, 0.5011702, 1.5638789, 2.237438, 0.12934518)
+transform = Transform3D(-0.9979797, -0.06350072, 0.0020281847, -0.063331105, 0.99684364, 0.047875524, -0.0050619375, 0.047650516, -0.99885136, 1.5638789, 2.237438, 0.12934518)
 light_energy = 0.366
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1598953114]
 transform = Transform3D(0.35243353, -0.7806369, 0.5161362, 0.90570927, 0.1457059, -0.39807093, 0.2355447, 0.6077629, 0.7583819, 1.0278976, -2.4356527, 1.1058893)
+visible = false
 light_energy = 0.208
 
 [node name="DirectionalLight3D3" type="DirectionalLight3D" parent="." unique_id=1293784391]
@@ -26,3 +211,7 @@ transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, 1.9567782, 0.0527
 [node name="PlayerShip_Gears2" parent="PlayerShip_Base" unique_id=1115316752 instance=ExtResource("3_txvlk")]
 transform = Transform3D(1.0759493, 0, 0, 0, 1.0759493, 0, 0, 0, 1.0759493, -0.23395339, -0.13351288, 0.19656324)
 visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=904907440]
+libraries/ = SubResource("AnimationLibrary_vd280")
+autoplay = &"LightMo9ve"

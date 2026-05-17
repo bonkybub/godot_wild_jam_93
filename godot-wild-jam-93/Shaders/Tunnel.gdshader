@@ -7,8 +7,8 @@ uniform vec3 pointColor: source_color = vec3(1.0, 1.0, 1.0);
 uniform float pointSize: hint_range(0.0, 10.0, 0.1) = 1.0;
 uniform float layers: hint_range(1.0, 100.0, 1.0) = 50.0;
 uniform float layerPoints: hint_range(10.0, 200.0, 0.1) = 100.0;
-uniform float speed: hint_range(0.0, 10.0, 0.01) = 1.0;
-uniform float dotJitter: hint_range(0.0, 8.0, 0.1) = 1.2;
+uniform float speed: hint_range(0.0, 30.0, 0.01) = 1.0;
+uniform float dotJitter: hint_range(0.0, 10.0, 0.1) = 1.2;
 
 uniform vec3 BgColor: source_color = vec3(0,0,0);
 

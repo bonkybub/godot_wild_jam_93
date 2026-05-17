@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://j3f714e5236"]
+
+[ext_resource type="Texture2D" uid="uid://dal7gv0kw3bdm" path="res://Assets/2D Art/Particle Textures/flame_01_a.png" id="1_uqohd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbe5v"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_uqohd")
+billboard_mode = 2
+
+[sub_resource type="Curve" id="Curve_f2qqt"]
+_data = [Vector2(0, 0), 0.0, 17.19971, 0, 0, Vector2(0.16403785, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.5710318, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_61jn6"]
+curve = SubResource("Curve_f2qqt")
+
+[sub_resource type="Gradient" id="Gradient_ghnop"]
+offsets = PackedFloat32Array(0, 0.58762884, 0.68041235, 0.76632303)
+colors = PackedColorArray(1.2050446, 1.1062272, 0, 1, 0.95686275, 0.4392157, 0.02745098, 1, 1, 0.30588236, 0.039215688, 1, 0.14509805, 0, 0.039215688, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xflv7"]
+gradient = SubResource("Gradient_ghnop")
+
+[sub_resource type="Curve" id="Curve_uqohd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.76025236, 0), -1.280038, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hbe5v"]
+curve = SubResource("Curve_uqohd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1cvx2"]
+angle_min = -464.5
+angle_max = 384.00003
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 0.39997762
+gravity = Vector3(0, 0.1, 0.5)
+color_ramp = SubResource("GradientTexture1D_xflv7")
+alpha_curve = SubResource("CurveTexture_61jn6")
+emission_curve = SubResource("CurveTexture_hbe5v")
+
+[sub_resource type="QuadMesh" id="QuadMesh_sald0"]
+
+[node name="FireParticle" type="Node3D" unique_id=947522131]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=591662993]
+material_override = SubResource("StandardMaterial3D_hbe5v")
+amount = 30
+lifetime = 3.0
+preprocess = 1.0
+process_material = SubResource("ParticleProcessMaterial_1cvx2")
+draw_pass_1 = SubResource("QuadMesh_sald0")
