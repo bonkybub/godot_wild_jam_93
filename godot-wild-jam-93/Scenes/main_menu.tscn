@@ -1,12 +1,14 @@
-[gd_scene format=3 uid="uid://330e5bhp0vpn"]
+[gd_scene format=3 uid="uid://bhpxpff51f7wx"]
 
-[ext_resource type="Texture2D" uid="uid://7crlg4j8dhau" path="res://icon.svg" id="1_28flt"]
 [ext_resource type="Texture2D" uid="uid://73oiviih377d" path="res://Assets/2D Art/Skyboxes/Space1.png" id="1_ce3w2"]
-[ext_resource type="Script" uid="uid://decpxgsftgvib" path="res://Scripts/Managers/main_menu.gd" id="1_cp0ys"]
-[ext_resource type="Shader" uid="uid://d0fcxn7o1oywu" path="res://Shaders/Blur.gdshader" id="1_n45e2"]
+[ext_resource type="Script" path="res://Scripts/Managers/main_menu.gd" id="1_cp0ys"]
+[ext_resource type="Shader" path="res://Shaders/Blur.gdshader" id="1_n45e2"]
 [ext_resource type="Texture2D" uid="uid://bij14e8gyhw2i" path="res://GWJ-Half-Logo-Orange.svg" id="2_48xlc"]
-[ext_resource type="PackedScene" uid="uid://c1e7jqeqxevrc" path="res://Scenes/MainMenuModel.tscn" id="3_1ehe0"]
-[ext_resource type="Shader" uid="uid://puw51383nhk8" path="res://Shaders/Warp.gdshader" id="3_opfnp"]
+[ext_resource type="PackedScene" path="res://Scenes/MainMenuModel.tscn" id="3_1ehe0"]
+[ext_resource type="Shader" path="res://Shaders/Warp.gdshader" id="3_opfnp"]
+[ext_resource type="Texture2D" uid="uid://bky5q37rnk64j" path="res://Assets/2D Art/UI Elements/StartScreen.jpg" id="3_yhxw7"]
+[ext_resource type="Texture2D" uid="uid://y4yw4khyfa23" path="res://Assets/2D Art/Logos/GalacticWest_2.png" id="6_yhxw7"]
+[ext_resource type="PackedScene" uid="uid://c7e6yodfbb05y" path="res://Assets/2D Art/Logos/SplashScreen.tscn" id="9_trj04"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cp0ys"]
 shader = ExtResource("1_n45e2")
@@ -40,45 +42,52 @@ offset_right = 1152.0
 offset_bottom = 648.0
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=482037717]
+position = Vector2(576.37775, 323.9)
+scale = Vector2(0.3000926, 0.3000926)
+texture = ExtResource("3_yhxw7")
+
+[node name="Bg2" type="Sprite2D" parent="." unique_id=490005241]
+visible = false
 material = SubResource("ShaderMaterial_cp0ys")
-position = Vector2(576, 324)
-scale = Vector2(0.28125, 0.31640622)
-texture = ExtResource("1_ce3w2")
+position = Vector2(775.00006, -36)
+scale = Vector2(0.34, 0.34)
 
 [node name="MovingStars" type="Sprite2D" parent="." unique_id=134473005]
+visible = false
 material = SubResource("ShaderMaterial_opfnp")
 position = Vector2(576, 324)
 scale = Vector2(0.28125, 0.31640622)
 texture = ExtResource("1_ce3w2")
 
 [node name="Title" type="Sprite2D" parent="." unique_id=572610318]
-position = Vector2(576, 224)
-scale = Vector2(3.6800025, 1)
-texture = ExtResource("1_28flt")
+position = Vector2(819, 200)
+scale = Vector2(0.23730463, 0.23730469)
+texture = ExtResource("6_yhxw7")
 
 [node name="StartButton" type="Button" parent="." unique_id=408540901]
 layout_mode = 0
-offset_left = 496.0
-offset_top = 352.0
-offset_right = 656.0
-offset_bottom = 405.0
+offset_left = 732.52014
+offset_top = 326.0
+offset_right = 892.52014
+offset_bottom = 379.0
 theme_override_font_sizes/font_size = 32
 text = "Start"
 
 [node name="QuitButton" type="Button" parent="." unique_id=44819945]
 layout_mode = 0
-offset_left = 496.0
-offset_top = 440.0
-offset_right = 656.0
-offset_bottom = 493.0
+offset_left = 733.52014
+offset_top = 389.0
+offset_right = 893.52014
+offset_bottom = 442.0
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
 [node name="WildJamLogo" type="Sprite2D" parent="." unique_id=651878238]
-position = Vector2(1080, 576)
+position = Vector2(71, 59)
 texture = ExtResource("2_48xlc")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=153802649]
+visible = false
 layout_mode = 0
 offset_left = -144.0
 offset_top = 200.0
@@ -90,9 +99,11 @@ scale = Vector2(0.335, 0.335)
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1920, 1080)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="MainMenuModel" parent="SubViewportContainer/SubViewport" unique_id=2067415844 instance=ExtResource("3_1ehe0")]
+
+[node name="SplashScreen" parent="." unique_id=1837740727 instance=ExtResource("9_trj04")]
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

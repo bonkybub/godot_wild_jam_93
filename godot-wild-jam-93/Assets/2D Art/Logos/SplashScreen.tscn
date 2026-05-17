@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://c7e6yodfbb05y"]
+
+[ext_resource type="Texture2D" uid="uid://bpk7a2w1jbtsr" path="res://Assets/2D Art/Logos/GalacticWest_4.png" id="1_nb1tc"]
+
+[sub_resource type="Gradient" id="Gradient_6gxtn"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kcxmf"]
+gradient = SubResource("Gradient_6gxtn")
+
+[sub_resource type="Animation" id="Animation_q4og7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Back/Ship:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Back:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wpqtb"]
+resource_name = "SplashFade"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Back:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Back/Ship:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yml2l"]
+_data = {
+&"RESET": SubResource("Animation_q4og7"),
+&"SplashFade": SubResource("Animation_wpqtb")
+}
+
+[node name="SplashScreen" type="Node2D" unique_id=1837740727]
+
+[node name="Back" type="Sprite2D" parent="." unique_id=1422656447]
+position = Vector2(564.49994, 322.75)
+scale = Vector2(4.6054688, 646.5)
+texture = SubResource("GradientTexture1D_kcxmf")
+
+[node name="Ship" type="Sprite2D" parent="Back" unique_id=1382375935]
+position = Vector2(5.5369034, 0.012761027)
+scale = Vector2(0.0591338, 0.00042125117)
+texture = ExtResource("1_nb1tc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=388332530]
+libraries/ = SubResource("AnimationLibrary_yml2l")
+autoplay = &"SplashFade"
