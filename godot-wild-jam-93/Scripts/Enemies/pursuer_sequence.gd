@@ -32,6 +32,7 @@ func start_pursuers() -> void:
 	shooters.clear()
 	shooters = active_pursuers.duplicate()
 	while is_in_shoot_range():
+		if shooters.is_empty(): break
 		var shooter: Pursuer = shooters.pick_random()
 		shooters.remove_at(shooters.find(shooter))
 		if shooter != null:

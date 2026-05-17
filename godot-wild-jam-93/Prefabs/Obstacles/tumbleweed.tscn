@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://gm4gofx1qjb5" path="res://Assets/Textures/T_Tumbleweed/Tumbleweed_normal.png" id="4_w2hjh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bnw3w"]
+transparency = 1
+depth_draw_mode = 1
 albedo_texture = ExtResource("2_n2pus")
 metallic = 1.0
 metallic_texture = ExtResource("3_dy40o")

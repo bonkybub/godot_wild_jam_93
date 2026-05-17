@@ -53,6 +53,7 @@ func shoot() -> void:
 		await get_tree().process_frame
 	
 	for fire_location in fire_locations:
+		if spawner.player == null: break
 		var bullet: Projectile = bullet_obj.instantiate()
 		get_tree().current_scene.add_child(bullet)
 		bullet.add_to_group("enemy_projectile")

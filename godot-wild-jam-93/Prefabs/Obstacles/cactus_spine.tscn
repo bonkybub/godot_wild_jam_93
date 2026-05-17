@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://d4lwm6kgfk05w" path="res://Scripts/Obstacles/cactus_spine.gd" id="1_8km1c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8art5"]
+transparency = 1
+depth_draw_mode = 1
 albedo_color = Color(0.39607844, 0.6509804, 0.40392157, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pk570"]
@@ -44,7 +46,7 @@ transform = Transform3D(0.3, 0, 0, 0, -1.3113417e-08, -0.3, 0, 0.3, -1.3113417e-
 rotation_order = 0
 script = ExtResource("1_8km1c")
 
-[node name="Temp_Model" type="MeshInstance3D" parent="." unique_id=995092219]
+[node name="Model" type="MeshInstance3D" parent="." unique_id=995092219]
 transform = Transform3D(0.245, 0, 0, 0, -1.070929e-08, 0.245, 0, -0.245, -1.070929e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_8art5")
 mesh = SubResource("ArrayMesh_s3pju")

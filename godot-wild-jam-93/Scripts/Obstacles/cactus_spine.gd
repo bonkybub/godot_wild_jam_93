@@ -12,7 +12,6 @@ func _physics_process(_delta: float) -> void:
 	global_position += -transform.basis.z * SHOOT_SPEED
 
 func _on_body_entered(body: Node3D) -> void:
-	# TODO MATTHEW
 	# deal damage to enemy
 	if body is Enemy && body.is_in_group("enemy"):
 		(body as Enemy).damage_dealt(damage)

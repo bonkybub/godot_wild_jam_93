@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://ti4sp7ieqxxm" path="res://Assets/Textures/T_Cactus/Cacti_normal.png" id="5_2trpa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aitei"]
+transparency = 1
+depth_draw_mode = 1
 albedo_texture = ExtResource("3_cv17o")
 metallic = 1.0
 metallic_texture = ExtResource("4_273ji")

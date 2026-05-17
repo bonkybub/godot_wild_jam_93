@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bsaqeg5gb4ufy" path="res://Scripts/Character/player_mover.gd" id="1_h6kcs"]
 [ext_resource type="Script" uid="uid://7eqr2ek2diiy" path="res://Scripts/Character/player.gd" id="2_m8d34"]
-[ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_base.tscn" id="3_n0k3k"]
+[ext_resource type="Script" uid="uid://doq586kb5lufk" path="res://Scripts/transparent_detector.gd" id="2_nps1i"]
+[ext_resource type="PackedScene" uid="uid://daa7jjb25yemr" path="res://Prefabs/Character/player_ship_base.tscn" id="3_n0k3k"]
 [ext_resource type="PackedScene" uid="uid://d2fusol30m64f" path="res://Prefabs/Character/player_ship_gears.tscn" id="4_3nx7d"]
 [ext_resource type="Script" uid="uid://b2lcyk86ddd0j" path="res://Scripts/Character/gun.gd" id="5_x5obf"]
 [ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="6_lspfa"]
@@ -14,6 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://bivqj3qotnhqm" path="res://Assets/2D Art/UI Elements/HealthHeart.png" id="11_8do11"]
 [ext_resource type="Texture2D" uid="uid://7de17oli20f4" path="res://Assets/2D Art/UI Elements/ScoreBar.png" id="12_8do11"]
 [ext_resource type="Script" uid="uid://cdre6l4bmjixt" path="res://Prefabs/Character/ScoreCounter.gd" id="13_nps1i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jab5g"]
+size = Vector3(40, 20, 10)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_21xkr"]
 viewport_path = NodePath("Player Mover/Player/SubViewport")
@@ -42,8 +46,16 @@ script = ExtResource("1_h6kcs")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2097381706]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5.5)
+script = ExtResource("2_nps1i")
+
+[node name="Transparent Detector" type="Area3D" parent="Camera3D" unique_id=675080667]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/Transparent Detector" unique_id=647400333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.017456)
+shape = SubResource("BoxShape3D_jab5g")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1341499993]
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("2_m8d34")
 
@@ -280,3 +292,8 @@ script = ExtResource("13_nps1i")
 player = NodePath("../Player")
 
 [node name="Marker3D" type="Marker3D" parent="Obstacle Spawner" unique_id=1393777710]
+
+[connection signal="area_entered" from="Camera3D/Transparent Detector" to="Camera3D" method="_on_transparent_detector_area_entered"]
+[connection signal="area_exited" from="Camera3D/Transparent Detector" to="Camera3D" method="_on_transparent_detector_area_exited"]
+[connection signal="body_entered" from="Camera3D/Transparent Detector" to="Camera3D" method="_on_transparent_detector_body_entered"]
+[connection signal="body_exited" from="Camera3D/Transparent Detector" to="Camera3D" method="_on_transparent_detector_body_exited"]
