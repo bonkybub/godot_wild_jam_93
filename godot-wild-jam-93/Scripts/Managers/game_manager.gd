@@ -4,7 +4,7 @@ extends Node
 
 #region Player Values / Upgradeables
 var player_hp: int = 100
-var player_damage: int = 100
+var player_damage: int = 20
 var player_speed: int = 5
 
 var player_money: int = 1000
