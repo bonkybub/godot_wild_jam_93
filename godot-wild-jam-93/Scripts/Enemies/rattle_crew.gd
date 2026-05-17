@@ -5,6 +5,19 @@ extends Bounty
 @onready var laser: Area3D = $Laser
 @onready var laser_collider: CollisionShape3D = $"Laser/Laser Hitbox Collider"
 
+@export_category("State Chances")
+@export var base_fly_out_chance: float = 0.0
+@export var base_charge_chance: float = 0.1
+@export var base_laser_chance: float = 0.0
+@export var fly_out_chance_inc: float = 0.05
+@export var charge_chance_inc: float = 0.15
+@export var laser_chance_inc: float = 0.05
+@export var first_base_increment: float = 10.0
+@export var second_base_increment: float= 20.0
+var fly_out_chance: float
+var charge_chance: float
+var laser_chance: float
+
 @export_category("Movement")
 @export var centre_point: Node3D
 @export var enter_path: PathFollow3D
@@ -25,7 +38,7 @@ var cur_strafe_point: int = 0
 @export var strafe_shot_dmg: int = 10
 @export var strafe_shot_num: int = 3
 @export var strafe_shot_gap: float = 0.3
-@export var strafe_move_num: int = 4
+@export var strafe_move_num: int = 2
 @export var strafe_move_gap: float = 2.0
 
 @export_category("Charging")
@@ -48,6 +61,23 @@ var cur_strafe_point: int = 0
 @export var laser_mid_wait: float = 1.0
 @export var laser_end_wait: float = 3.0
 
+func _ready() -> void:
+	super()
+	
+	set_chances()
+	
+	await get_tree().create_timer(first_base_increment).timeout
+	
+	# increase base chances
+	base_charge_chance += charge_chance_inc
+	base_laser_chance += laser_chance_inc
+	
+	await get_tree().create_timer(second_base_increment).timeout
+	
+	# increase base chances
+	base_charge_chance += charge_chance_inc
+	base_laser_chance += laser_chance_inc
+
 func spawn() -> void:
 	position.z = base_z_pos
 	remove_child(paths)
@@ -57,6 +87,57 @@ func spawn() -> void:
 	laser.visible = false
 	laser_collider.disabled = true
 	await fly_out(false)
+	pick_state()
+
+func pick_state() -> void:
+	var rand: float = randf()
+	if rand < fly_out_chance:
+		# reset to base
+		fly_out_chance = base_fly_out_chance
+		set_chances()
+		
+		# perform state
+		await fly_out()
+		pick_state()
+	elif rand < laser_chance:
+		# reset to base
+		laser_chance = base_laser_chance
+		
+		# increase chance of other states
+		charge_chance += charge_chance_inc
+		fly_out_chance += fly_out_chance_inc
+		set_chances()
+		
+		# perform state
+		await laser_state()
+		pick_state()
+	elif rand < charge_chance:
+		# reset to base
+		charge_chance = base_charge_chance
+		
+		# increase chance of other states
+		laser_chance += laser_chance_inc
+		fly_out_chance += fly_out_chance_inc
+		set_chances()
+		
+		# perform state
+		await charge_state()
+		pick_state()
+	else:
+		# increase chance of other states
+		fly_out_chance += fly_out_chance_inc
+		laser_chance += laser_chance_inc
+		charge_chance += charge_chance_inc
+		set_chances()
+		
+		# perform state
+		await strafe_state()
+		pick_state()
+
+func set_chances() -> void:
+	fly_out_chance = base_fly_out_chance
+	laser_chance = base_laser_chance + fly_out_chance
+	charge_chance = base_charge_chance + laser_chance
 
 #region Path Movement
 func to_centre() -> void:
@@ -202,7 +283,7 @@ func to_charge_point() -> void:
 
 func charge_up_shot() -> void:
 	var timer: float = 0.0
-	var delta: float = get_physics_process_delta_time()
+	var delta: float = get_process_delta_time()
 	var blink_dur: float = (charge_up_time / charge_blink_num) / 2.0
 	var original_colour: Color = material.albedo_color
 	
@@ -210,14 +291,14 @@ func charge_up_shot() -> void:
 		# lerp to blink colour
 		timer = 0.0
 		while timer < blink_dur:
-			material.albedo_color = lerp(original_colour, charge_blink_colour, timer / charge_blink_num)
+			material.albedo_color = lerp(original_colour, charge_blink_colour, timer / blink_dur)
 			timer += delta
 			await get_tree().process_frame
 		
 		# lerp to original colour
 		timer = 0.0
 		while timer < blink_dur:
-			material.albedo_color = lerp(charge_blink_colour, original_colour, timer / charge_blink_num)
+			material.albedo_color = lerp(charge_blink_colour, original_colour, timer / blink_dur)
 			timer += delta
 			await get_tree().process_frame
 		

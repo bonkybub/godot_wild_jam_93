@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://bhpxpff51f7wx"]
+[gd_scene format=3 uid="uid://330e5bhp0vpn"]
 
 [ext_resource type="Texture2D" uid="uid://73oiviih377d" path="res://Assets/2D Art/Skyboxes/Space1.png" id="1_ce3w2"]
 [ext_resource type="Script" path="res://Scripts/Managers/main_menu.gd" id="1_cp0ys"]
 [ext_resource type="Shader" path="res://Shaders/Blur.gdshader" id="1_n45e2"]
 [ext_resource type="Texture2D" uid="uid://bij14e8gyhw2i" path="res://GWJ-Half-Logo-Orange.svg" id="2_48xlc"]
-[ext_resource type="PackedScene" path="res://Scenes/MainMenuModel.tscn" id="3_1ehe0"]
+[ext_resource type="PackedScene" uid="uid://c1e7jqeqxevrc" path="res://Scenes/MainMenuModel.tscn" id="3_1ehe0"]
 [ext_resource type="Shader" path="res://Shaders/Warp.gdshader" id="3_opfnp"]
 [ext_resource type="Texture2D" uid="uid://bky5q37rnk64j" path="res://Assets/2D Art/UI Elements/StartScreen.jpg" id="3_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://y4yw4khyfa23" path="res://Assets/2D Art/Logos/GalacticWest_2.png" id="6_yhxw7"]

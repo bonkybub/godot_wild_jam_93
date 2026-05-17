@@ -3,7 +3,7 @@ extends Path3D
 
 @export var pursuer_fly_spd: float = 15.0
 @export var pursuer_shoot_fly_spd: float = 3.0
-@export var pursuer_enter_gap: float = 0.1
+@export var pursuer_enter_gap: float = 0.2
 @export var pursuer_shoot_gap: float = 0.6
 @export var shoot_x_bounds: Vector2 = Vector2(-5.0, 5.0)
 

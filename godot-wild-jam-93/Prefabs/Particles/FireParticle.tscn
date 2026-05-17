@@ -9,14 +9,14 @@ albedo_texture = ExtResource("1_uqohd")
 billboard_mode = 2
 
 [sub_resource type="Curve" id="Curve_f2qqt"]
-_data = [Vector2(0, 0), 0.0, 17.19971, 0, 0, Vector2(0.16403785, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.5710318, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 17.19971, 0, 0, Vector2(0.16403785, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_61jn6"]
 curve = SubResource("Curve_f2qqt")
 
 [sub_resource type="Gradient" id="Gradient_ghnop"]
-offsets = PackedFloat32Array(0, 0.58762884, 0.68041235, 0.76632303)
+offsets = PackedFloat32Array(0, 0.2777778, 0.42592594, 0.7314815)
 colors = PackedColorArray(1.2050446, 1.1062272, 0, 1, 0.95686275, 0.4392157, 0.02745098, 1, 1, 0.30588236, 0.039215688, 1, 0.14509805, 0, 0.039215688, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xflv7"]

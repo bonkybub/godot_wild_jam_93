@@ -6,6 +6,9 @@ extends Node3D
 #region Bounty Values
 @export_category("Bounty Spawning")
 @export var bounty_obj: PackedScene
+@export var bounty_spawn_wait: float = 60.0
+@export var obstacle_spawn_mult: float = 3.0
+var bounty_arrived: bool = false
 var bounty_target: Bounty
 #endregion
 
@@ -41,7 +44,7 @@ var bandit_points: Array[Node3D]
 @export_category("Pursuer Spawning")
 @export var pursuer_obj: PackedScene
 @export var pursuer_paths: Array[PursuerSequence]
-@export var pursuer_start_wait: float = 4.0
+@export var pursuer_start_wait: float = 7.0
 @export var pursuer_spawn_min: int = 2
 @export var pursuer_spawn_max: int = 4
 @export var pursuer_spawn_gap: float = 3.0
@@ -70,21 +73,28 @@ var bandit_points: Array[Node3D]
 #endregion
 
 func _ready() -> void:
-	pass
-	#start_bandits()
-	#start_pursuers()
-	#start_cacti()
-	#start_tumbleweeds()
+	start_bandits()
+	start_pursuers()
+	start_cacti()
+	start_tumbleweeds()
 	
+	await get_tree().create_timer(bounty_spawn_wait).timeout
+	
+	bounty_target = bounty_obj.instantiate()
+	add_child(bounty_target)
+	bounty_target.spawner = self
+	await bounty_target.spawn()
+	cactus_spawn_gap *= obstacle_spawn_mult
+	tumbleweed_spawn_gap *= obstacle_spawn_mult
+	bounty_arrived = true
+
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("debug1") && bounty_target == null:
-		bounty_target = bounty_obj.instantiate()
-		add_child(bounty_target)
-		bounty_target.spawner = self
-		bounty_target.spawn()
-	
-	if Input.is_action_just_pressed("debug2") && bounty_target != null:
-		(bounty_target as RattleCrew).strafe_state()
+	pass
+	#if Input.is_action_just_pressed("debug1") && bounty_target == null:
+		#bounty_target = bounty_obj.instantiate()
+		#add_child(bounty_target)
+		#bounty_target.spawner = self
+		#bounty_target.spawn()
 
 func remove_from_path(path_follow: PathFollow3D, new_parent: Node3D, child: Node3D) -> void:
 	var pos: Vector3 = child.global_position
@@ -98,7 +108,7 @@ func remove_from_path(path_follow: PathFollow3D, new_parent: Node3D, child: Node
 func start_bandits() -> void:
 	await get_tree().create_timer(bandit_pre_wait).timeout
 	
-	while (true):
+	while !bounty_arrived:
 		await bandit_cycle()
 		await get_tree().create_timer(bandit_spawn_gap).timeout
 
@@ -225,7 +235,7 @@ func despawn_bandit(path_follow: PathFollow3D) -> void:
 func start_pursuers() -> void:
 	await get_tree().create_timer(pursuer_start_wait).timeout
 	
-	while true:
+	while !bounty_arrived:
 		var path_id: int = randi_range(0, pursuer_paths.size() - 1)
 		var path: PursuerSequence = pursuer_paths[path_id]
 		path.setup_position()

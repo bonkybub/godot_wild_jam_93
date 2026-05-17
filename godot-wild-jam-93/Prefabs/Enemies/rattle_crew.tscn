@@ -1,12 +1,13 @@
 [gd_scene format=4 uid="uid://cktvrny32dghg"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/rattle_crew.gd" id="1_he8eh"]
+[ext_resource type="Script" uid="uid://dx763r6k4oyd8" path="res://Scripts/Enemies/rattle_crew.gd" id="1_he8eh"]
 [ext_resource type="Texture2D" uid="uid://ja600cjnfube" path="res://Assets/Textures/Enemies/SnakeEnemy/SnakeEnemy_baseColor.png" id="2_1gnij"]
 [ext_resource type="PackedScene" uid="uid://b7l3wf1vcyu5v" path="res://Prefabs/Bullet/rattle_crew_strafe_bullet.tscn" id="2_1o08m"]
 [ext_resource type="PackedScene" uid="uid://dwog7tha88jgi" path="res://Prefabs/Particles/explosion.tscn" id="2_68q70"]
 [ext_resource type="PackedScene" uid="uid://btafbtlkkvmtg" path="res://Prefabs/Bullet/rattle_crew_charge_bullet.tscn" id="3_1o08m"]
 [ext_resource type="Texture2D" uid="uid://b1vfnhc1s4gnq" path="res://Assets/Textures/Enemies/SnakeEnemy/SnakeEnemy_occlusionRoughnessMetallic.png" id="3_68q70"]
 [ext_resource type="Texture2D" uid="uid://dowj4wxgfxbio" path="res://Assets/Textures/Enemies/SnakeEnemy/SnakeEnemy_normal.png" id="4_1o08m"]
+[ext_resource type="PackedScene" uid="uid://j3f714e5236" path="res://Prefabs/Particles/FireParticle.tscn" id="8_18pgd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18pgd"]
 albedo_color = Color(0.99215686, 1, 1, 1)
@@ -57,6 +58,40 @@ shadow_mesh = SubResource("ArrayMesh_x4uym")
 [sub_resource type="BoxShape3D" id="BoxShape3D_m28cm"]
 size = Vector3(7, 4.3, 14.237)
 
+[sub_resource type="Curve" id="Curve_f2qqt"]
+_data = [Vector2(0, 0), 0.0, 17.19971, 0, 0, Vector2(0.16403785, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_61jn6"]
+curve = SubResource("Curve_f2qqt")
+
+[sub_resource type="Gradient" id="Gradient_ghnop"]
+offsets = PackedFloat32Array(0, 0.2777778, 0.42592594, 0.7314815)
+colors = PackedColorArray(1.2050446, 1.1062272, 0, 1, 0.95686275, 0.4392157, 0.02745098, 1, 1, 0.30588236, 0.039215688, 1, 0.14509805, 0, 0.039215688, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xflv7"]
+gradient = SubResource("Gradient_ghnop")
+
+[sub_resource type="Curve" id="Curve_uqohd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.76025236, 0), -1.280038, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hbe5v"]
+curve = SubResource("Curve_uqohd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ic5ij"]
+angle_min = -464.5
+angle_max = 384.00003
+direction = Vector3(0, 0, 0)
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 0.39997762
+gravity = Vector3(0, 0, 2.505)
+scale_min = 4.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_xflv7")
+alpha_curve = SubResource("CurveTexture_61jn6")
+emission_curve = SubResource("CurveTexture_hbe5v")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1o08m"]
 albedo_color = Color(1, 0, 0, 1)
 
@@ -92,14 +127,14 @@ point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_1o08m"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, -20, 0, 45, 20, -10, 0, 0, 0, 0, 0, 0, -80, -20, 0),
+"points": PackedVector3Array(0, 0, 0, 0, -20, 0, 50, 20, -10, 0, 0, 0, 0, 0, 0, -80, -20, 0),
 "tilts": PackedFloat32Array(3.1415927, 3.1415927)
 }
 point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_18pgd"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, -20, 0, -45, 30, -10, 0, 0, 0, 0, 0, 0, 80, -10, 0),
+"points": PackedVector3Array(0, 0, 0, 0, -20, 0, -50, 30, -10, 0, 0, 0, 0, 0, 0, 80, -10, 0),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -119,7 +154,7 @@ charge_shot_obj = ExtResource("3_1o08m")
 laser_point_1 = NodePath("Paths/Laser Point 1")
 laser_point_2 = NodePath("Paths/Laser Point 2")
 fire_locations = [NodePath("Fire Location")]
-max_health = 1500
+max_health = 10000
 mesh = NodePath("Model")
 explosion = ExtResource("2_68q70")
 
@@ -137,6 +172,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8276486, 7.1755543)
 [node name="Laser" type="Area3D" parent="." unique_id=801288679]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8276486, 7.1755543)
 collision_layer = 4
+
+[node name="FireParticle" parent="Laser" unique_id=947522131 instance=ExtResource("8_18pgd")]
+transform = Transform3D(2.3526635, 0.036178224, 0, -0.036178224, 2.3526635, 0, 0, 0, 2.3529413, 0, 0, 0.1235857)
+visible = false
+
+[node name="GPUParticles3D" parent="Laser/FireParticle" index="0" unique_id=591662993]
+amount = 100
+lifetime = 13.6
+speed_scale = 15.0
+process_material = SubResource("ParticleProcessMaterial_ic5ij")
 
 [node name="Laser Model" type="MeshInstance3D" parent="Laser" unique_id=549429992]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 5.926258)
@@ -209,16 +254,18 @@ loop = false
 curve = SubResource("Curve3D_1o08m")
 
 [node name="Fly Path Follow 1" type="PathFollow3D" parent="Paths/Fly Path 1" unique_id=1383954313]
-transform = Transform3D(1.3113412e-07, -0.99999964, -4.3711374e-08, 0, -4.3711374e-08, 0.99999964, -0.99999964, -1.3113412e-07, -5.7320545e-15, 45, 20, -10)
+transform = Transform3D(1.3113412e-07, -0.99999964, -4.3711374e-08, 0, -4.3711374e-08, 0.99999964, -0.99999964, -1.3113412e-07, -5.7320545e-15, 50, 20, -10)
 loop = false
 
 [node name="Fly Path 2" type="Path3D" parent="Paths" unique_id=1651785447]
 curve = SubResource("Curve3D_18pgd")
 
 [node name="Fly Path Follow 2" type="PathFollow3D" parent="Paths/Fly Path 2" unique_id=1704869530]
-transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, -45, 30, -10)
+transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, -50, 30, -10)
 loop = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1051890207]
 
 [connection signal="body_entered" from="Laser" to="." method="_on_laser_body_entered"]
+
+[editable path="Laser/FireParticle"]
