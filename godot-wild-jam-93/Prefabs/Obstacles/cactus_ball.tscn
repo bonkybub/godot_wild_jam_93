@@ -63,6 +63,7 @@ radius = 15.0
 [node name="Cactus Ball" type="Area3D" unique_id=1430593807]
 script = ExtResource("1_pqw3e")
 spine_obj = ExtResource("2_sygck")
+damage = 5
 
 [node name="Model" type="MeshInstance3D" parent="." unique_id=1504137259]
 transform = Transform3D(0.376, 0, 0, 0, 0.376, 0, 0, 0, 0.376, 0, 0, 0)

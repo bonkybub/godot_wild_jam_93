@@ -24,10 +24,11 @@ var is_transitioning: bool = false
 
 func _ready() -> void:
 
-	warp_material = warp_rect.material as ShaderMaterial
-
-	warp_rect.visible = false
-	_set_shader_values(0.0, start_speed)
+	if warp_rect != null: 
+		warp_material = warp_rect.material as ShaderMaterial
+		
+		warp_rect.visible = false
+		_set_shader_values(0.0, start_speed)
 
 
 func transition_to_scene(scene_path: String) -> void:

@@ -57,6 +57,7 @@ radius = 0.7
 
 [node name="Tumbleweed" type="Area3D" unique_id=706673517]
 script = ExtResource("1_10j0r")
+damage = 5
 death_pop_scale = 1.2
 
 [node name="Model" type="MeshInstance3D" parent="." unique_id=1631959475]

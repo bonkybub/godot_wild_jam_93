@@ -265,7 +265,7 @@ func triple_shot() -> void:
 #region Charge Shooting
 func charge_state() -> void:
 	await to_charge_point()
-	await charge_up_shot()
+	#await charge_up_shot()
 	await shoot_charge_shot()
 	await to_centre()
 

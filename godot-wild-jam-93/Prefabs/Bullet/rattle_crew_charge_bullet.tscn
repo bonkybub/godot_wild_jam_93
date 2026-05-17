@@ -10,7 +10,7 @@ emission_energy_multiplier = 0.0
 
 [node name="Rattle Crew Charge Bullet" unique_id=32327012 instance=ExtResource("1_r26pq")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
-speed = 80.0
+speed = 120.0
 
 [node name="MeshInstance3D" parent="." index="0" unique_id=1121867824]
 surface_material_override/0 = SubResource("StandardMaterial3D_r26pq")
