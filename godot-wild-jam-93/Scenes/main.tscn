@@ -70,7 +70,7 @@ spot_angle_attenuation = 0.9330351
 
 [node name="Player Mover" parent="." unique_id=1726655114 instance=ExtResource("3_kry3j")]
 
-[node name="HealthBar" parent="Player Mover/Player/PlayerShip_Base" parent_id_path=PackedInt32Array(1726655114, 800243318) index="13" unique_id=1765899305]
+[node name="HealthBar" parent="Player Mover/Player/PlayerShip_Base" parent_id_path=PackedInt32Array(1726655114, 800243318) index="14" unique_id=1765899305]
 texture = SubResource("ViewportTexture_8gbba")
 
 [node name="MovingStars" parent="Player Mover" index="3" unique_id=1065829199]

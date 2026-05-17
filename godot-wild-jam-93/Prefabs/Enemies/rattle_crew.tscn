@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cktvrny32dghg"]
 
-[ext_resource type="Script" uid="uid://dx763r6k4oyd8" path="res://Scripts/Enemies/rattle_crew.gd" id="1_he8eh"]
+[ext_resource type="Script" path="res://Scripts/Enemies/rattle_crew.gd" id="1_he8eh"]
 [ext_resource type="Texture2D" uid="uid://ja600cjnfube" path="res://Assets/Textures/Enemies/SnakeEnemy/SnakeEnemy_baseColor.png" id="2_1gnij"]
 [ext_resource type="PackedScene" uid="uid://b7l3wf1vcyu5v" path="res://Prefabs/Bullet/rattle_crew_strafe_bullet.tscn" id="2_1o08m"]
 [ext_resource type="PackedScene" uid="uid://dwog7tha88jgi" path="res://Prefabs/Particles/explosion.tscn" id="2_68q70"]
@@ -119,7 +119,7 @@ charge_shot_obj = ExtResource("3_1o08m")
 laser_point_1 = NodePath("Paths/Laser Point 1")
 laser_point_2 = NodePath("Paths/Laser Point 2")
 fire_locations = [NodePath("Fire Location")]
-max_health = 1000
+max_health = 1500
 mesh = NodePath("Model")
 explosion = ExtResource("2_68q70")
 

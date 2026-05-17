@@ -15,8 +15,9 @@ var current_health: int
 @export var fire_scale: float = 1.3
 @export var mesh: GeometryInstance3D
 @export var hit_colour: Color = Color.DARK_RED
-@export var hit_pop_dur: float = 0.2
+@export var hit_pop_dur: float = 0.1
 @export var hit_pop_scale: float = 1.2
+var taking_damage: bool = false
 
 @export_category("Death Pop")
 @export var death_pop_dur: float = 0.1
@@ -91,15 +92,26 @@ func damage_dealt(dmg: int) -> void:
 		death()
 		return
 	
-	while (timer < death_pop_dur):
-		if timer / death_pop_dur <= 0.5:
-			scale = lerp(start_scale, end_scale, timer / (death_pop_dur * 0.5))
-		else:
-			scale = lerp(end_scale, start_scale, timer / (death_pop_dur * 0.5))
+	if taking_damage: return
+	
+	taking_damage = true
+	
+	# grow
+	while timer < hit_pop_dur:
+		scale = lerp(start_scale, end_scale, timer / hit_pop_dur)
+		timer += delta
+		await get_tree().process_frame
+	
+	timer = 0.0
+	
+	# shrink
+	while timer < hit_pop_dur:
+		scale = lerp(end_scale, start_scale, timer / hit_pop_dur)
 		timer += delta
 		await get_tree().process_frame
 	
 	# set back to original values
+	taking_damage = false
 	scale = start_scale
 	if material is StandardMaterial3D:
 		material.albedo_color = original_colour

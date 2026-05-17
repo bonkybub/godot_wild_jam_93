@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bsaqeg5gb4ufy" path="res://Scripts/Character/player_mover.gd" id="1_h6kcs"]
 [ext_resource type="Script" uid="uid://7eqr2ek2diiy" path="res://Scripts/Character/player.gd" id="2_m8d34"]
-[ext_resource type="Script" path="res://Scripts/transparent_detector.gd" id="2_nps1i"]
+[ext_resource type="Script" uid="uid://doq586kb5lufk" path="res://Scripts/transparent_detector.gd" id="2_nps1i"]
 [ext_resource type="PackedScene" uid="uid://daa7jjb25yemr" path="res://Prefabs/Character/player_ship_base.tscn" id="3_n0k3k"]
 [ext_resource type="PackedScene" uid="uid://d2fusol30m64f" path="res://Prefabs/Character/player_ship_gears.tscn" id="4_3nx7d"]
 [ext_resource type="Script" uid="uid://b2lcyk86ddd0j" path="res://Scripts/Character/gun.gd" id="5_x5obf"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://73oiviih377d" path="res://Assets/2D Art/Skyboxes/Space1.png" id="11_1cfkr"]
 [ext_resource type="Texture2D" uid="uid://bivqj3qotnhqm" path="res://Assets/2D Art/UI Elements/HealthHeart.png" id="11_8do11"]
 [ext_resource type="Texture2D" uid="uid://7de17oli20f4" path="res://Assets/2D Art/UI Elements/ScoreBar.png" id="12_8do11"]
-[ext_resource type="Script" path="res://Prefabs/Character/ScoreCounter.gd" id="13_nps1i"]
+[ext_resource type="Script" uid="uid://cdre6l4bmjixt" path="res://Prefabs/Character/ScoreCounter.gd" id="13_nps1i"]
 [ext_resource type="Material" uid="uid://3rahdc7jteu" path="res://Shaders/Moving Stars.tres" id="16_x2pok"]
 [ext_resource type="PackedScene" uid="uid://j3f714e5236" path="res://Prefabs/Particles/FireParticle.tscn" id="18_1cfkr"]
 
@@ -67,6 +67,9 @@ script = ExtResource("2_m8d34")
 
 [node name="PlayerShip_Base" parent="Player" unique_id=800243318 instance=ExtResource("3_n0k3k")]
 transform = Transform3D(0.425, 0, 0, 0, 0.425, 0, 0, 0, 0.425, 0, 0, 0)
+
+[node name="FireParticle" parent="Player/PlayerShip_Base" unique_id=947522131 instance=ExtResource("18_1cfkr")]
+transform = Transform3D(2.3526633, 0.036178224, 0, -0.036178224, 2.3526633, 0, 0, 0, 2.3529413, 0, 0, 2.7219574)
 
 [node name="PlayerShip_Gears" parent="Player/PlayerShip_Base" unique_id=1097901117 instance=ExtResource("4_3nx7d")]
 
@@ -316,9 +319,6 @@ material = ExtResource("16_x2pok")
 position = Vector2(574.47144, 321.54654)
 scale = Vector2(0.28150806, 0.31391943)
 texture = ExtResource("11_1cfkr")
-
-[node name="FireParticle" parent="." unique_id=947522131 instance=ExtResource("18_1cfkr")]
-transform = Transform3D(0.9998818, 0.015375745, 0, -0.015375745, 0.9998818, 0, 0, 0, 1, 0, 0, 1.1568319)
 
 [connection signal="area_entered" from="Camera3D/Transparent Detector" to="Camera3D" method="_on_transparent_detector_area_entered"]
 [connection signal="area_exited" from="Camera3D/Transparent Detector" to="Camera3D" method="_on_transparent_detector_area_exited"]
