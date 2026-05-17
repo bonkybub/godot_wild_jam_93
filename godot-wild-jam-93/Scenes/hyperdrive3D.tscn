@@ -1,34 +1,12 @@
 [gd_scene format=3 uid="uid://die3n8m7siurn"]
 
-[ext_resource type="PackedScene" uid="uid://dgflub4bswme6" path="res://Prefabs/Character/player.tscn" id="1_u2rs1"]
 [ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_base.tscn" id="2_ibn5c"]
 [ext_resource type="PackedScene" uid="uid://rblbredsrdbf" path="res://Assets/Models/Player/PlayerShip_Gears.glb" id="3_txvlk"]
-[ext_resource type="PackedScene" uid="uid://d2fusol30m64f" path="res://Prefabs/Character/player_ship_gears.tscn" id="4_vd280"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_6jimf"]
-viewport_path = NodePath("Player Mover/Player/SubViewport")
 
 [node name="HyperdriveScene" type="Node3D" unique_id=2067415844]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=489717850]
 transform = Transform3D(0.70196664, 0, 0.7122098, 0, 1, 0, -0.7122098, 0, 0.70196664, 2.2826998, 0.53069603, 0.65859103)
-
-[node name="Player" parent="." unique_id=1017656907 instance=ExtResource("1_u2rs1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12945509, 0, -0.6996619)
-visible = false
-script = null
-
-[node name="HealthBar" parent="Player/PlayerShip_Base" parent_id_path=PackedInt32Array(1017656907, 2088026183) index="13" unique_id=1759192094]
-texture = SubResource("ViewportTexture_6jimf")
-
-[node name="AimReticle" parent="Player" index="2" unique_id=1860672117]
-visible = false
-
-[node name="PlayerUI" parent="Player" index="3" unique_id=1797164107]
-visible = false
-
-[node name="HealthBar" parent="Player/PlayerUI" index="0" unique_id=405160191]
-visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=815083333]
 transform = Transform3D(0.6043072, -0.4451919, 0.6607701, 2.1804551e-08, 0.82933027, 0.5587588, -0.7967515, -0.3376619, 0.5011702, 1.5638789, 2.237438, 0.12934518)
@@ -48,8 +26,3 @@ transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, 1.9567782, 0.0527
 [node name="PlayerShip_Gears2" parent="PlayerShip_Base" unique_id=1115316752 instance=ExtResource("3_txvlk")]
 transform = Transform3D(1.0759493, 0, 0, 0, 1.0759493, 0, 0, 0, 1.0759493, -0.23395339, -0.13351288, 0.19656324)
 visible = false
-
-[node name="PlayerShip_Gears" parent="PlayerShip_Base" unique_id=1097901117 instance=ExtResource("4_vd280")]
-transform = Transform3D(0.9999997, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, 0.011108875, 0.10381366, -0.04204774)
-
-[editable path="Player"]

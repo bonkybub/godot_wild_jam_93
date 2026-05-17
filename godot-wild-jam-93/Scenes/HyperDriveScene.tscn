@@ -71,7 +71,7 @@ visible = false
 transform = Transform3D(0.5034266, 7.0547684e-10, 0.039832722, 0.002773736, 0.50377417, -0.03505592, -0.03973603, 0.03516548, 0.5022046, 0.29809892, 0.03958869, -0.79745984)
 script = ExtResource("3_c3dsn")
 
-[node name="PlayerShip_Gears" parent="SubViewportContainer/SubViewport/HyperdriveScene/PlayerShip_Base" index="10" unique_id=1097901117 instance=ExtResource("4_esk3c")]
+[node name="PlayerShip_Gears3" parent="SubViewportContainer/SubViewport/HyperdriveScene/PlayerShip_Base" index="10" unique_id=1097901117 instance=ExtResource("4_esk3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013155289, 5.820766e-11)
 
 [node name="Menu" type="Control" parent="." unique_id=385068212]
