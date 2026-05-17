@@ -13,7 +13,7 @@ shader_parameter/layerPoints = 102.10000137240053
 shader_parameter/speed = 1.0999999754128
 shader_parameter/dotJitter = 8.0
 shader_parameter/BgColor = Color(0.02111905, 0.0033062915, 0, 1)
-shader_parameter/opacity = 0.0
+shader_parameter/opacity = 0.999999977648
 
 [node name="WarpTransition" type="Control" unique_id=1980386219 node_paths=PackedStringArray("warp_rect")]
 layout_mode = 3
@@ -32,4 +32,4 @@ hold_duration = 1.0
 material = SubResource("ShaderMaterial_ruj35")
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(1, 1, 1, 0)
+color = Color(0, 0, 0, 1)

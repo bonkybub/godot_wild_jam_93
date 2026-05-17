@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*uid://btdhy8mmmnynl"
 WarpTransition="*uid://tb5xsp2odibx"
+GameEndManager="*uid://ciybm51i4g43o"
 
 [global_group]
 

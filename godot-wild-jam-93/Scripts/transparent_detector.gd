@@ -28,6 +28,13 @@ func _on_transparent_detector_area_exited(area: Area3D) -> void:
 		close_objects.remove_at(close_objects.find(area))
 
 func manage_transparency(obj: Node3D) -> void:
+	if obj == null:
+		return
+	
+	var tree := get_tree()
+	if tree == null:
+		return
+	
 	close_objects.push_back(obj)
 	
 	var mesh: GeometryInstance3D
@@ -40,10 +47,11 @@ func manage_transparency(obj: Node3D) -> void:
 	var material: StandardMaterial3D = mesh.material_override.duplicate()
 	mesh.material_override = material
 	
-	while close_objects.has(obj):
+	while is_inside_tree() && is_instance_valid(obj) && close_objects.has(obj):
 		var z_diff: float = abs(global_position.z - obj.global_position.z)
 		var z_ratio: float = (z_diff - transparent_dist) / dist_range
 		material.albedo_color.a = lerp(0.0, 1.0, z_ratio)
-		await get_tree().process_frame
+		
+		await tree.process_frame
 	
 	material.albedo_color.a = 1.0

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bsaqeg5gb4ufy" path="res://Scripts/Character/player_mover.gd" id="1_h6kcs"]
 [ext_resource type="Script" uid="uid://7eqr2ek2diiy" path="res://Scripts/Character/player.gd" id="2_m8d34"]
 [ext_resource type="Script" uid="uid://doq586kb5lufk" path="res://Scripts/transparent_detector.gd" id="2_nps1i"]
-[ext_resource type="PackedScene" uid="uid://daa7jjb25yemr" path="res://Prefabs/Character/player_ship_base.tscn" id="3_n0k3k"]
+[ext_resource type="PackedScene" path="res://Prefabs/Character/player_ship_base.tscn" id="3_n0k3k"]
 [ext_resource type="PackedScene" uid="uid://d2fusol30m64f" path="res://Prefabs/Character/player_ship_gears.tscn" id="4_3nx7d"]
 [ext_resource type="Script" uid="uid://b2lcyk86ddd0j" path="res://Scripts/Character/gun.gd" id="5_x5obf"]
 [ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="6_lspfa"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://cdre6l4bmjixt" path="res://Prefabs/Character/ScoreCounter.gd" id="13_nps1i"]
 [ext_resource type="Material" uid="uid://3rahdc7jteu" path="res://Shaders/Moving Stars.tres" id="16_x2pok"]
 [ext_resource type="PackedScene" uid="uid://j3f714e5236" path="res://Prefabs/Particles/FireParticle.tscn" id="18_1cfkr"]
+[ext_resource type="PackedScene" uid="uid://ciybm51i4g43o" path="res://Scenes/ModelScenes/death_win_screen.tscn" id="19_bhewb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jab5g"]
 size = Vector3(40, 20, 10)
@@ -124,6 +125,13 @@ script = ExtResource("7_8do11")
 warning_stick = NodePath("../WarningStick")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=869061643]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.007844925, -0.01758653, 0.11399095)
+shape = SubResource("CapsuleShape3D_hptm8")
+
+[node name="Area3D" type="Area3D" parent="Player" unique_id=208003736]
+collision_layer = 9
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Player/Area3D" unique_id=937177774]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.007844925, -0.01758653, 0.11399095)
 shape = SubResource("CapsuleShape3D_hptm8")
 
@@ -319,6 +327,8 @@ material = ExtResource("16_x2pok")
 position = Vector2(574.47144, 321.54654)
 scale = Vector2(0.28150806, 0.31391943)
 texture = ExtResource("11_1cfkr")
+
+[node name="Death_Win Screen" parent="." unique_id=401075117 instance=ExtResource("19_bhewb")]
 
 [connection signal="area_entered" from="Camera3D/Transparent Detector" to="Camera3D" method="_on_transparent_detector_area_entered"]
 [connection signal="area_exited" from="Camera3D/Transparent Detector" to="Camera3D" method="_on_transparent_detector_area_exited"]

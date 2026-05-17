@@ -1,7 +1,6 @@
 extends Control
 
 #region References
-@onready var player: Node3D = $"../Player Mover/Player"
 
 @onready var HpLabel: Label = $Upgrades/Health/HpLabel
 @onready var HpButton: Button = $Upgrades/Health/HpUpgrade

@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://ciybm51i4g43o"]
+
+[ext_resource type="Script" uid="uid://d2fcnbk0c2vqy" path="res://Scripts/GameEndManager.gd" id="1_2ojl1"]
+[ext_resource type="Texture2D" uid="uid://c3p61t2aqad2r" path="res://Assets/2D Art/UI Elements/Plank1_Base.png" id="2_04bfs"]
+[ext_resource type="FontFile" uid="uid://c3nnbv3wu2v0i" path="res://Assets/2D Art/UI Elements/Start Menu Buttons/SHADSER.TTF" id="3_yneoq"]
+[ext_resource type="Texture2D" uid="uid://cblxe0y6hwxu3" path="res://Assets/2D Art/UI Elements/Start Menu Buttons/Plank2_Base.png" id="4_gkh2e"]
+[ext_resource type="Texture2D" uid="uid://b578hfj83cvns" path="res://Assets/2D Art/UI Elements/Start Menu Buttons/Plank2_Select.png" id="5_xknuc"]
+[ext_resource type="Texture2D" uid="uid://dr4obkwlxphbr" path="res://Assets/2D Art/UI Elements/Start Menu Buttons/Plank2_Hover.png" id="6_hn3p5"]
+[ext_resource type="Texture2D" uid="uid://bpk7a2w1jbtsr" path="res://Assets/2D Art/Logos/GalacticWest_4.png" id="7_2eodg"]
+[ext_resource type="Texture2D" uid="uid://y4yw4khyfa23" path="res://Assets/2D Art/Logos/GalacticWest_2.png" id="8_c33fw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tfit5"]
+texture = ExtResource("4_gkh2e")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t5itb"]
+texture = ExtResource("5_xknuc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gilco"]
+texture = ExtResource("6_hn3p5")
+
+[node name="Death_Win Screen" type="CanvasLayer" unique_id=401075117]
+process_mode = 3
+script = ExtResource("1_2ojl1")
+
+[node name="Death" type="CanvasLayer" parent="." unique_id=1489111315]
+
+[node name="DeathScreen" type="SubViewportContainer" parent="Death" unique_id=1220159110]
+process_mode = 3
+offset_right = 1152.0
+offset_bottom = 647.0
+
+[node name="SubViewport" type="SubViewport" parent="Death/DeathScreen" unique_id=1575639063]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 647)
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="Death/DeathScreen/SubViewport" unique_id=1252690342]
+offset_top = -1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.69803923)
+
+[node name="Plank1Base" type="Sprite2D" parent="Death/DeathScreen/SubViewport" unique_id=701039665]
+position = Vector2(569, 201.99997)
+scale = Vector2(0.3008, 0.235)
+texture = ExtResource("2_04bfs")
+
+[node name="DeathLabel" type="Label" parent="Death/DeathScreen/SubViewport" unique_id=1149895109]
+offset_left = 143.0
+offset_top = 117.000015
+offset_right = 981.0
+offset_bottom = 210.00002
+scale = Vector2(1, 1.8399999)
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_yneoq")
+theme_override_font_sizes/font_size = 21
+text = "The Rattler takes another"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathButton" type="Button" parent="Death/DeathScreen/SubViewport" unique_id=778070275]
+offset_left = 353.0
+offset_top = 382.0
+offset_right = 825.0
+offset_bottom = 473.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_yneoq")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxTexture_tfit5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_t5itb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gilco")
+text = "Return To Menu"
+
+[node name="GalacticWest4" type="Sprite2D" parent="Death/DeathScreen/SubViewport" unique_id=1887227696]
+visible = false
+position = Vector2(950, 370)
+scale = Vector2(0.17285156, 0.16796875)
+texture = ExtResource("7_2eodg")
+
+[node name="GalacticWest2" type="Sprite2D" parent="Death/DeathScreen/SubViewport" unique_id=422736109]
+visible = false
+position = Vector2(227.99998, 123)
+rotation = -0.22646782
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("8_c33fw")
+
+[node name="Win" type="CanvasLayer" parent="." unique_id=1766478332]
+
+[node name="WinScreen" type="SubViewportContainer" parent="Win" unique_id=1160664711]
+process_mode = 3
+offset_right = 1152.0
+offset_bottom = 647.0
+
+[node name="SubViewport" type="SubViewport" parent="Win/WinScreen" unique_id=160942241]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 647)
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="Win/WinScreen/SubViewport" unique_id=1780664365]
+offset_top = -1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.69803923)
+
+[node name="Plank1Base" type="Sprite2D" parent="Win/WinScreen/SubViewport" unique_id=1987808657]
+position = Vector2(569, 201.99997)
+scale = Vector2(0.3008, 0.235)
+texture = ExtResource("2_04bfs")
+
+[node name="WinLabel" type="Label" parent="Win/WinScreen/SubViewport" unique_id=1851207391]
+offset_left = 143.0
+offset_top = 117.000015
+offset_right = 981.0
+offset_bottom = 210.00002
+scale = Vector2(1, 1.8399999)
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("3_yneoq")
+theme_override_font_sizes/font_size = 21
+text = "There's a New Sheriff In 
+tOWN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinButton" type="Button" parent="Win/WinScreen/SubViewport" unique_id=284127754]
+offset_left = 353.0
+offset_top = 382.0
+offset_right = 825.0
+offset_bottom = 473.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_yneoq")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_tfit5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_t5itb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gilco")
+text = "Return To HyperDrive"
+
+[node name="GalacticWest4" type="Sprite2D" parent="Win/WinScreen/SubViewport" unique_id=1010700397]
+visible = false
+position = Vector2(950, 370)
+scale = Vector2(0.17285156, 0.16796875)
+texture = ExtResource("7_2eodg")
+
+[node name="GalacticWest2" type="Sprite2D" parent="Win/WinScreen/SubViewport" unique_id=925675414]
+visible = false
+position = Vector2(227.99998, 123)
+rotation = -0.22646782
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("8_c33fw")
+
+[connection signal="pressed" from="Death/DeathScreen/SubViewport/DeathButton" to="." method="_on_death_button_pressed"]
+[connection signal="pressed" from="Win/WinScreen/SubViewport/WinButton" to="." method="_on_win_button_pressed"]

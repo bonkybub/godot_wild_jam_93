@@ -12,10 +12,15 @@ var move_speed: float = 0.0:
 		var timer: float = 0.0
 		var delta: float = get_process_delta_time()
 		var start_value: float = move_speed
-		while timer < speed_change_dur:
+		
+		var tree := get_tree()
+		if tree == null:
+			return
+		
+		while is_inside_tree() && timer < speed_change_dur:
 			move_speed = lerp(start_value, value, timer / speed_change_dur)
 			timer += delta
-			await get_tree().process_frame
+			await tree.process_frame
 		move_speed = value
 
 func shoot(_b_obj: PackedScene = bullet_obj, _dmg: int = shot_dmg) -> void:
@@ -24,9 +29,13 @@ func shoot(_b_obj: PackedScene = bullet_obj, _dmg: int = shot_dmg) -> void:
 func begin_fly_in(path: PathFollow3D) -> void:
 	var delta: float = get_physics_process_delta_time()
 	
-	while path.progress_ratio < 1.0:
+	var tree := get_tree()
+	if tree == null:
+		return
+	
+	while is_inside_tree() && path.progress_ratio < 1.0:
 		path.progress += move_speed * delta
-		await get_tree().process_frame
+		await tree.process_frame
 	
 	if sequence.active_pursuers.has(self):
 		sequence.active_pursuers.remove_at(sequence.active_pursuers.find(self))

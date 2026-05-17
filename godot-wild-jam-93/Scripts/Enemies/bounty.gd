@@ -21,6 +21,13 @@ func death() -> void:
 	await get_tree().process_frame
 	e.global_position = global_position
 	
-	await get_tree().create_timer(3.0).timeout
 	
-	WarpTransition.transition_to_scene(hyperdrive_scene_path)
+	
+	await get_tree().create_timer(3.0).timeout
+
+	GameEndManager.show_win_screen()
+	
+	
+	queue_free()
+	
+	#WarpTransition.transition_to_scene(hyperdrive_scene_path)

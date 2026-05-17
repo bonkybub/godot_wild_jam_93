@@ -77,10 +77,14 @@ func strafe(dest: Vector3, left: bool) -> void:
 	var strafe_dur: float = position.distance_to(dest) / strafe_spd
 	var start_pos: Vector3 = position
 	
-	while timer < strafe_dur:
+	var tree := get_tree()
+	if tree == null:
+		return
+	
+	while is_inside_tree() && timer < strafe_dur:
 		position = lerp(start_pos, dest, timer / strafe_dur)
 		timer += delta
-		await get_tree().process_frame
+		await await tree.process_frame
 	
 	position = dest
 	for bandit in active_bandits:

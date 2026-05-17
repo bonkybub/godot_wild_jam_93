@@ -47,6 +47,7 @@ var current_health: int
 @onready var far_reticle: Node3D = $AimReticle/FarReticle
 
 @onready var health_bar: ProgressBar = $PlayerUI/HealthBar
+
 #endregion
 
 #region Conditions
@@ -63,6 +64,7 @@ func _ready() -> void:
 	# Keeping this off just to make testing easier
 	#Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	
+	
 	SPEED = GameManager.player_speed
 	print("Player speed: ", SPEED)
 	
@@ -78,31 +80,35 @@ func _ready() -> void:
 	gun_right.has_scattershot = GameManager.player_hasScatterShot
 
 func _physics_process(delta: float) -> void:
-#region Movement
-
-	var input_dir := Input.get_vector("roll_left", "roll_right", "pitch_up", "pitch_down")
-
-	handle_dash_input(input_dir)
-
-	if is_dashing == false:
-		var direction := Vector3(input_dir.x, input_dir.y, 0).normalized()
-		
-		if direction:
-			velocity.x = direction.x * SPEED
-			velocity.y = direction.y * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.y = move_toward(velocity.y, 0, SPEED)
-
-	move_and_slide()
-
-	position.x = clamp(position.x, MIN_X, MAX_X)
-	position.y = clamp(position.y, MIN_Y, MAX_Y)
 	
-	update_ship_rotation(input_dir, delta)
-#endregion
-	update_gun_aim()
-	handle_shooting()
+	if !is_dead: 
+		
+	#region Movement
+
+
+		var input_dir := Input.get_vector("roll_left", "roll_right", "pitch_up", "pitch_down")
+
+		handle_dash_input(input_dir)
+
+		if is_dashing == false:
+			var direction := Vector3(input_dir.x, input_dir.y, 0).normalized()
+			
+			if direction:
+				velocity.x = direction.x * SPEED
+				velocity.y = direction.y * SPEED
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED)
+				velocity.y = move_toward(velocity.y, 0, SPEED)
+
+		move_and_slide()
+
+		position.x = clamp(position.x, MIN_X, MAX_X)
+		position.y = clamp(position.y, MIN_Y, MAX_Y)
+		
+		update_ship_rotation(input_dir, delta)
+	#endregion
+		update_gun_aim()
+		handle_shooting()
 
 
 func update_ship_rotation(input_dir: Vector2, delta: float) -> void:
@@ -137,8 +143,13 @@ func update_health_bar() -> void:
 func die() -> void:
 	is_dead = true
 	# TODO - Will be adding death logic here when we decide what to do
+	
+	ship_model.queue_free()
+	
+	GameEndManager.show_lose_screen()
 	print("Player died")
-	queue_free()
+	
+	
 #endregion
 
 #region Gun Stuff
