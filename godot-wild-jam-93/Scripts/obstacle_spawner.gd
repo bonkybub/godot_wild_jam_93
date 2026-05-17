@@ -3,6 +3,12 @@ extends Node3D
 
 @export var player: Player
 
+#region Bounty Values
+@export_category("Bounty Spawning")
+@export var bounty_obj: PackedScene
+var bounty_target: Bounty
+#endregion
+
 #region Bandit Values
 @onready var bandit_ent_path_l: Path3D = $"Bandit Enter Path (Left)"
 @onready var bandit_ent_path_r: Path3D = $"Bandit Enter Path (Right)"
@@ -64,10 +70,21 @@ var bandit_points: Array[Node3D]
 #endregion
 
 func _ready() -> void:
-	start_bandits()
-	start_pursuers()
-	start_cacti()
-	start_tumbleweeds()
+	pass
+	#start_bandits()
+	#start_pursuers()
+	#start_cacti()
+	#start_tumbleweeds()
+	
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("debug1") && bounty_target == null:
+		bounty_target = bounty_obj.instantiate()
+		add_child(bounty_target)
+		bounty_target.spawner = self
+		bounty_target.spawn()
+	
+	if Input.is_action_just_pressed("debug2") && bounty_target != null:
+		(bounty_target as RattleCrew).strafe_state()
 
 func remove_from_path(path_follow: PathFollow3D, new_parent: Node3D, child: Node3D) -> void:
 	var pos: Vector3 = child.global_position

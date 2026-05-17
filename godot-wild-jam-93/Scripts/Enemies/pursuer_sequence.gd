@@ -35,7 +35,7 @@ func start_pursuers() -> void:
 		if shooters.is_empty(): break
 		var shooter: Pursuer = shooters.pick_random()
 		shooters.remove_at(shooters.find(shooter))
-		if shooter != null:
+		if shooter != null && shooter.spawner.player != null:
 			shooter.set_fire_location(shooter.spawner.player.global_position)
 			shooter.shoot()
 		await get_tree().create_timer(pursuer_shoot_gap).timeout
@@ -44,7 +44,7 @@ func start_pursuers() -> void:
 	for pursuer in active_pursuers:
 		pursuer.move_speed = pursuer_fly_spd
 	
-	await active_pursuers.is_empty()
+	#await active_pursuers.is_empty()
 
 func is_in_shoot_range() -> bool:
 	var x: float = get_group_position().x

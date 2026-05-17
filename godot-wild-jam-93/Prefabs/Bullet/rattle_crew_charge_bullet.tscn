@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://btafbtlkkvmtg"]
+
+[ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="1_r26pq"]
+
+[node name="Rattle Crew Charge Bullet" unique_id=32327012 instance=ExtResource("1_r26pq")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)

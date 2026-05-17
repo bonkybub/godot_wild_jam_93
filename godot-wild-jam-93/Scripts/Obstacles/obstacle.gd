@@ -18,7 +18,6 @@ func _physics_process(_delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	# deal damage to player
 	if body is Player:
-		print("player hit")
 		body.take_damage(damage)
 
 func _on_area_entered(area: Area3D) -> void:

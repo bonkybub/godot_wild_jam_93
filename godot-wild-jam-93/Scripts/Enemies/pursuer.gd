@@ -18,7 +18,7 @@ var move_speed: float = 0.0:
 			await get_tree().process_frame
 		move_speed = value
 
-func shoot() -> void:
+func shoot(_b_obj: PackedScene = bullet_obj, _dmg: int = shot_dmg) -> void:
 	super()
 
 func begin_fly_in(path: PathFollow3D) -> void:

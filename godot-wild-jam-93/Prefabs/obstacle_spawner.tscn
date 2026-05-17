@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cvrvaywdl8l2h"]
 
 [ext_resource type="Script" uid="uid://2n5e2kpla82o" path="res://Scripts/obstacle_spawner.gd" id="1_43w2k"]
+[ext_resource type="PackedScene" uid="uid://cktvrny32dghg" path="res://Prefabs/Enemies/rattle_crew.tscn" id="2_4oe2l"]
 [ext_resource type="PackedScene" uid="uid://bsb5ly0xnyuev" path="res://Prefabs/Enemies/bandit.tscn" id="2_5566v"]
 [ext_resource type="PackedScene" uid="uid://cl7p7qa3mghod" path="res://Prefabs/Enemies/bandit_group.tscn" id="3_5566v"]
 [ext_resource type="PackedScene" uid="uid://78ihup64oigp" path="res://Prefabs/Enemies/pursuer.tscn" id="3_beay7"]
@@ -66,6 +67,7 @@ point_count = 2
 
 [node name="Obstacle Spawner" type="Node3D" unique_id=2002730737 node_paths=PackedStringArray("bandit_group", "pursuer_paths")]
 script = ExtResource("1_43w2k")
+bounty_obj = ExtResource("2_4oe2l")
 bandit_obj = ExtResource("2_5566v")
 bandit_group = NodePath("Bandit Group")
 pursuer_obj = ExtResource("3_beay7")
@@ -133,7 +135,7 @@ shoot_x_bounds = Vector2(-7, 5)
 y_bounds = Vector2(-2.5, 0.5)
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Pursuer Path Lower (Left)" unique_id=1786469523]
-transform = Transform3D(0.4999995, 0.8660248, -3.7855088e-08, 0, -4.3711356e-08, -0.99999774, -0.86602455, 0.4999996, -2.1855643e-08, -16, -2, 0)
+transform = Transform3D(0.4999994, 0.8660248, -3.7855088e-08, 0, -4.3711356e-08, -0.99999774, -0.86602443, 0.4999996, -2.1855643e-08, -16, -2, 0)
 loop = false
 
 [node name="Pursuer Path Upper (Right)" type="Path3D" parent="." unique_id=1059852214]

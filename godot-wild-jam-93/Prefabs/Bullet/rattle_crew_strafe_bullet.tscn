@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b7l3wf1vcyu5v"]
+
+[ext_resource type="PackedScene" uid="uid://chdf3ifhvxjj2" path="res://Prefabs/Bullet/projectile.tscn" id="1_fslhq"]
+
+[node name="Rattle Crew Strafe Bullet" unique_id=32327012 instance=ExtResource("1_fslhq")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)

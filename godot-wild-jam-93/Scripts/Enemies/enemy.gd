@@ -2,6 +2,7 @@ class_name Enemy
 extends CharacterBody3D
 
 var spawner: ObstacleSpawner
+var material: StandardMaterial3D
 
 @export_category("Health & Damage")
 @export var fire_locations: Array[Node3D]
@@ -33,10 +34,12 @@ func _ready() -> void:
 				mesh = child
 				break
 	
-	var material: Material = mesh.material_override
-	if material != null: mesh.material_override = material.duplicate()
+	material = mesh.material_override
+	if material != null:
+		mesh.material_override = material.duplicate()
+		material = mesh.material_override
 
-func shoot() -> void:
+func shoot(b_obj: PackedScene = bullet_obj, dmg: int = shot_dmg) -> void:
 	if spawner.player == null: return
 	if fire_locations.is_empty(): return
 	
@@ -54,11 +57,11 @@ func shoot() -> void:
 	
 	for fire_location in fire_locations:
 		if spawner.player == null: break
-		var bullet: Projectile = bullet_obj.instantiate()
+		var bullet: Projectile = b_obj.instantiate()
 		get_tree().current_scene.add_child(bullet)
 		bullet.add_to_group("enemy_projectile")
 		bullet.global_position = fire_location.global_position
-		bullet.damage = shot_dmg
+		bullet.damage = dmg
 		bullet.speed = shot_spd
 		bullet.setup(spawner.player.global_position - bullet.global_position)
 	
@@ -78,7 +81,6 @@ func damage_dealt(dmg: int) -> void:
 	var end_scale: Vector3 = hit_pop_scale * Vector3.ONE
 	
 	# set to hit colour and expand mesh
-	var material: Material = mesh.material_override
 	var original_colour
 	if material is StandardMaterial3D:
 		original_colour = material.albedo_color
